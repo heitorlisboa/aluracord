@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
 import { ChangeEvent, useState } from "react";
-import styles from "../styles/Home.module.scss";
+import styles from "../styles/pages/Home.module.scss";
+import validateInput from "../validators/validateInput";
 
 const Home: NextPage = () => {
   const [username, setUsername] = useState("");
 
   function handleUsernameChange(event: ChangeEvent<HTMLInputElement>) {
-    const newUsername = event.target.value;
+    let newUsername = event.target.value;
+    const regex = /[\w\-]*/g;
+    newUsername = validateInput(newUsername, regex)
     setUsername(newUsername);
   }
 
