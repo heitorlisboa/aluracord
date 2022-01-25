@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="Aluracord - Um clone do discord feito durante a Imersão React da Alura"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Component {...pageProps} />
     </>
