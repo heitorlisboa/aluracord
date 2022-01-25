@@ -14,13 +14,13 @@
 %darker-background {
   isolation: isolate;
 
-  ::before {
+  &::before {
     content: "";
     position: absolute;
     inset: 0;
 
     background-color: black;
-    opacity: 0.05;
+    opacity: 0.2;
     z-index: -1;
   }
 }
