@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
-import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import styles from "../styles/Home.module.scss";
 
-const Home: NextPage = function homeComponent() {
+const Home: NextPage = () => {
   const [username, setUsername] = useState("");
 
   function handleUsernameChange(event: ChangeEvent<HTMLInputElement>) {
