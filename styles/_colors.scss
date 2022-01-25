@@ -2,8 +2,14 @@ $primary-light: #212931;
 $primary-medium: #181f25;
 $primary-dark: #0e1215;
 
-$primary-light-transparent: transparentize($color: $primary-light, $amount: 0.3);
-$primary-medium-transparent: transparentize($color: $primary-medium, $amount: 0.3);
+$primary-light-transparent: transparentize(
+  $color: $primary-light,
+  $amount: 0.3,
+);
+$primary-medium-transparent: transparentize(
+  $color: $primary-medium,
+  $amount: 0.3,
+);
 
 $secondary-light: #ffffff;
 $secondary-medium: #9aa5b1;
