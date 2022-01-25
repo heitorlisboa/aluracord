@@ -4,3 +4,23 @@
   align-items: center;
   min-height: 100vh;
 }
+
+%full-size-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+%darker-background {
+  isolation: isolate;
+
+  ::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-color: black;
+    opacity: 0.05;
+    z-index: -1;
+  }
+}

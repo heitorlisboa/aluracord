@@ -3,9 +3,8 @@
 
 .container {
   background-image: url(/background.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  @extend %full-size-background;
+  @extend %darker-background;
 
   @extend %flex-container;
 }
