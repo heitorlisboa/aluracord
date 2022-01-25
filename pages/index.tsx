@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       <article className={styles.loginCard}>
         <div className={styles.login}>
           <h1>Boas vindas!</h1>
-          <h2 className={styles.subtitle}>Aluracord - Zankyou no Terror</h2>
+          <h2 className={styles.subtitle}>Aluracord - Fullmetal Alchemist</h2>
           <form
             className={styles.loginForm}
             onSubmit={(e) => {
@@ -44,12 +44,10 @@ const Home: NextPage = () => {
             src={
               username
                 ? `https://github.com/${username}.png`
-                : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                : "https://i.pinimg.com/736x/f6/eb/d0/f6ebd02f46f05d2f95c33203f938cbbf.jpg"
             }
           />
-          <span className={styles.username}>
-            {username || "Seu nome"}
-          </span>
+          <span className={styles.username}>{username || "Seu nome"}</span>
         </div>
       </article>
     </div>
