@@ -1,0 +1,108 @@
+@use "colors" as clr;
+
+.container {
+  background-image: url(https://thumbs.gfycat.com/AcrobaticHilariousArgentineruddyduck-size_restricted.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.loginCard {
+  background-color: clr.$primary-light;
+
+  color: clr.$secondary-light;
+
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: repeat(1fr, 2);
+  justify-items: center;
+  align-items: center;
+  min-height: 350px;
+  width: clamp(300px, 90vw + 1rem, 700px);
+
+  margin-inline: 1rem;
+  padding: 2rem;
+  border-radius: 10px;
+
+  @media (min-width: 768px) {
+    gap: 5rem;
+    grid-template-columns: 1fr 200px;
+  }
+}
+
+.login {
+  text-align: center;
+
+  width: 100%;
+}
+
+.subtitle {
+  color: clr.$secondary-medium;
+  font-size: 1rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.usernameInput,
+.submitButton {
+  color: clr.$secondary-light;
+
+  width: 100%;
+  max-width: 350px;
+
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+}
+
+.usernameInput {
+  background-color: clr.$primary-medium;
+
+  border: 1px solid clr.$primary-dark;
+}
+
+.submitButton {
+  background-color: clr.$success;
+
+  margin-top: 0.5rem;
+}
+
+.user {
+  background-color: clr.$primary-medium;
+
+  display: flex;
+  gap: 1rem;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+
+  border: 1px solid clr.$primary-dark;
+  border-radius: 10px;
+
+  img {
+    border-radius: 100vw;
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+.username {
+  background-color: clr.$primary-dark;
+  
+  text-align: center;
+
+  padding-inline: 1rem;
+  padding-bottom: 0.25rem;
+  border-radius: 100vw;
+}
