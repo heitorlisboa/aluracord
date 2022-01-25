@@ -1,0 +1,14 @@
+@use "../partials/colors" as clr;
+@use "../partials/placeholder-selectors";
+
+.container {
+  background-image: url(/background-404.webp);
+  @extend %full-size-background;
+  @extend %darker-background;
+
+  color: clr.$secondary-light;
+  text-shadow: 0 0 0.5rem black;
+
+  @extend %flex-container;
+  flex-flow: column;
+}
