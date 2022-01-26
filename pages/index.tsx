@@ -9,8 +9,7 @@ const Home: NextPage = () => {
   const [username, setUsername] = useState("");
   const router = useRouter();
   const userImageRef = useRef<HTMLImageElement>(null);
-  const defaultUserImage =
-    "https://i.pinimg.com/736x/f6/eb/d0/f6ebd02f46f05d2f95c33203f938cbbf.jpg";
+  const defaultUserImage = "/user-icon.jpg";
 
   function handleUsernameChange(event: ChangeEvent<HTMLInputElement>) {
     let newUsername = event.target.value;
