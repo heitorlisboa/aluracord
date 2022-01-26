@@ -12,15 +12,6 @@
 }
 
 %darker-background {
-  isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background-color: black;
-    opacity: 0.2;
-    z-index: -1;
-  }
+  background-color: rgb(0, 0, 0, 0.2);
+  background-blend-mode: darken;
 }
