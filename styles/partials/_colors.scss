@@ -10,6 +10,10 @@ $primary-medium-transparent: transparentize(
   $color: $primary-medium,
   $amount: 0.3,
 );
+$primary-dark-transparent: transparentize(
+  $color: $primary-dark,
+  $amount: 0.3,
+);
 
 $secondary-light: #ffffff;
 $secondary-medium: #9aa5b1;
