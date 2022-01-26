@@ -11,6 +11,7 @@
 
 .loginCard {
   background-color: clr.$primary-light-transparent;
+  backdrop-filter: blur(.25rem);
 
   color: clr.$secondary-light;
 
