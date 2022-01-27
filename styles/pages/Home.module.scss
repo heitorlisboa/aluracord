@@ -1,4 +1,5 @@
 @use "../partials/colors" as clr;
+@use "../partials/gaps" as gp;
 @use "../partials/placeholder-selectors";
 
 .container {
@@ -11,7 +12,7 @@
 
 .loginCard {
   background-color: clr.$primary-light-transparent;
-  backdrop-filter: blur(.25rem);
+  backdrop-filter: blur(0.25rem);
 
   color: clr.$secondary-light;
 
@@ -23,8 +24,8 @@
   min-height: 350px;
   width: clamp(300px, 90vw + 1rem, 700px);
 
-  margin-inline: 1rem;
-  padding: 2rem;
+  margin-inline: gp.$medium;
+  padding: gp.$bigger;
   border-radius: 10px;
 
   @media (min-width: 768px) {
@@ -48,7 +49,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: gp.$big;
 }
 
 .usernameInput,
@@ -58,7 +59,7 @@
   width: 100%;
   max-width: 350px;
 
-  padding: 0.25rem 0.5rem;
+  padding: gp.$smaller gp.$small;
   border-radius: 5px;
 }
 
@@ -101,7 +102,7 @@
 
   text-align: center;
 
-  padding-inline: 1rem;
-  padding-bottom: 0.25rem;
+  padding-inline: gp.$medium;
+  padding-bottom: gp.$smaller;
   border-radius: 100vw;
 }
