@@ -1,0 +1,25 @@
+@use "../../styles/partials/colors" as clr;
+
+// Main component
+.nav {
+  background-color: clr.$primary-light-transparent;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 0.5rem;
+  height: 100%;
+}
+
+.serverList {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.separator {
+  width: 32px;
+  border-bottom: 2px solid clr.$secondary-dark;
+
+  margin-block: 0.5rem;
+}

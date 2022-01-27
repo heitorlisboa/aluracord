@@ -1,0 +1,24 @@
+.button {
+  width: 50px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  transition: border-radius 200ms ease;
+  cursor: pointer;
+
+  &:hover {
+    border-radius: 16px;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
