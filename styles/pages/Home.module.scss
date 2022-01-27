@@ -101,6 +101,9 @@
   background-color: clr.$primary-dark;
 
   text-align: center;
+  @extend %text-ellipsis;
+
+  max-width: 100%;
 
   padding-inline: gp.$medium;
   padding-bottom: gp.$smaller;
