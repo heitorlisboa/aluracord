@@ -1,3 +1,6 @@
+@use "./colors" as clr;
+@use "./gaps" as gp;
+
 %flex-container {
   display: flex;
   justify-content: center;
@@ -14,4 +17,10 @@
 %darker-background {
   background-color: rgb(0, 0, 0, 0.2);
   background-blend-mode: darken;
+}
+
+%top-section {
+  height: 3rem;
+  padding: 0.6rem gp.$medium;
+  border-bottom: 1px solid clr.$secondary-medium;
 }
