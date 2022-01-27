@@ -19,6 +19,12 @@
   background-blend-mode: darken;
 }
 
+%text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 %top-section {
   height: 3rem;
   padding: 0.6rem gp.$medium;
