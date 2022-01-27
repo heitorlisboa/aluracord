@@ -1,7 +1,7 @@
-import type { ChangeEvent, FormEvent } from "react";
-import type { NextPage } from "next";
-import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
+import type { NextPage } from "next";
+import type { ChangeEvent, FormEvent } from "react";
 import styles from "../styles/pages/Home.module.scss";
 import validateInput from "../validators/validateInput";
 
