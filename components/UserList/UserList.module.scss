@@ -1,0 +1,5 @@
+@use "../../styles/partials/colors" as clr;
+
+.userList {
+  background-color: clr.$primary-medium-transparent;
+}
