@@ -1,0 +1,15 @@
+@use "../../styles/partials/colors" as clr;
+@use "../../styles/partials/font-sizes" as fs;
+@use "../../styles/partials/placeholder-selectors";
+
+.header {
+  background-color: clr.$primary-dark-transparent;
+
+  grid-column: span 2;
+
+  @extend %top-section;
+}
+
+.title {
+  font-size: fs.$medium;
+}
