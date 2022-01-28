@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import type { FC, ChangeEvent, KeyboardEvent } from "react";
 import type { MessageDeleter, MessageSender, MessageType } from "../../types";
 import styles from "./ServerChat.module.scss";
@@ -69,8 +69,10 @@ const ServerChat: FC<ServerChatProps> = ({
     }
   }
 
-  useEffect(adjustScroll, []);
-  useEffect(adjustHeight, [messageText]);
+  useLayoutEffect(() => {
+    adjustScroll();
+    adjustHeight();
+  }, [messageText]);
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
