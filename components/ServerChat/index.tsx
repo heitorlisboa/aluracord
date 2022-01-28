@@ -47,14 +47,14 @@ const ServerChat: FC<ServerChatProps> = ({
     const element = messageInputRef.current;
 
     if (element) {
-      /**
-       * Since the element has a min-height it will auto adjust
-       * to it when the height is set to 0. This is useful because
-       * when the user erases the text on the textarea, the scrollHeight
-       * will remain the same until it is resized, that means that if
-       * this line of code wasn't here, the textarea wouldn't ever
-       * readjust to it's default height.
-       */
+      /*
+        Since the element has a min-height it will auto adjust
+        to it when the height is set to 0. This is useful because
+        when the user erases the text on the textarea, the scrollHeight
+        will remain the same until it is resized, that means that if
+        this line of code wasn't here, the textarea wouldn't ever
+        readjust to it's default height.
+      */
       element.style.height = "0px";
       element.style.height = element.scrollHeight + "px";
     }
@@ -81,7 +81,10 @@ const ServerChat: FC<ServerChatProps> = ({
                   const timeDiffMinutes =
                     (msg.date.getTime() - lastMsg.date.getTime()) / 1000 / 60;
 
-                  if (msg.author.login === lastMsg.author.login && timeDiffMinutes < 5) {
+                  if (
+                    msg.author.login === lastMsg.author.login &&
+                    timeDiffMinutes < 5
+                  ) {
                     hideAuthor = true;
                   }
                 }
