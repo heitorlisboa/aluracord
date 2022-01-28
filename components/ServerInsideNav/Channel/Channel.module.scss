@@ -1,0 +1,19 @@
+@use "../../../styles/partials/colors" as clr;
+@use "../../../styles/partials/font-sizes" as fs;
+@use "../../../styles/partials/gaps" as gp;
+
+.channel {
+  font-size: fs.$medium;
+  color: clr.$secondary-dark;
+  
+  padding: gp.$smaller gp.$medium;
+  border-radius: 5px;
+  
+  cursor: pointer;
+  
+  &:hover {
+    background-color: clr.$primary-darker-transparent;
+
+    color: clr.$secondary-medium;
+  }
+}
