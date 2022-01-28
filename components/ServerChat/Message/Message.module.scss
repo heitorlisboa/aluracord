@@ -1,0 +1,81 @@
+@use "../../../styles/partials/colors" as clr;
+@use "../../../styles/partials/font-sizes" as fs;
+@use "../../../styles/partials/gaps" as gp;
+
+$avatar-width: 40px;
+
+.message {
+  position: relative;
+
+  padding-left: calc($avatar-width + gp.$big);
+  padding-right: gp.$medium;
+
+  &:hover {
+    background-color: clr.$primary-darker-transparent;
+    .buttons,
+    .timeStampTooltip {
+      opacity: 1;
+    }
+
+    .buttons {
+      pointer-events: auto;
+    }
+  }
+}
+
+.avatar {
+  position: absolute;
+  left: gp.$medium;
+  width: $avatar-width;
+  aspect-ratio: 1/1;
+
+  margin-top: gp.$smaller;
+}
+
+.header {
+  font-size: fs.$medium;
+
+  display: flex;
+  gap: gp.$small;
+
+  margin-top: gp.$medium;
+}
+
+.content {
+  padding-bottom: gp.$smaller;
+}
+
+.timeStamp,
+.timeStampTooltip {
+  font-size: fs.$smaller;
+  font-weight: normal;
+  color: clr.$secondary-dark;
+}
+
+.buttons,
+.timeStampTooltip {
+  position: absolute;
+
+  opacity: 0;
+}
+
+.buttons {
+  right: gp.$medium;
+  top: calc(gp.$medium * -1);
+  pointer-events: none;
+
+  img {
+    border: 2px solid white;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+}
+
+.timeStampTooltip {
+  user-select: none;
+
+  left: gp.$medium;
+
+  margin-top: 0.2rem;
+}
