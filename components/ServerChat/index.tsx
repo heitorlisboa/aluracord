@@ -60,9 +60,7 @@ const ServerChat: FC<ServerChatProps> = ({
     }
   }
 
-  useEffect(() => {
-    adjustHeight();
-  }, [messageText]);
+  useEffect(adjustHeight, [messageText]);
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
