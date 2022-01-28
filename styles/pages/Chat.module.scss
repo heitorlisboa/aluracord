@@ -1,0 +1,21 @@
+@use "../partials/colors" as clr;
+@use "../partials/placeholder-selectors";
+
+.primaryContainer {
+  background-image: url(/background-alt.webp);
+  @extend %full-size-background;
+  @extend %darker-background;
+
+  color: clr.$secondary-light;
+  overflow-wrap: break-word;
+  user-select: none;
+
+  display: grid;
+  grid-template-columns: 70px 240px 1fr;
+}
+
+.secondaryContainer {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  grid-template-rows: 3rem 1fr;
+}
