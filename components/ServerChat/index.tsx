@@ -78,7 +78,7 @@ const ServerChat: FC<ServerChatProps> = ({
         <div className={styles.scroller} ref={scrollerDivRef}>
           <div className={styles.scrollerContent}>
             <ol
-              className={styles.chatContent}
+              className={styles.scrollerInner}
               aria-label={`Mensagens em ${channel}`}
             >
               {messages?.map((msg, index) => {
@@ -108,6 +108,7 @@ const ServerChat: FC<ServerChatProps> = ({
                   </Message>
                 );
               })}
+              <div className={styles.scrollerSpacer} />
             </ol>
           </div>
         </div>

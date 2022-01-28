@@ -32,8 +32,12 @@
   height: 100%;
 }
 
-.chatContent {
-  padding-block: 1rem;
+.scrollerInner {
+  min-height: 0;
+}
+
+.scrollerSpacer {
+  height: gp.$medium;
 }
 
 .form {
