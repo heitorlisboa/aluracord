@@ -19,6 +19,7 @@ const ServerChat: FC<ServerChatProps> = ({
   deleteMessage,
 }) => {
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
+  const scrollerDivRef = useRef<HTMLDivElement>(null);
   const [messageText, setMessageText] = useState("");
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
@@ -43,6 +44,14 @@ const ServerChat: FC<ServerChatProps> = ({
     }
   }
 
+  function adjustScroll() {
+    const element = scrollerDivRef.current;
+
+    if (element) {
+      element.scrollTop = element.scrollHeight;
+    }
+  }
+
   function adjustHeight() {
     const element = messageInputRef.current;
 
@@ -60,12 +69,13 @@ const ServerChat: FC<ServerChatProps> = ({
     }
   }
 
+  useEffect(adjustScroll, []);
   useEffect(adjustHeight, [messageText]);
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
       <div className={styles.chatWrapper}>
-        <div className={styles.scroller}>
+        <div className={styles.scroller} ref={scrollerDivRef}>
           <div className={styles.scrollerContent}>
             <ol
               className={styles.chatContent}
