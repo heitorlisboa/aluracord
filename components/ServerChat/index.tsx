@@ -44,7 +44,7 @@ const ServerChat: FC<ServerChatProps> = ({
     }
   }
 
-  function adjustScroll() {
+  function adjustChatScroll() {
     const element = scrollerDivRef.current;
 
     if (element) {
@@ -52,7 +52,7 @@ const ServerChat: FC<ServerChatProps> = ({
     }
   }
 
-  function adjustHeight() {
+  function adjustInputHeight() {
     const element = messageInputRef.current;
 
     if (element) {
@@ -70,9 +70,12 @@ const ServerChat: FC<ServerChatProps> = ({
   }
 
   useLayoutEffect(() => {
-    adjustScroll();
-    adjustHeight();
+    adjustInputHeight();
   }, [messageText]);
+
+  useLayoutEffect(() => {
+    adjustChatScroll();
+  }, [messageText, messages]);
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
