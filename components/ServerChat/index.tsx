@@ -1,23 +1,19 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useContext, useLayoutEffect, useRef, useState } from "react";
+import { addMessage } from "../../lib/Store";
+import UserContext from "../../lib/UserContext";
 import type { FC, ChangeEvent, KeyboardEvent } from "react";
-import type { MessageDeleter, MessageSender, MessageType } from "../../types";
+import type { MessageResponse, UserContextInterface } from "../../types";
 import styles from "./ServerChat.module.scss";
 
 import Message from "./Message";
 
 interface ServerChatProps {
   channel: string;
-  messages?: MessageType[];
-  sendMessage: MessageSender;
-  deleteMessage: MessageDeleter;
+  messages?: MessageResponse[];
 }
 
-const ServerChat: FC<ServerChatProps> = ({
-  channel,
-  messages,
-  sendMessage,
-  deleteMessage,
-}) => {
+const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
+  const context = useContext(UserContext) as UserContextInterface;
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const scrollerDivRef = useRef<HTMLDivElement>(null);
   const [messageText, setMessageText] = useState("");
@@ -31,13 +27,9 @@ const ServerChat: FC<ServerChatProps> = ({
 
     if (keyPressed === "Enter" && !event.shiftKey) {
       event.preventDefault();
-      sendMessage({
-        author: {
-          login: "heitorlisboa",
-          username: "Heitor Lisboa",
-          profilePic: "https://github.com/heitorlisboa.png",
-        },
-        date: new Date(),
+      addMessage({
+        author: context.currentUser,
+        date: new Date().toISOString(),
         content: messageText,
       });
       setMessageText("");
@@ -47,9 +39,7 @@ const ServerChat: FC<ServerChatProps> = ({
   function adjustChatScroll() {
     const element = scrollerDivRef.current;
 
-    if (element) {
-      element.scrollTop = element.scrollHeight;
-    }
+    if (element) element.scrollTop = element.scrollHeight;
   }
 
   function adjustInputHeight() {
@@ -89,27 +79,19 @@ const ServerChat: FC<ServerChatProps> = ({
               {messages?.map((msg, index) => {
                 let hideAuthor = false;
                 if (index > 0) {
+                  const msgTime = new Date(msg.date).getTime();
                   const lastMsg = messages[index - 1];
+                  const lastMsgTime = new Date(lastMsg.date).getTime();
                   // getTime() returns the time in milliseconds
-                  const timeDiffMinutes =
-                    (msg.date.getTime() - lastMsg.date.getTime()) / 1000 / 60;
+                  const timeDiffMinutes = (msgTime - lastMsgTime) / 1000 / 60;
 
-                  if (
-                    msg.author.login === lastMsg.author.login &&
-                    timeDiffMinutes < 5
-                  ) {
+                  if (msg.author === lastMsg.author && timeDiffMinutes < 5) {
                     hideAuthor = true;
                   }
                 }
                 return (
-                  <Message
-                    key={index}
-                    author={msg.author}
-                    date={msg.date}
-                    onlyContent={hideAuthor}
-                    deleteMessage={deleteMessage}
-                  >
-                    {msg.content}
+                  <Message key={msg.id} onlyContent={hideAuthor}>
+                    {msg}
                   </Message>
                 );
               })}
