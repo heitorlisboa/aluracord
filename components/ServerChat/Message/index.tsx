@@ -1,6 +1,7 @@
-import { FC, useContext } from "react";
+import { useContext } from "react";
 import { deleteMessage } from "../../../lib/Store";
 import UserContext from "../../../lib/UserContext";
+import type { FC } from "react";
 import type { MessageResponse, UserContextInterface } from "../../../types";
 import styles from "./Message.module.scss";
 
