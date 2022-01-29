@@ -1,6 +1,7 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { MessageCreated, MessageResponse } from "../types";
+import type { Dispatch, SetStateAction } from "react";
+import type { MessageResponse, MessageCreated } from "../types";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
