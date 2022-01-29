@@ -1,0 +1,29 @@
+@use "./partials/colors" as clr;
+@use "./partials/gaps" as gp;
+
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-track {
+  background-color: clr.$secondary-light;
+  margin-block: gp.$small;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: clr.$primary-dark;
+  border: 2px solid clr.$secondary-light;
+}
+
+button {
+  cursor: pointer;
+}
