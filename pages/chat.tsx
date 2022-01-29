@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useStore } from "../lib/Store";
+import { useProfile } from "../lib/Profile";
 import UserContext from "../lib/UserContext";
+import ProfileContext from "../lib/ProfileContext";
 import type { NextPage } from "next";
 import type { CategoriesObject } from "../types";
 import styles from "../styles/pages/Chat.module.scss";
@@ -11,6 +13,7 @@ import ServerInsideNav from "../components/ServerInsideNav";
 import ServerHeader from "../components/ServerHeader";
 import ServerChat from "../components/ServerChat";
 import UserList from "../components/UserList";
+import ProfileCard from "../components/ProfileCard";
 
 const Chat: NextPage = () => {
   const router = useRouter();
@@ -23,6 +26,7 @@ const Chat: NextPage = () => {
     "Canais de texto": ["Geral"],
   });
   const { messages } = useStore();
+  const profile = useProfile();
 
   useEffect(() => {
     if (!currentUser) router.replace("/");
@@ -30,25 +34,35 @@ const Chat: NextPage = () => {
 
   return (
     <UserContext.Provider value={{ currentUser: currentUser as string }}>
-      <div className={styles.primaryContainer}>
-        <ServerList />
-        <ServerInsideNav title={serverTitle} categories={categories} />
-        <div className={styles.secondaryContainer}>
-          <ServerHeader channel={channelName} />
-          {isHome && !isDirectMessage && (
-            <main aria-label="Amigos">
-              <ul aria-label="Lista de amigos"></ul>
-            </main>
-          )}
-          {(!isHome || (isHome && isDirectMessage)) && (
-            <ServerChat
-              channel={channelName}
-              messages={messages}
+      <ProfileContext.Provider
+        value={{
+          handleClickIn: profile.handleClickIn,
+          handleClickOut: profile.handleClickOut,
+        }}
+      >
+        <div className={styles.primaryContainer}>
+          <ServerList />
+          <ServerInsideNav title={serverTitle} categories={categories} />
+          <div className={styles.secondaryContainer}>
+            <ServerHeader channel={channelName} />
+            {isHome && !isDirectMessage && (
+              <main aria-label="Amigos">
+                <ul aria-label="Lista de amigos"></ul>
+              </main>
+            )}
+            {(!isHome || (isHome && isDirectMessage)) && (
+              <ServerChat channel={channelName} messages={messages} />
+            )}
+            {!isDirectMessage && <UserList channel={channelName} />}
+          </div>
+          {profile.isVisible && (
+            <ProfileCard
+              userInfo={profile.userInfo}
+              isLoading={profile.isLoading}
             />
           )}
-          {!isDirectMessage && <UserList channel={channelName} />}
         </div>
-      </div>
+      </ProfileContext.Provider>
     </UserContext.Provider>
   );
 };

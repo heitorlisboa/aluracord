@@ -2,8 +2,13 @@ import { useContext } from "react";
 import { deleteMessage } from "../../../lib/Store";
 import UserContext from "../../../lib/UserContext";
 import type { FC } from "react";
-import type { MessageResponse, UserContextInterface } from "../../../types";
+import type {
+  MessageResponse,
+  ProfileContextInterface,
+  UserContextInterface,
+} from "../../../types";
 import styles from "./Message.module.scss";
+import ProfileContext from "../../../lib/ProfileContext";
 
 interface MessageProps {
   children: MessageResponse;
@@ -11,7 +16,10 @@ interface MessageProps {
 }
 
 const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
-  const context = useContext(UserContext) as UserContextInterface;
+  const { currentUser } = useContext(UserContext) as UserContextInterface;
+  const { handleClickIn } = useContext(
+    ProfileContext
+  ) as ProfileContextInterface;
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
     day: "2-digit",
@@ -50,12 +58,19 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
             className={styles.avatar}
             src={`https://github.com/${message.author}.png`}
             alt={`Foto de perfil de ${message.author}`}
+            onClick={() => handleClickIn(message.author)}
           />
           <h2
             className={styles.header}
             aria-labelledby={`message-username-${message.id}`}
           >
-            <span id={`message-username-${message.id}`}>{message.author}</span>
+            <span
+              id={`message-username-${message.id}`}
+              className={styles.username}
+              onClick={() => handleClickIn(message.author)}
+            >
+              {message.author}
+            </span>
             <span>
               <time
                 className={styles.timeStamp}
@@ -70,7 +85,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
       )}
 
       <div className={styles.content}>{message.content}</div>
-      {message.author === context.currentUser && (
+      {message.author === currentUser && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
           <img
             src="/svg/delete-icon.svg"

@@ -20,6 +20,20 @@ export interface UserContextInterface {
 
 export interface GitHubUserInfo {
   name: string;
+  login: string;
   location: string;
   bio: string;
+  html_url: string;
+  avatar_url: string;
+  twitter_username: string | null;
+  blog: string | null;
+}
+
+export type ClickProfileHandler = (username: string) => void;
+
+export type ClickOutProfileHandler = () => void;
+
+export interface ProfileContextInterface {
+  handleClickIn: ClickProfileHandler;
+  handleClickOut: ClickOutProfileHandler;
 }

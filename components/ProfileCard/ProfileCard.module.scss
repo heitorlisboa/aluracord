@@ -1,0 +1,117 @@
+@use "../../styles/partials/colors" as clr;
+@use "../../styles/partials/font-sizes" as fs;
+@use "../../styles/partials/gaps" as gp;
+@use "../../styles/partials/placeholder-selectors";
+
+.wrapper {
+  background-color: clr.$primary-light-transparent;
+
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileCard {
+  background-color: clr.$primary-dark;
+
+  user-select: text;
+
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 300px;
+  max-height: 500px;
+
+  padding: gp.$medium;
+  border-radius: 10px;
+  box-shadow: 0 0 10px -2px clr.$secondary-dark;
+}
+
+.avatar {
+  width: 120px;
+  aspect-ratio: 1/1;
+
+  margin-inline: auto;
+  border: 5px solid clr.$primary-dark;
+  border-radius: 50%;
+}
+
+.header {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: gp.$big;
+}
+
+.fullName {
+  font-size: fs.$big;
+}
+
+.username {
+  font-size: fs.$medium;
+  color: clr.$secondary-dark;
+}
+
+.about {
+  width: 100%;
+  height: 100%;
+
+  &Title,
+  &Bio,
+  &Location {
+    font-size: fs.$small;
+  }
+
+  &Bio {
+    margin-bottom: gp.$small;
+  }
+
+  &Socials {
+    display: flex;
+
+    margin-left: -0.25rem;
+
+    .smallerIcon {
+      padding: 0.25rem;
+    }
+
+    a {
+      width: 2rem;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: gp.$small;
+  right: gp.$small;
+
+  cursor: pointer;
+}
+
+.loading {
+  margin: auto;
+  width: 30px;
+  aspect-ratio: 1/1;
+
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

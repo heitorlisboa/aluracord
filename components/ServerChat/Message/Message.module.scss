@@ -47,6 +47,12 @@ $avatar-width: 40px;
   margin-top: gp.$medium;
 }
 
+.username {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .timeStamp,
 .timeStampTooltip {
   font-size: fs.$smaller;
