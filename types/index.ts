@@ -17,3 +17,9 @@ export interface MessageResponse extends MessageCreated {
 export interface UserContextInterface {
   currentUser: string;
 }
+
+export interface GitHubUserInfo {
+  name: string;
+  location: string;
+  bio: string;
+}

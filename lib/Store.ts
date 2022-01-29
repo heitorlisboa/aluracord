@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import type { Dispatch, SetStateAction } from "react";
-import type { MessageResponse, MessageCreated } from "../types";
+import type { MessageResponse, MessageCreated, GitHubUserInfo } from "../types";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -74,6 +74,16 @@ export const fetchMessages = async (
   let { body } = await supabase.from("messages").select("*").order("date");
   if (setState) setState(body as MessageResponse[]);
   return body as MessageResponse[];
+};
+
+export const fetchUser = async (
+  username: string,
+  setState?: Dispatch<SetStateAction<any>>
+) => {
+  let res = await fetch(`https://api.github.com/users/${username}`);
+  let data: GitHubUserInfo = await res.json()
+  if (setState) setState(data);
+  return data;
 };
 
 /**
