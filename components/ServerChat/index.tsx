@@ -88,7 +88,7 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
           className={styles.scrollerInner}
           aria-label={`Mensagens em ${channel}`}
         >
-          {(messages && messages.length > 0) ? (
+          {messages && messages.length > 0 ? (
             <>
               {messages.map((msg, index) => {
                 let hideAuthor = false;
@@ -125,6 +125,7 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
           className={styles.messageInput}
           name="message"
           placeholder={`Conversar em ${channel}`}
+          aria-label={`Conversar em ${channel}`}
           ref={messageInputRef}
           value={messageText}
           onChange={handleChange}
