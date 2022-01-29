@@ -51,8 +51,11 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
             src={`https://github.com/${message.author}.png`}
             alt={`Foto de perfil de ${message.author}`}
           />
-          <h2 className={styles.header}>
-            <span>{message.author}</span>
+          <h2
+            className={styles.header}
+            aria-labelledby={`message-username-${message.id}`}
+          >
+            <span id={`message-username-${message.id}`}>{message.author}</span>
             <span>
               <time
                 className={styles.timeStamp}
