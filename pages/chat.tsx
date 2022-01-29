@@ -22,7 +22,7 @@ const Chat: NextPage = () => {
   const [categories, setCategories] = useState<CategoriesObject>({
     "Canais de texto": ["Geral"],
   });
-  const { messages, isLoading } = useStore();
+  const { messages } = useStore();
 
   useEffect(() => {
     if (!currentUser) router.replace("/");
@@ -44,7 +44,6 @@ const Chat: NextPage = () => {
             <ServerChat
               channel={channelName}
               messages={messages}
-              isLoading={isLoading}
             />
           )}
           {!isDirectMessage && <UserList channel={channelName} />}

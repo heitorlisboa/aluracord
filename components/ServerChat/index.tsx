@@ -24,10 +24,9 @@ const ServerChatWrapper = React.forwardRef<
 interface ServerChatProps {
   channel: string;
   messages?: MessageResponse[];
-  isLoading: boolean;
 }
 
-const ServerChat: FC<ServerChatProps> = ({ channel, messages, isLoading }) => {
+const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
   const context = useContext(UserContext) as UserContextInterface;
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const scrollerDivRef = useRef<HTMLDivElement>(null);
@@ -89,15 +88,9 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages, isLoading }) => {
           className={styles.scrollerInner}
           aria-label={`Mensagens em ${channel}`}
         >
-          {isLoading ? (
+          {(messages && messages.length > 0) ? (
             <>
-              {Array.from(Array(8).keys()).map((n) => {
-                return <LoadingMessage key={n} />;
-              })}
-            </>
-          ) : (
-            <>
-              {messages?.map((msg, index) => {
+              {messages.map((msg, index) => {
                 let hideAuthor = false;
                 if (index > 0) {
                   const msgTime = new Date(msg.date).getTime();
@@ -114,6 +107,12 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages, isLoading }) => {
                     {msg}
                   </Message>
                 );
+              })}
+            </>
+          ) : (
+            <>
+              {Array.from(Array(8).keys()).map((n) => {
+                return <LoadingMessage key={n} />;
               })}
             </>
           )}
