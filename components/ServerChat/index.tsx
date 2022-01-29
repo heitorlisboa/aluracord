@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { addMessage } from "../../lib/Store";
 import UserContext from "../../lib/UserContext";
 import type { FC, ChangeEvent, KeyboardEvent } from "react";
@@ -6,6 +6,20 @@ import type { MessageResponse, UserContextInterface } from "../../types";
 import styles from "./ServerChat.module.scss";
 
 import Message from "./Message";
+import LoadingMessage from "./LoadingMessage";
+
+const ServerChatWrapper = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLProps<HTMLDivElement>
+>(({ children }, ref) => {
+  return (
+    <div className={styles.chatWrapper}>
+      <div className={styles.scroller} ref={ref}>
+        <div className={styles.scrollerContent}>{children}</div>
+      </div>
+    </div>
+  );
+});
 
 interface ServerChatProps {
   channel: string;
@@ -69,13 +83,11 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
-      <div className={styles.chatWrapper}>
-        <div className={styles.scroller} ref={scrollerDivRef}>
-          <div className={styles.scrollerContent}>
-            <ol
-              className={styles.scrollerInner}
-              aria-label={`Mensagens em ${channel}`}
-            >
+      <ServerChatWrapper ref={scrollerDivRef}>
+        <ol
+          className={styles.scrollerInner}
+          aria-label={`Mensagens em ${channel}`}
+        >
               {messages?.map((msg, index) => {
                 let hideAuthor = false;
                 if (index > 0) {
@@ -97,9 +109,8 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
               })}
               <div className={styles.scrollerSpacer} />
             </ol>
-          </div>
-        </div>
-      </div>
+      </ServerChatWrapper>
+
       <form className={styles.form}>
         <textarea
           className={styles.messageInput}
