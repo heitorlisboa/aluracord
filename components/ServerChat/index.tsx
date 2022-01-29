@@ -21,6 +21,8 @@ const ServerChatWrapper = React.forwardRef<
   );
 });
 
+ServerChatWrapper.displayName = "ServerChatWrapper";
+
 interface ServerChatProps {
   channel: string;
   messages?: MessageResponse[];
