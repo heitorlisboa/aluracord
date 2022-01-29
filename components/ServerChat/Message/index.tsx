@@ -9,7 +9,7 @@ interface MessageProps {
   onlyContent?: boolean;
 }
 
-const Message: FC<MessageProps> = ({ children: msg, onlyContent }) => {
+const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   const context = useContext(UserContext) as UserContextInterface;
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
@@ -24,10 +24,10 @@ const Message: FC<MessageProps> = ({ children: msg, onlyContent }) => {
     minute: "2-digit",
   });
 
-  const convertedDate = new Date(msg.date);
+  const convertedDate = new Date(message.date);
 
   function handleClickDelete() {
-    if (msg.author === context.currentUser) deleteMessage(msg);
+    if (message.author === context.currentUser) deleteMessage(message);
   }
 
   return (
@@ -36,11 +36,11 @@ const Message: FC<MessageProps> = ({ children: msg, onlyContent }) => {
         <>
           <img
             className={styles.avatar}
-            src={`https://github.com/${msg.author}.png`}
-            alt={`Foto de perfil de ${msg.author}`}
+            src={`https://github.com/${message.author}.png`}
+            alt={`Foto de perfil de ${message.author}`}
           />
           <h2 className={styles.header}>
-            <span>{msg.author}</span>
+            <span>{message.author}</span>
             <span>
               <time
                 className={styles.timeStamp}
