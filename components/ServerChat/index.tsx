@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { addMessage } from "../../lib/Store";
 import UserContext from "../../lib/UserContext";
 import type { FC, ChangeEvent, KeyboardEvent } from "react";
@@ -59,11 +59,11 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     adjustInputHeight();
   }, [messageText]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     adjustChatScroll();
   }, [messageText, messages]);
 
