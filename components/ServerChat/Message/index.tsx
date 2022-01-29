@@ -27,7 +27,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   const convertedDate = new Date(message.date);
 
   function handleClickDelete() {
-    if (message.author === context.currentUser) deleteMessage(message.id);
+    deleteMessage(message.id);
   }
 
   return (
@@ -65,10 +65,16 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
           </div>
         </>
       )}
-      <div className={styles.content}>{msg.content}</div>
-      <div className={styles.buttons} aria-label="Ações de mensagem">
-        <img src="/delete-icon.svg" alt="Deletar" onClick={handleClickDelete} />
-      </div>
+      <div className={styles.content}>{message.content}</div>
+      {message.author === context.currentUser && (
+        <div className={styles.buttons} aria-label="Ações de mensagem">
+          <img
+            src="/delete-icon.svg"
+            alt="Deletar"
+            onClick={handleClickDelete}
+          />
+        </div>
+      )}
     </div>
   );
 };
