@@ -1,0 +1,56 @@
+@use "../../../styles/partials/colors" as clr;
+@use "../../../styles/partials/gaps" as gp;
+
+$avatar-width: 40px;
+
+.message {
+  position: relative;
+
+  padding-left: calc($avatar-width + gp.$big);
+  padding-right: gp.$medium;
+  margin-top: 1rem;
+
+  &:nth-child(2n) {
+    .header {
+      width: 10rem;
+    }
+  }
+
+  &:nth-child(3n) {
+    .header {
+      width: 5rem;
+    }
+  }
+}
+
+.avatar,
+.header,
+.content {
+  background-color: clr.$primary-light-transparent;
+}
+
+.avatar {
+  position: absolute;
+  left: gp.$medium;
+  top: 0;
+  width: $avatar-width;
+  aspect-ratio: 1/1;
+
+  border-radius: 50%;
+}
+
+.header,
+.content {
+  border-radius: 10px;
+}
+
+.header {
+  width: 15rem;
+  height: 20px;
+
+  margin-bottom: 1rem;
+}
+
+.content {
+  height: 50px;
+}

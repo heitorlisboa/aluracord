@@ -9,9 +9,10 @@ export const supabase = createClient(
 
 /**
  * Fetch the database, set up listeners and automatically update the message list
- * @returns The message list state
+ * @returns The message list state and a boolean of whether the page is loading or not
  */
 export const useStore = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState<MessageResponse[]>([]);
   const [newMessage, handleNewMessage] = useState<MessageResponse>();
   const [deletedMessage, handleDeletedMessage] = useState<MessageResponse>();
@@ -23,7 +24,9 @@ export const useStore = () => {
   */
   useEffect(() => {
     // Fetch the messages from the database
-    fetchMessages(setMessages);
+    fetchMessages(setMessages).then(() => {
+      setIsLoading(false);
+    });
 
     // Listen for new and deleted messages
     const messageListener = supabase
@@ -59,6 +62,7 @@ export const useStore = () => {
 
   return {
     messages,
+    isLoading,
   };
 };
 

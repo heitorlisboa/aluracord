@@ -24,9 +24,10 @@ const ServerChatWrapper = React.forwardRef<
 interface ServerChatProps {
   channel: string;
   messages?: MessageResponse[];
+  isLoading: boolean;
 }
 
-const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
+const ServerChat: FC<ServerChatProps> = ({ channel, messages, isLoading }) => {
   const context = useContext(UserContext) as UserContextInterface;
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const scrollerDivRef = useRef<HTMLDivElement>(null);
@@ -88,6 +89,14 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
           className={styles.scrollerInner}
           aria-label={`Mensagens em ${channel}`}
         >
+          {isLoading ? (
+            <>
+              {Array.from(Array(8).keys()).map((n) => {
+                return <LoadingMessage key={n} />;
+              })}
+            </>
+          ) : (
+            <>
               {messages?.map((msg, index) => {
                 let hideAuthor = false;
                 if (index > 0) {
@@ -96,7 +105,6 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
                   const lastMsgTime = new Date(lastMsg.date).getTime();
                   // getTime() returns the time in milliseconds
                   const timeDiffMinutes = (msgTime - lastMsgTime) / 1000 / 60;
-
                   if (msg.author === lastMsg.author && timeDiffMinutes < 5) {
                     hideAuthor = true;
                   }
@@ -107,8 +115,10 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
                   </Message>
                 );
               })}
-              <div className={styles.scrollerSpacer} />
-            </ol>
+            </>
+          )}
+          <div className={styles.scrollerSpacer} />
+        </ol>
       </ServerChatWrapper>
 
       <form className={styles.form}>
