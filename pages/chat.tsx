@@ -20,7 +20,7 @@ const Chat: NextPage = () => {
   const currentUser = router.query.username;
   const [isHome, setIsHome] = useState(false);
   const [isDirectMessage, setIsDirectMessage] = useState(false);
-  const [serverTitle, setServerTitle] = useState(`Servidor de ${currentUser}`);
+  const [serverTitle, setServerTitle] = useState(currentUser);
   const [channelName, setChannelName] = useState("Geral");
   const [categories, setCategories] = useState<CategoriesObject>({
     "Canais de texto": ["Geral"],
@@ -42,7 +42,7 @@ const Chat: NextPage = () => {
       >
         <div className={styles.primaryContainer}>
           <ServerList />
-          <ServerInsideNav title={serverTitle} categories={categories} />
+          <ServerInsideNav title={serverTitle as string} categories={categories} />
           <div className={styles.secondaryContainer}>
             <ServerHeader channel={channelName} />
             {isHome && !isDirectMessage && (
