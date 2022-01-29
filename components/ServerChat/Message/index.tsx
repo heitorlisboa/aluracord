@@ -1,20 +1,17 @@
-import { FC } from "react";
-import type { MessageDeleter, MessageHeader } from "../../../types";
+import { FC, useContext } from "react";
+import { deleteMessage } from "../../../lib/Store";
+import UserContext from "../../../lib/UserContext";
+import type { MessageResponse, UserContextInterface } from "../../../types";
 import styles from "./Message.module.scss";
 
-interface MessageProps extends MessageHeader {
-  children: string;
+interface MessageProps {
+  children: MessageResponse;
   onlyContent?: boolean;
-  deleteMessage: MessageDeleter;
 }
 
-const Message: FC<MessageProps> = ({
-  author,
-  date,
-  children,
-  onlyContent,
-  deleteMessage,
-}) => {
+const Message: FC<MessageProps> = ({ children: msg, onlyContent }) => {
+  const context = useContext(UserContext) as UserContextInterface;
+
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
     day: "2-digit",
     month: "2-digit",
@@ -22,14 +19,15 @@ const Message: FC<MessageProps> = ({
     hour: "2-digit",
     minute: "2-digit",
   });
-
   const timeFormatter = new Intl.DateTimeFormat([], {
     hour: "2-digit",
     minute: "2-digit",
   });
 
+  const convertedDate = new Date(msg.date);
+
   function handleClickDelete() {
-    deleteMessage(author.login, date);
+    if (msg.author === context.currentUser) deleteMessage(msg);
   }
 
   return (
@@ -38,18 +36,18 @@ const Message: FC<MessageProps> = ({
         <>
           <img
             className={styles.avatar}
-            src={author.profilePic}
-            alt={`Foto de perfil de ${author.username}`}
+            src={`https://github.com/${msg.author}.png`}
+            alt={`Foto de perfil de ${msg.author}`}
           />
           <h2 className={styles.header}>
-            <span>{author.username}</span>
+            <span>{msg.author}</span>
             <span>
               <time
                 className={styles.timeStamp}
-                dateTime={date.toISOString()}
-                aria-label={dateTimeFormatter.format(date)}
+                dateTime={convertedDate.toISOString()}
+                aria-label={dateTimeFormatter.format(convertedDate)}
               >
-                {dateTimeFormatter.format(date)}
+                {dateTimeFormatter.format(convertedDate)}
               </time>
             </span>
           </h2>
@@ -59,15 +57,15 @@ const Message: FC<MessageProps> = ({
         <>
           <div className={styles.timeStampTooltip}>
             <time
-              dateTime={date.toISOString()}
-              aria-label={timeFormatter.format(date)}
+              dateTime={convertedDate.toISOString()}
+              aria-label={timeFormatter.format(convertedDate)}
             >
-              {timeFormatter.format(date)}
+              {timeFormatter.format(convertedDate)}
             </time>
           </div>
         </>
       )}
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>{msg.content}</div>
       <div className={styles.buttons} aria-label="Ações de mensagem">
         <img src="/delete-icon.svg" alt="Deletar" onClick={handleClickDelete} />
       </div>
