@@ -70,7 +70,7 @@ export const useStore = () => {
 export const fetchMessages = async (
   setState?: Dispatch<SetStateAction<MessageResponse[]>>
 ) => {
-  let { body } = await supabase.from("messages").select("*");
+  let { body } = await supabase.from("messages").select("*").order("date");
   if (setState) setState(body as MessageResponse[]);
   return body as MessageResponse[];
 };
