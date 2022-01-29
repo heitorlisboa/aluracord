@@ -28,7 +28,12 @@ const Home: NextPage = () => {
 
   function handleSubmitForm(event: FormEvent) {
     event.preventDefault();
-    router.push("/chat");
+    router.push({
+      pathname: "/chat",
+      query: {
+        username,
+      },
+    });
   }
 
   useEffect(() => {
@@ -50,6 +55,7 @@ const Home: NextPage = () => {
               aria-label="Nome de usuário"
               value={username}
               onChange={handleUsernameChange}
+              required
             />
             <button className={styles.submitButton} type="submit">
               Entrar
