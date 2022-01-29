@@ -31,7 +31,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   }
 
   return (
-    <div className={styles.message} role="article">
+    <li className={styles.message} aria-roledescription="Mensagem">
       {!onlyContent && (
         <>
           <img
@@ -75,7 +75,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
           />
         </div>
       )}
-    </div>
+    </li>
   );
 };
 
