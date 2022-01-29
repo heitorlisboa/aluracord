@@ -4,25 +4,16 @@ export interface ObjectOfLists<T> {
 
 export type CategoriesObject = ObjectOfLists<string>;
 
-export interface MessageHeader {
-  author: AuthorType;
-  date: Date;
-}
-
-export interface MessageType extends MessageHeader {
+export interface MessageCreated {
+  author: string;
+  date: string;
   content: string;
 }
 
-export interface AuthorType {
-  login: string;
-  username: string;
-  profilePic: string;
+export interface MessageResponse extends MessageCreated {
+  id: number;
 }
 
-export interface MessageSender {
-  (message: MessageType): void;
-}
-
-export interface MessageDeleter {
-  (authorLogin: string, messageDate: Date): void;
+export interface UserContextInterface {
+  currentUser: string;
 }
