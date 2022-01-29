@@ -90,10 +90,10 @@ export const addMessage = async (message: MessageCreated) => {
  * @param message
  * @returns The message that was deleted
  */
-export const deleteMessage = async (message: MessageResponse) => {
+export const deleteMessage = async (id: number) => {
   let { body } = await supabase
     .from("messages")
     .delete()
-    .match({ id: message.id, author: message.author });
+    .match({ id: id });
   return body as MessageResponse[];
 };

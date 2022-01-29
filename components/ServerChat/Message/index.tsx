@@ -27,7 +27,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   const convertedDate = new Date(message.date);
 
   function handleClickDelete() {
-    if (message.author === context.currentUser) deleteMessage(message);
+    if (message.author === context.currentUser) deleteMessage(message.id);
   }
 
   return (
