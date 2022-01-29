@@ -73,7 +73,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
       {message.author === context.currentUser && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
           <img
-            src="/delete-icon.svg"
+            src="/svg/delete-icon.svg"
             alt="Deletar"
             onClick={handleClickDelete}
           />

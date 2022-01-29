@@ -14,23 +14,23 @@ function Separator() {
 const ServerList: FC<ServerListProps> = () => {
   return (
     <nav className={styles.nav} aria-label="Barra lateral dos servidores">
-      <ServerButton src="/user-icon.jpg" aria-label="Início" />
+      <ServerButton src="/img/user-icon.jpg" aria-label="Início" />
       <Separator />
       <ul className={styles.serverList} aria-label="Lista de servidores">
         <li>
-          <ServerButton src="/user-icon.jpg" aria-label="Servidor 1" />
+          <ServerButton src="/img/user-icon.jpg" aria-label="Servidor 1" />
         </li>
         <li>
-          <ServerButton src="/user-icon.jpg" aria-label="Servidor 2" />
+          <ServerButton src="/img/user-icon.jpg" aria-label="Servidor 2" />
         </li>
         <li>
-          <ServerButton src="/user-icon.jpg" aria-label="Servidor 3" />
+          <ServerButton src="/img/user-icon.jpg" aria-label="Servidor 3" />
         </li>
         <li>
-          <ServerButton src="/user-icon.jpg" aria-label="Servidor 4" />
+          <ServerButton src="/img/user-icon.jpg" aria-label="Servidor 4" />
         </li>
         <li>
-          <ServerButton src="/user-icon.jpg" aria-label="Servidor 5" />
+          <ServerButton src="/img/user-icon.jpg" aria-label="Servidor 5" />
         </li>
       </ul>
     </nav>

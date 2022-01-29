@@ -2,7 +2,7 @@
 @use "../partials/placeholder-selectors";
 
 .container {
-  background-image: url(/background-404.webp);
+  background-image: url(/img/background-404.webp);
   @extend %full-size-background;
   @extend %darker-background;
 
