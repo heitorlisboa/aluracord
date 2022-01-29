@@ -28,11 +28,15 @@ const Home: NextPage = () => {
 
   function handleSubmitForm(event: FormEvent) {
     event.preventDefault();
-    router.push({
-      pathname: "/chat",
-      query: {
-        username,
-      },
+    fetch(`https://api.github.com/users/${username}`).then((res) => {
+      if (res.status !== 200) alert("Insira um usuário do github existente");
+      else
+        router.push({
+          pathname: "/chat",
+          query: {
+            username,
+          },
+        });
     });
   }
 
