@@ -91,9 +91,6 @@ export const addMessage = async (message: MessageCreated) => {
  * @returns The message that was deleted
  */
 export const deleteMessage = async (id: number) => {
-  let { body } = await supabase
-    .from("messages")
-    .delete()
-    .match({ id: id });
+  let { body } = await supabase.from("messages").delete().match({ id: id });
   return body as MessageResponse[];
 };
