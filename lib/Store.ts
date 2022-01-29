@@ -76,12 +76,18 @@ export const fetchMessages = async (
   return body as MessageResponse[];
 };
 
+/**
+ * Fetch the user information from GitHub
+ * @param username Username on GitHub
+ * @param setState Optionally pass in a setter to set the state
+ * @returns The GitHub user information
+ */
 export const fetchUser = async (
   username: string,
   setState?: Dispatch<SetStateAction<any>>
 ) => {
   let res = await fetch(`https://api.github.com/users/${username}`);
-  let data: GitHubUserInfo = await res.json()
+  let data: GitHubUserInfo = await res.json();
   if (setState) setState(data);
   return data;
 };
