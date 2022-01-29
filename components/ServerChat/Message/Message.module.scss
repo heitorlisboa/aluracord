@@ -12,8 +12,8 @@ $avatar-width: 40px;
 
   &:hover {
     background-color: clr.$primary-darker-transparent;
-    .buttons,
-    .timeStampTooltip {
+    .timeStampTooltip,
+    .buttons {
       opacity: 1;
     }
 
@@ -21,6 +21,11 @@ $avatar-width: 40px;
       pointer-events: auto;
     }
   }
+}
+
+.avatar,
+.username {
+  cursor: pointer;
 }
 
 .avatar {
@@ -42,10 +47,6 @@ $avatar-width: 40px;
   margin-top: gp.$medium;
 }
 
-.content {
-  padding-bottom: gp.$smaller;
-}
-
 .timeStamp,
 .timeStampTooltip {
   font-size: fs.$smaller;
@@ -53,11 +54,23 @@ $avatar-width: 40px;
   color: clr.$secondary-dark;
 }
 
-.buttons,
-.timeStampTooltip {
+.timeStampTooltip,
+.buttons {
   position: absolute;
 
   opacity: 0;
+}
+
+.timeStampTooltip {
+  user-select: none;
+
+  left: gp.$medium;
+
+  margin-top: 0.2rem;
+}
+
+.content {
+  padding-bottom: gp.$smaller;
 }
 
 .buttons {
@@ -71,12 +84,4 @@ $avatar-width: 40px;
 
     cursor: pointer;
   }
-}
-
-.timeStampTooltip {
-  user-select: none;
-
-  left: gp.$medium;
-
-  margin-top: 0.2rem;
 }
