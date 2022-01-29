@@ -32,7 +32,18 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
 
   return (
     <li className={styles.message} aria-roledescription="Mensagem">
-      {!onlyContent && (
+      {onlyContent ? (
+        <>
+          <div className={styles.timeStampTooltip}>
+            <time
+              dateTime={convertedDate.toISOString()}
+              aria-label={timeFormatter.format(convertedDate)}
+            >
+              {timeFormatter.format(convertedDate)}
+            </time>
+          </div>
+        </>
+      ) : (
         <>
           <img
             className={styles.avatar}
@@ -53,18 +64,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
           </h2>
         </>
       )}
-      {onlyContent && (
-        <>
-          <div className={styles.timeStampTooltip}>
-            <time
-              dateTime={convertedDate.toISOString()}
-              aria-label={timeFormatter.format(convertedDate)}
-            >
-              {timeFormatter.format(convertedDate)}
-            </time>
-          </div>
-        </>
-      )}
+
       <div className={styles.content}>{message.content}</div>
       {message.author === context.currentUser && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
