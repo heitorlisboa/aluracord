@@ -8,12 +8,8 @@
   height: 100%;
 }
 
-.title,
-.search {
-  @extend %top-section;
-}
-
 .title {
   font-size: fs.$medium;
   @extend %text-ellipsis;
+  @extend %top-section;
 }

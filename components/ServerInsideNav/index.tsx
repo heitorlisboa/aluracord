@@ -16,13 +16,7 @@ const ServerInsideNav: FC<ServerInsideNavProps> = ({
   categories,
 }) => {
   return (
-    <nav className={styles.nav} aria-label="Servidor">
-      {isHome && (
-        <div className={styles.search}>
-          <input type="text" />
-        </div>
-      )}
-
+    <nav className={styles.nav} aria-label={isHome ? "Servidor" : "Canais privados"}>
       {!isHome && (
         <>
           <h1 className={styles.title}>{title}</h1>
