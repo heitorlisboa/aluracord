@@ -1,11 +1,11 @@
 import type { FC } from "react";
-import type { CategoriesObject } from "../../types";
+import type { CategoriesObject } from "../../../types";
 import styles from "./ServerInsideNav.module.scss";
 
 import ChannelList from "./ChannelList";
 
-interface ServerInsideNavProps {
-  title?: string;
+export interface ServerInsideNavProps {
+  title: string;
   isHome?: boolean;
   categories: CategoriesObject;
 }

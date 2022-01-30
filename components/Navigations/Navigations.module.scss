@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  grid-template-columns: $server-list-width 1fr;
+  height: 100%;
+}
+
+@media (max-width: sb.$max-mobile) {
+  .container {
+    // Background color to increase readability in case backdrop filter is not supported
+    background-color: hsla(0, 0%, 20%, 0.9);
+
+    position: absolute;
+    width: 310px;
+    z-index: 1000;
+    transform: translateX(-100%);
+
+    @supports (backdrop-filter: blur(1rem)) {
+      background-color: unset;
+      backdrop-filter: blur(0.5rem);
+    }
+  }
+}
