@@ -6,6 +6,12 @@ import type {
   GitHubUserInfo,
 } from "../types";
 
+/**
+ * Concentrates the profile states, information fetching and profile
+ * click handlers in one single place
+ * @returns The loading, visibility and user information states,
+ * as well as the click in and click out profile handlers
+ */
 export const useProfile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
