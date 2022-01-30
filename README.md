@@ -4,6 +4,24 @@ O Aluracord é um clone personalizado do discord durante a Imersão React da Alu
 
 Desde o início da imersão meu objetivo era ir além dela, então utilizei meus conhecimentos prévios de React + TypeScript (e de frontend como um todo) aliado aos conhecimentos de Next.js e Supabase obtidos através do evento e construí o projeto do zero utilizando essas tecnologias. Dessa forma, tive como resultado uma aplicação fullstack com um frontend inclusivo e atrativo, aliado a uma integração em tempo real do frontend com o backend, possibilitando uma conversa síncrona entre usuários.
 
+## Página de Login
+
+<p align="center">
+  <img src="/showcase/pagina-de-login.png" alt="Página de Login" />
+</p>
+
+## Página de Chat
+
+<p align="center">
+  <img src="/showcase/pagina-de-chat.png" alt="Página de Chat" />
+</p>
+
+## Perfil de usuário
+
+<p align="center">
+  <img src="/showcase/perfil-de-usuario.png" alt="Perfil de usuário" />
+</p>
+
 Além do mais, planejo levar esse projeto adiante com meus estudos, então a seguir listo algumas das minhas metas de desenvolvimento para essa aplicação:
 
 Desenvolver sistema de:
