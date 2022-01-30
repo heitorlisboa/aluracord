@@ -16,13 +16,6 @@
   user-select: none;
 
   position: relative;
-
-  &.disabled::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: hsla(0, 0%, 0%, 0.7);
-  }
 }
 
 .secondaryContainer {
@@ -30,6 +23,17 @@
   height: 100%;
   grid-template-columns: 1fr size.$inside-nav-width;
   grid-template-rows: gp.$biggest 1fr;
+}
+
+@media (max-width: sb.$max-mobile) {
+  .primaryContainer {
+    &.disabled::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: hsla(0, 0%, 0%, 0.7);
+    }
+  }
 }
 
 @media (min-width: sb.$min-desktop) {
