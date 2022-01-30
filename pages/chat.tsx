@@ -53,7 +53,7 @@ const Chat: NextPage = () => {
             {(!isHome || (isHome && isDirectMessage)) && (
               <ServerChat channel={channelName} messages={messages} />
             )}
-            {!isDirectMessage && <UserList channel={channelName} />}
+            {!isHome && <UserList channel={channelName} />}
           </div>
           {profile.isVisible && (
             <ProfileCard
