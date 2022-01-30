@@ -1,6 +1,9 @@
+@use "../../styles/partials/screen-breakpoints" as sb;
+@use "../../styles/partials/component-sizes" as size;
+
 .container {
   display: grid;
-  grid-template-columns: $server-list-width 1fr;
+  grid-template-columns: size.$server-list-width 1fr;
   height: 100%;
 }
 
@@ -10,13 +13,17 @@
     background-color: hsla(0, 0%, 20%, 0.9);
 
     position: absolute;
-    width: 310px;
+    width: size.$navigations-width;
     z-index: 1000;
     transform: translateX(-100%);
 
     @supports (backdrop-filter: blur(1rem)) {
       background-color: unset;
       backdrop-filter: blur(0.5rem);
+    }
+
+    &.active {
+      transform: translateX(0%);
     }
   }
 }

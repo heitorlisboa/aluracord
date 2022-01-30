@@ -1,15 +1,36 @@
 @use "../../styles/partials/colors" as clr;
 @use "../../styles/partials/font-sizes" as fs;
+@use "../../styles/partials/gaps" as gp;
+@use "../../styles/partials/screen-breakpoints" as sb;
 @use "../../styles/partials/placeholder-selectors";
 
 .header {
   background-color: clr.$primary-dark-transparent;
 
   grid-column: span 2;
+  display: flex;
+  gap: gp.$medium;
 
   @extend %top-section;
 }
 
 .title {
   font-size: fs.$medium;
+}
+
+.mobileMenuButton {
+  display: none;
+
+  @media (max-width: sb.$max-mobile) {
+    background-image: url(/svg/menu-icon.svg);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: block;
+
+    height: 100%;
+    aspect-ratio: 1;
+  }
 }

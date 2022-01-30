@@ -1,3 +1,5 @@
+import type { RefObject } from "react";
+
 export interface ObjectOfLists<T> {
   [key: string]: T[];
 }
@@ -36,4 +38,11 @@ export type ClickOutProfileHandler = () => void;
 export interface ProfileContextInterface {
   handleClickIn: ClickProfileHandler;
   handleClickOut: ClickOutProfileHandler;
+}
+
+export interface MobileContextInterface {
+  containerRef: RefObject<HTMLDivElement>;
+  disabledContainerClass: string;
+  navigationsRef: RefObject<HTMLDivElement>;
+  activeNavigationsClass: string;
 }

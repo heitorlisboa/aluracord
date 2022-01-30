@@ -1,4 +1,7 @@
 @use "../partials/colors" as clr;
+@use "../partials/gaps" as gp;
+@use "../partials/screen-breakpoints" as sb;
+@use "../partials/component-sizes" as size;
 @use "../partials/placeholder-selectors";
 
 .primaryContainer {
@@ -6,17 +9,31 @@
   @extend %full-size-background;
   @extend %darker-background;
 
+  display: grid;
+  grid-template-columns: 1fr;
   color: clr.$secondary-light;
   overflow-wrap: break-word;
   user-select: none;
 
   position: relative;
-  display: grid;
-  grid-template-columns: 70px 240px 1fr;
+
+  &.disabled::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: hsla(0, 0%, 0%, 0.7);
+  }
 }
 
 .secondaryContainer {
   display: grid;
-  grid-template-columns: 1fr 240px;
-  grid-template-rows: 3rem 1fr;
+  height: 100%;
+  grid-template-columns: 1fr size.$inside-nav-width;
+  grid-template-rows: gp.$biggest 1fr;
+}
+
+@media (min-width: sb.$min-desktop) {
+  .primaryContainer {
+    grid-template-columns: size.$navigations-width 1fr;
+  }
 }
