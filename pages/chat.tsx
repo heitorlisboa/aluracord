@@ -36,7 +36,7 @@ const Chat: NextPage = () => {
     if (!currentUser) router.replace("/");
   }, []);
 
-  const ChatPageWrapper: FC = ({ children }) => (
+  return (
     <UserContext.Provider value={{ currentUser: currentUser as string }}>
       <ProfileContext.Provider
         value={{
@@ -52,40 +52,34 @@ const Chat: NextPage = () => {
             activeNavigationsClass: navStyles.active,
           }}
         >
-          {children}
+          <div className={styles.primaryContainer} ref={primaryContainerRef}>
+            <Navigations
+              title={serverTitle}
+              categories={categories}
+              ref={navigationsRef}
+            />
+            <div className={styles.secondaryContainer}>
+              <ServerHeader channel={channelName} />
+              {isHome && !isDirectMessage && (
+                <main aria-label="Amigos">
+                  <ul aria-label="Lista de amigos"></ul>
+                </main>
+              )}
+              {(!isHome || (isHome && isDirectMessage)) && (
+                <ServerChat channel={channelName} messages={messages} />
+              )}
+              {!isHome && <UserList channel={channelName} />}
+            </div>
+            {profile.isVisible && (
+              <ProfileCard
+                userInfo={profile.userInfo}
+                isLoading={profile.isLoading}
+              />
+            )}
+          </div>
         </MobileContext.Provider>
       </ProfileContext.Provider>
     </UserContext.Provider>
-  );
-
-  return (
-    <ChatPageWrapper>
-      <div className={styles.primaryContainer} ref={primaryContainerRef}>
-        <Navigations
-          title={serverTitle}
-          categories={categories}
-          ref={navigationsRef}
-        />
-        <div className={styles.secondaryContainer}>
-          <ServerHeader channel={channelName} />
-          {isHome && !isDirectMessage && (
-            <main aria-label="Amigos">
-              <ul aria-label="Lista de amigos"></ul>
-            </main>
-          )}
-          {(!isHome || (isHome && isDirectMessage)) && (
-            <ServerChat channel={channelName} messages={messages} />
-          )}
-          {!isHome && <UserList channel={channelName} />}
-        </div>
-        {profile.isVisible && (
-          <ProfileCard
-            userInfo={profile.userInfo}
-            isLoading={profile.isLoading}
-          />
-        )}
-      </div>
-    </ChatPageWrapper>
   );
 };
 
