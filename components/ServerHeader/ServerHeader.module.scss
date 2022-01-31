@@ -10,7 +10,6 @@
   grid-column: span 2;
   display: flex;
   gap: gp.$medium;
-
   @extend %top-section;
 }
 
@@ -18,11 +17,11 @@
   font-size: fs.$medium;
 }
 
-.mobileMenuButton {
+.mobileMenuButton,
+.mobileUserListButton {
   display: none;
 
   @media (max-width: sb.$max-mobile) {
-    background-image: url(/svg/menu-icon.svg);
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,5 +31,18 @@
 
     height: 100%;
     aspect-ratio: 1;
+  }
+}
+
+.mobileMenuButton {
+  @media (max-width: sb.$max-mobile) {
+    background-image: url(/svg/menu-icon.svg);
+  }
+}
+
+.mobileUserListButton {
+  @media (max-width: sb.$max-mobile) {
+    background-image: url(/svg/people-icon.svg);
+    margin-left: auto;
   }
 }

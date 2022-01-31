@@ -6,15 +6,22 @@ import styles from "./UserCard.module.scss";
 
 interface UserCardProps {
   username: string;
+  onClickHandler: () => void;
 }
 
-const UserCard: FC<UserCardProps> = ({ username }) => {
+const UserCard: FC<UserCardProps> = ({ username, onClickHandler }) => {
   const { handleClickIn } = useContext(
     ProfileContext
   ) as ProfileContextInterface;
 
   return (
-    <li className={styles.card} onClick={() => handleClickIn(username)}>
+    <li
+      className={styles.card}
+      onClick={() => {
+        onClickHandler();
+        handleClickIn(username);
+      }}
+    >
       <img
         className={styles.avatar}
         src={`https://github.com/${username}.png`}

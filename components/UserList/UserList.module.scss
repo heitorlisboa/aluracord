@@ -1,8 +1,12 @@
 @use "../../styles/partials/colors" as clr;
 @use "../../styles/partials/gaps" as gp;
+@use "../../styles/partials/screen-breakpoints" as sb;
+@use "../../styles/partials/component-sizes" as size;
 
 .sidebar {
   background-color: clr.$primary-medium-transparent;
+
+  height: 100%;
 }
 
 .listWrapper {
@@ -23,4 +27,28 @@
   flex-direction: column;
 
   padding: gp.$small;
+}
+
+@media (max-width: sb.$max-mobile) {
+  .sidebar {
+    position: absolute;
+    right: 0;
+    width: size.$user-list-width;
+    z-index: 1000;
+
+    transform: translateX(100%);
+
+    @supports (backdrop-filter: blur(1rem)) {
+      background-color: hsla(0, 0, 20%, 0.5);
+      backdrop-filter: blur(0.5rem);
+    }
+
+    &.active {
+      transform: translateX(0%);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 200ms ease;
+    }
+  }
 }

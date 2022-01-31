@@ -1,6 +1,8 @@
-import React from "react";
-import type { FC } from "react";
-import type { UserResponse } from "../../types";
+import React, { useContext } from "react";
+import MobileContext from "../../lib/MobileContext";
+import useOutsideListener from "../../lib/OutsideListener";
+import type { FC, RefObject } from "react";
+import type { MobileContextInterface, UserResponse } from "../../types";
 import styles from "./UserList.module.scss";
 
 import UserCard from "./UserCard";
@@ -18,6 +20,25 @@ interface UserListProps {
 
 const UserList = React.forwardRef<HTMLDivElement, UserListProps>(
   ({ channel, users }, ref) => {
+    const context = useContext(MobileContext) as MobileContextInterface;
+
+    function handleCloseUserList() {
+      const userListElement = context.userListRef.current;
+      const containerElement = context.containerRef.current;
+
+      const otherElement = context.navigationsRef.current;
+      const otherElementIsActive = otherElement?.classList.value.includes(
+        context.activeNavigationsClass
+      );
+
+      if (userListElement && containerElement && !otherElementIsActive) {
+        userListElement.classList.remove(context.activeUserListClass);
+        containerElement.classList.remove(context.disabledContainerClass);
+      }
+    }
+
+    useOutsideListener(ref as RefObject<HTMLDivElement>, handleCloseUserList);
+
     return (
       <aside
         className={styles.sidebar}
@@ -27,7 +48,11 @@ const UserList = React.forwardRef<HTMLDivElement, UserListProps>(
         <UserListWrapper>
           <ul className={styles.scrollerInner} aria-label="Membros">
             {users.map((user) => (
-              <UserCard key={user.id} username={user.username} />
+              <UserCard
+                key={user.id}
+                username={user.username}
+                onClickHandler={handleCloseUserList}
+              />
             ))}
           </ul>
         </UserListWrapper>

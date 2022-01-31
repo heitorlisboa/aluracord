@@ -51,4 +51,6 @@ export interface MobileContextInterface {
   disabledContainerClass: string;
   navigationsRef: RefObject<HTMLDivElement>;
   activeNavigationsClass: string;
+  userListRef: RefObject<HTMLDivElement>;
+  activeUserListClass: string;
 }

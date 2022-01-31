@@ -21,7 +21,7 @@
 .secondaryContainer {
   display: grid;
   height: 100%;
-  grid-template-columns: 1fr size.$inside-nav-width;
+  grid-template-columns: 1fr;
   grid-template-rows: gp.$biggest 1fr;
 }
 
@@ -52,5 +52,9 @@
 @media (min-width: sb.$min-desktop) {
   .primaryContainer {
     grid-template-columns: size.$navigations-width 1fr;
+  }
+
+  .secondaryContainer {
+    grid-template-columns: 1fr size.$user-list-width;
   }
 }

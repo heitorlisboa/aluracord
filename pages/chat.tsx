@@ -6,10 +6,11 @@ import UserContext from "../lib/UserContext";
 import ProfileContext from "../lib/ProfileContext";
 import MobileContext from "../lib/MobileContext";
 import type { NextPage } from "next";
-import type { FC } from "react";
 import type { CategoriesObject } from "../types";
+
 import styles from "../styles/pages/Chat.module.scss";
 import navStyles from "../components/Navigations/Navigations.module.scss";
+import userListStyles from "../components/UserList/UserList.module.scss";
 
 import ServerHeader from "../components/ServerHeader";
 import ServerChat from "../components/ServerChat";
@@ -29,6 +30,7 @@ const Chat: NextPage = () => {
   });
   const primaryContainerRef = useRef<HTMLDivElement>(null);
   const navigationsRef = useRef<HTMLDivElement>(null);
+  const userListRef = useRef<HTMLDivElement>(null);
   const { messages, users } = useStore();
   const profile = useProfile();
 
@@ -50,6 +52,8 @@ const Chat: NextPage = () => {
             disabledContainerClass: styles.disabled,
             navigationsRef: navigationsRef,
             activeNavigationsClass: navStyles.active,
+            userListRef: userListRef,
+            activeUserListClass: userListStyles.active,
           }}
         >
           <div className={styles.primaryContainer} ref={primaryContainerRef}>
@@ -68,7 +72,13 @@ const Chat: NextPage = () => {
               {(!isHome || (isHome && isDirectMessage)) && (
                 <ServerChat channel={channelName} messages={messages} />
               )}
-              {!isHome && <UserList channel={channelName} users={users} />}
+              {!isHome && (
+                <UserList
+                  channel={channelName}
+                  users={users}
+                  ref={userListRef}
+                />
+              )}
             </div>
             {profile.isVisible && (
               <ProfileCard

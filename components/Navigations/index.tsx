@@ -18,7 +18,12 @@ const Navigations = React.forwardRef<HTMLDivElement, NavigationsProps>(
       const navigationsElement = context.navigationsRef.current;
       const containerElement = context.containerRef.current;
 
-      if (navigationsElement && containerElement) {
+      const otherElement = context.userListRef.current;
+      const otherElementIsActive = otherElement?.classList.contains(
+        context.activeUserListClass
+      );
+
+      if (navigationsElement && containerElement && !otherElementIsActive) {
         navigationsElement.classList.remove(context.activeNavigationsClass);
         containerElement.classList.remove(context.disabledContainerClass);
       }
