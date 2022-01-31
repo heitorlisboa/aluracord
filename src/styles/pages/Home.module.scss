@@ -71,8 +71,7 @@ $max-width: 350px;
   background-color: clr.$primary-medium-transparent;
 
   display: grid;
-  justify-content: center;
-  align-items: center;
+  justify-items: center;
   width: 100%;
   max-width: $max-width;
   height: 100%;
@@ -94,7 +93,6 @@ $max-width: 350px;
   max-width: 100%;
 
   padding-inline: gp.$medium;
-  padding-bottom: gp.$smaller;
   border-radius: 100vw;
 }
 
@@ -105,13 +103,13 @@ $max-width: 350px;
   }
 
   .user {
-    grid-template-rows: 100px 1fr;
     gap: gp.$small;
     padding: gp.$small;
 
     a,
     img {
       height: 100%;
+      max-height: 100px;
     }
   }
 }
