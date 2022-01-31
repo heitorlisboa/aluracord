@@ -25,6 +25,10 @@
   border: 2px solid transparent;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 button {
   cursor: pointer;
 }
