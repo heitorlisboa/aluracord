@@ -82,8 +82,13 @@ export const useStore = () => {
 
   // New user received
   useEffect(() => {
-    // REMEMBER TO SORT THE LIST USING .sort AND localeCompare
-    if (newUser) setUsers(users.concat(newUser));
+    if (newUser) {
+      setUsers(
+        users
+          .concat(newUser)
+          .sort((a, b) => a.username.localeCompare(b.username))
+      );
+    }
   }, [newUser]);
 
   // Deleted user received
