@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { addMessage } from "../../lib/Store";
-import UserContext from "../../lib/UserContext";
-import type { FC, ChangeEvent, KeyboardEvent } from "react";
-import type { MessageResponse, UserContextInterface } from "../../types";
+import React, { useEffect, useRef } from "react";
+import type { FC } from "react";
+import type { MessageResponse } from "../../types";
 import styles from "./ServerChat.module.scss";
 
 import Message from "./Message";
 import LoadingMessage from "./LoadingMessage";
+import MessageInput from "./MessageInput";
 
 const ServerChatWrapper = React.forwardRef<
   HTMLDivElement,
@@ -29,28 +28,7 @@ interface ServerChatProps {
 }
 
 const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
-  const context = useContext(UserContext) as UserContextInterface;
-  const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const scrollerDivRef = useRef<HTMLDivElement>(null);
-  const [messageText, setMessageText] = useState("");
-
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    setMessageText(event.target.value);
-  }
-
-  function handleKeyPress(event: KeyboardEvent) {
-    const keyPressed = event.key;
-
-    if (keyPressed === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      addMessage({
-        author: context.currentUser,
-        date: new Date().toISOString(),
-        content: messageText,
-      });
-      setMessageText("");
-    }
-  }
 
   function adjustChatScroll() {
     const element = scrollerDivRef.current;
@@ -58,30 +36,9 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
     if (element) element.scrollTop = element.scrollHeight;
   }
 
-  function adjustInputHeight() {
-    const element = messageInputRef.current;
-
-    if (element) {
-      /*
-        Since the element has a min-height it will auto adjust
-        to it when the height is set to 0. This is useful because
-        when the user erases the text on the textarea, the scrollHeight
-        will remain the same until it is resized, that means that if
-        this line of code wasn't here, the textarea wouldn't ever
-        readjust to it's default height.
-      */
-      element.style.height = "0px";
-      element.style.height = element.scrollHeight + "px";
-    }
-  }
-
-  useEffect(() => {
-    adjustInputHeight();
-  }, [messageText]);
-
   useEffect(() => {
     adjustChatScroll();
-  }, [messageText, messages]);
+  }, [messages]);
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
@@ -121,19 +78,7 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
           <div className={styles.scrollerSpacer} />
         </ol>
       </ServerChatWrapper>
-
-      <form className={styles.form}>
-        <textarea
-          className={styles.messageInput}
-          name="message"
-          placeholder={`Conversar em ${channel}`}
-          aria-label={`Conversar em ${channel}`}
-          ref={messageInputRef}
-          value={messageText}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-      </form>
+      <MessageInput channel={channel} />
     </main>
   );
 };
