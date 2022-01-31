@@ -1,11 +1,13 @@
 @use "../../../styles/partials/colors" as clr;
 @use "../../../styles/partials/font-sizes" as fs;
+@use "../../../styles/partials/component-sizes" as size;
 @use "../../../styles/partials/placeholder-selectors";
 
 .nav {
   background-color: clr.$primary-medium-transparent;
 
   height: 100%;
+  width: size.$inside-nav-width;
 }
 
 .title {

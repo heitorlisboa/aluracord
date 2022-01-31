@@ -1,6 +1,7 @@
 @use "../../../styles/partials/colors" as clr;
 @use "../../../styles/partials/font-sizes" as fs;
 @use "../../../styles/partials/gaps" as gp;
+@use "../../../styles/partials/placeholder-selectors";
 
 $avatar-width: 40px;
 
@@ -48,6 +49,8 @@ $avatar-width: 40px;
 }
 
 .username {
+  @extend %text-ellipsis;
+  
   &:hover {
     text-decoration: underline;
   }
