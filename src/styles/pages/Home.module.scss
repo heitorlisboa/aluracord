@@ -2,6 +2,8 @@
 @use "../partials/gaps" as gp;
 @use "../partials/placeholder-selectors";
 
+$max-width: 350px;
+
 .container {
   background-image: url(/img/background.webp);
   @extend %full-size-background;
@@ -17,21 +19,12 @@
   color: clr.$secondary-light;
 
   display: grid;
-  gap: 1rem;
-  grid-template-rows: repeat(1fr, 2);
   justify-items: center;
   align-items: center;
-  min-height: 350px;
-  width: clamp(300px, 90vw + 1rem, 700px);
 
-  margin-inline: gp.$medium;
+  margin: gp.$medium;
   padding: gp.$bigger;
   border-radius: 10px;
-
-  @media (min-width: 768px) {
-    gap: 5rem;
-    grid-template-columns: 1fr 200px;
-  }
 }
 
 .login {
@@ -57,7 +50,6 @@
   color: clr.$secondary-light;
 
   width: 100%;
-  max-width: 350px;
 
   padding: gp.$smaller gp.$small;
   border-radius: 5px;
@@ -78,22 +70,18 @@
 .user {
   background-color: clr.$primary-medium-transparent;
 
-  display: flex;
-  gap: 1rem;
-  flex-flow: column;
+  display: grid;
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: $max-width;
   height: 100%;
-  padding: 1rem;
 
   border: 1px solid clr.$primary-dark;
   border-radius: 10px;
 
   img {
     border-radius: 50%;
-    width: 100%;
-    max-width: 200px;
   }
 }
 
@@ -108,4 +96,40 @@
   padding-inline: gp.$medium;
   padding-bottom: gp.$smaller;
   border-radius: 100vw;
+}
+
+@media (max-width: 649px) {
+  .loginCard {
+    gap: 1rem;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .user {
+    grid-template-rows: 100px 1fr;
+    gap: gp.$small;
+    padding: gp.$small;
+
+    a,
+    img {
+      height: 100%;
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .loginCard {
+    gap: 5rem;
+    grid-template-columns: 1fr 200px;
+    width: clamp(500px, 90vw + 1rem, 650px);
+  }
+
+  .user {
+    gap: gp.$medium;
+    padding: gp.$medium;
+
+    a,
+    img {
+      width: 100%;
+    }
+  }
 }

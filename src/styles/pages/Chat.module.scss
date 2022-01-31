@@ -9,12 +9,12 @@
   @extend %full-size-background;
   @extend %darker-background;
 
-  display: grid;
-  grid-template-columns: 1fr;
   color: clr.$secondary-light;
   overflow-wrap: break-word;
   user-select: none;
 
+  display: grid;
+  grid-template-columns: 1fr;
   position: relative;
 }
 

@@ -25,6 +25,11 @@
   border: 2px solid transparent;
 }
 
+html {
+  position: fixed;
+  inset: 0;
+}
+
 body {
   overflow-x: hidden;
 }
