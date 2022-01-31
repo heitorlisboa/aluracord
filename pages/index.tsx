@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import type { NextPage } from "next";
 import type { ChangeEvent, FormEvent } from "react";
-import styles from "../styles/pages/Home.module.scss";
-import validateInput from "../validators/validateInput";
+import styles from "../src/styles/pages/Home.module.scss";
+import validateInput from "../src/validators/validateInput";
 
 const Home: NextPage = () => {
   const [username, setUsername] = useState("");
