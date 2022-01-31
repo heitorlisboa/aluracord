@@ -26,7 +26,9 @@ Desde o início da imersão meu objetivo era ir além dela, então utilizei meus
 
 <p align="center">
   <img src="/showcase/layout-mobile-nav-closed.png" alt="Página de chat versão mobile com a navegação fechada" width="450" />
-  &emsp;
+</p>
+
+<p align="center">
   <img src="/showcase/layout-mobile-nav-open.png" alt="Página de chat versão mobile com a navegação aberta" width="450" />
 </p>
 
