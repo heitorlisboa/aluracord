@@ -104,7 +104,7 @@ export const addMessage = async (message: MessageCreated) => {
 
 /**
  * Delete a message from the database
- * @param message
+ * @param id The message id
  * @returns The message that was deleted
  */
 export const deleteMessage = async (id: number) => {
