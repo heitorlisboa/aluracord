@@ -25,5 +25,9 @@
     &.active {
       transform: translateX(0%);
     }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 200ms ease;
+    }
   }
 }
