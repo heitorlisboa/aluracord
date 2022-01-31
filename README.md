@@ -7,19 +7,29 @@ Desde o início da imersão meu objetivo era ir além dela, então utilizei meus
 ## Página de Login
 
 <p align="center">
-  <img src="/showcase/pagina-de-login.png" alt="Página de Login" />
+  <img src="/showcase/login-page.png" alt="Página de Login" />
 </p>
 
 ## Página de Chat
 
 <p align="center">
-  <img src="/showcase/pagina-de-chat.png" alt="Página de Chat" />
+  <img src="/showcase/layout-desktop.png" alt="Página de Chat" />
 </p>
 
 ## Perfil de usuário
 
 <p align="center">
-  <img src="/showcase/perfil-de-usuario.png" alt="Perfil de usuário" />
+  <img src="/showcase/profile-card.png" alt="Perfil de usuário" />
+</p>
+
+## Layout mobile (não finalizado)
+
+<p align="center">
+  <img src="/showcase/layout-mobile-nav-closed.png" alt="Página de chat versão mobile com a navegação fechada" />
+</p>
+
+<p align="center">
+  <img src="/showcase/layout-mobile-nav-open.png" alt="Página de chat versão mobile com a navegação aberta" />
 </p>
 
 Além do mais, planejo levar esse projeto adiante com meus estudos, então a seguir listo algumas das minhas metas de desenvolvimento para essa aplicação:
