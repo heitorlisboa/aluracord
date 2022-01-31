@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchUser } from "./Store";
+import { fetchUserInfo } from "./Store";
 import type {
   ClickOutProfileHandler,
   ClickProfileHandler,
@@ -20,7 +20,7 @@ export const useProfile = () => {
   const handleClickIn: ClickProfileHandler = (username) => {
     setIsLoading(true);
     setIsVisible(true);
-    fetchUser(username, setUserInfo).then(() => {
+    fetchUserInfo(username, setUserInfo).then(() => {
       setIsLoading(false);
     });
   };

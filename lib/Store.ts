@@ -82,7 +82,7 @@ export const fetchMessages = async (
  * @param setState Optionally pass in a setter to set the state
  * @returns The GitHub user information
  */
-export const fetchUser = async (
+export const fetchUserInfo = async (
   username: string,
   setState?: Dispatch<SetStateAction<any>>
 ) => {
