@@ -21,7 +21,8 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: clr.$primary-dark;
-  border: 2px solid clr.$secondary-light;
+  background-clip: content-box;
+  border: 2px solid transparent;
 }
 
 button {
