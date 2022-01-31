@@ -8,6 +8,7 @@ import type {
   GitHubUserInfo,
 } from "../types";
 
+// The database access
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
   process.env.NEXT_PUBLIC_SUPABASE_KEY as string
@@ -86,6 +87,7 @@ export const useStore = () => {
       setUsers(
         users
           .concat(newUser)
+          // Case-insensitive sorting
           .sort((a, b) => a.username.localeCompare(b.username))
       );
     }
@@ -116,6 +118,11 @@ export const fetchMessages = async (
   return body as MessageResponse[];
 };
 
+/**
+ * Fetch all users from the database
+ * @param setState Optionally pass in a setter to set the state
+ * @returns The users fetched from the database
+ */
 export const fetchAllUsers = async (
   setState?: Dispatch<SetStateAction<UserResponse[]>>
 ) => {
@@ -147,6 +154,7 @@ export const fetchUserInfo = async (
  */
 export const addMessage = async (message: MessageCreated) => {
   let { body } = await supabase.from("messages").insert(message);
+  // This function will check if the user already exists before creating it
   await addUser(message.author);
   await incrementMessageCount(message.author);
   return body as MessageResponse[];
@@ -167,14 +175,27 @@ export const deleteMessage = async (message: MessageResponse) => {
   return body as MessageResponse[];
 };
 
+/**
+ * Increment the message count from a user
+ * @param username The username to increment the count
+ */
 const incrementMessageCount = async (username: string) => {
   await supabase.rpc("increment", { row_username: username });
 };
 
+/**
+ * Decrement the message count from a user
+ * @param username The username to decrement the count
+ */
 const decrementMessageCount = async (username: string) => {
   await supabase.rpc("decrement", { row_username: username });
 };
 
+/**
+ * Add a new user into the database
+ * @param username
+ * @returns The users added (null if none was added)
+ */
 const addUser = async (username: string) => {
   let search = await supabase.from("users").select("*").match({ username });
   let body: UserResponse[] | null = null;
@@ -184,6 +205,10 @@ const addUser = async (username: string) => {
   return body;
 };
 
+/**
+ * Delete all users from the database that don't have any messages
+ * @returns The users deleted
+ */
 const deleteZeroMessagesUsers = async () => {
   let { body } = await supabase
     .from("users")
