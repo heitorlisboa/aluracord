@@ -22,14 +22,16 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
     const keyPressed = event.key;
     const trimmedMessage = messageText.trim();
 
-    if (keyPressed === "Enter" && !event.shiftKey && trimmedMessage) {
+    if (keyPressed === "Enter" && !event.shiftKey) {
       event.preventDefault();
-      addMessage({
-        author: context.currentUser,
-        date: new Date().toISOString(),
-        content: messageText,
-      });
-      setMessageText("");
+      if (trimmedMessage) {
+        addMessage({
+          author: context.currentUser,
+          date: new Date().toISOString(),
+          content: messageText,
+        });
+        setMessageText("");
+      }
     }
   }
 
