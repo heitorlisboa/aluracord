@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import type { Dispatch, SetStateAction } from "react";
-import type { MessageResponse, MessageCreated, GitHubUserInfo } from "../types";
+import type {
+  MessageResponse,
+  MessageCreated,
+  UserResponse,
+  GitHubUserInfo,
+} from "../types";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -13,9 +18,15 @@ export const supabase = createClient(
  * @returns The message list state and a boolean of whether the page is loading or not
  */
 export const useStore = () => {
+  // Message related states
   const [messages, setMessages] = useState<MessageResponse[]>([]);
   const [newMessage, handleNewMessage] = useState<MessageResponse>();
   const [deletedMessage, handleDeletedMessage] = useState<MessageResponse>();
+
+  // User related states
+  const [users, setUsers] = useState<UserResponse[]>([]);
+  const [newUser, handleNewUser] = useState<UserResponse>();
+  const [deletedUser, handleDeletedUser] = useState<UserResponse>();
 
   // Load initial data and set up listeners
   /*
@@ -23,8 +34,9 @@ export const useStore = () => {
     features are yet to be implemented
   */
   useEffect(() => {
-    // Fetch the messages from the database
+    // Fetch the messages and users from the database
     fetchMessages(setMessages);
+    fetchAllUsers(setUsers);
 
     // Listen for new and deleted messages
     const messageListener = supabase
@@ -37,17 +49,27 @@ export const useStore = () => {
       })
       .subscribe();
 
+    // Listen for new and deleted users
+    const userListener = supabase
+      .from("users")
+      .on("INSERT", (payload) => {
+        handleNewUser(payload.new);
+      })
+      .on("DELETE", (payload) => {
+        handleDeletedUser(payload.old);
+      })
+      .subscribe();
+
     // Cleanup on unmount
     return () => {
       messageListener.unsubscribe();
+      userListener.unsubscribe();
     };
   }, []);
 
   // New message received
   useEffect(() => {
-    if (newMessage) {
-      setMessages(messages.concat(newMessage));
-    }
+    if (newMessage) setMessages(messages.concat(newMessage));
   }, [newMessage]);
 
   // Deleted message received
@@ -58,8 +80,21 @@ export const useStore = () => {
       );
   }, [deletedMessage]);
 
+  // New user received
+  useEffect(() => {
+    // REMEMBER TO SORT THE LIST USING .sort AND localeCompare
+    if (newUser) setUsers(users.concat(newUser));
+  }, [newUser]);
+
+  // Deleted user received
+  useEffect(() => {
+    if (deletedUser)
+      setUsers(users.filter((user) => user.id !== deletedUser.id));
+  }, [deletedUser]);
+
   return {
     messages,
+    users,
   };
 };
 
@@ -74,6 +109,14 @@ export const fetchMessages = async (
   let { body } = await supabase.from("messages").select("*").order("date");
   if (setState) setState(body as MessageResponse[]);
   return body as MessageResponse[];
+};
+
+export const fetchAllUsers = async (
+  setState?: Dispatch<SetStateAction<UserResponse[]>>
+) => {
+  let { body } = await supabase.from("users").select("*").order("username");
+  if (setState) setState(body as UserResponse[]);
+  return body as UserResponse[];
 };
 
 /**
@@ -99,15 +142,47 @@ export const fetchUserInfo = async (
  */
 export const addMessage = async (message: MessageCreated) => {
   let { body } = await supabase.from("messages").insert(message);
+  await addUser(message.author);
+  await incrementMessageCount(message.author);
   return body as MessageResponse[];
 };
 
 /**
  * Delete a message from the database
- * @param id The message id
+ * @param message
  * @returns The message that was deleted
  */
-export const deleteMessage = async (id: number) => {
-  let { body } = await supabase.from("messages").delete().match({ id: id });
+export const deleteMessage = async (message: MessageResponse) => {
+  let { body } = await supabase
+    .from("messages")
+    .delete()
+    .match({ id: message.id });
+  await decrementMessageCount(message.author);
+  await deleteZeroMessagesUsers();
   return body as MessageResponse[];
+};
+
+const incrementMessageCount = async (username: string) => {
+  await supabase.rpc("increment", { row_username: username });
+};
+
+const decrementMessageCount = async (username: string) => {
+  await supabase.rpc("decrement", { row_username: username });
+};
+
+const addUser = async (username: string) => {
+  let search = await supabase.from("users").select("*").match({ username });
+  let body: UserResponse[] | null = null;
+  if (search.body && search.body.length === 0) {
+    body = (await supabase.from("users").insert({ username })).body;
+  }
+  return body;
+};
+
+const deleteZeroMessagesUsers = async () => {
+  let { body } = await supabase
+    .from("users")
+    .delete()
+    .match({ message_count: 0 });
+  return body;
 };

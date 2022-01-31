@@ -1,0 +1,30 @@
+@use "../../../styles/partials/colors" as clr;
+@use "../../../styles/partials/gaps" as gp;
+@use "../../../styles/partials/placeholder-selectors";
+
+.card {
+  display: flex;
+  gap: gp.$small;
+  align-items: center;
+  width: 100%;
+
+  padding: gp.$smaller gp.$small;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: clr.$primary-dark-transparent;
+  }
+}
+
+.avatar {
+  width: 35px;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+}
+
+.username {
+  font-weight: bold;
+  @extend %text-ellipsis;
+}

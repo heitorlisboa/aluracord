@@ -36,7 +36,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   const convertedDate = new Date(message.date);
 
   function handleClickDelete() {
-    deleteMessage(message.id);
+    deleteMessage(message);
   }
 
   return (

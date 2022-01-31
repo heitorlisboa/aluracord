@@ -29,7 +29,7 @@ const Chat: NextPage = () => {
   });
   const primaryContainerRef = useRef<HTMLDivElement>(null);
   const navigationsRef = useRef<HTMLDivElement>(null);
-  const { messages } = useStore();
+  const { messages, users } = useStore();
   const profile = useProfile();
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const Chat: NextPage = () => {
               {(!isHome || (isHome && isDirectMessage)) && (
                 <ServerChat channel={channelName} messages={messages} />
               )}
-              {!isHome && <UserList channel={channelName} />}
+              {!isHome && <UserList channel={channelName} users={users} />}
             </div>
             {profile.isVisible && (
               <ProfileCard

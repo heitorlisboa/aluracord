@@ -16,6 +16,12 @@ export interface MessageResponse extends MessageCreated {
   id: number;
 }
 
+export interface UserResponse {
+  id: number;
+  username: string;
+  message_count: number;
+}
+
 export interface UserContextInterface {
   currentUser: string;
 }
