@@ -15,6 +15,7 @@
     position: absolute;
     width: size.$navigations-width;
     z-index: 1000;
+    
     transform: translateX(-100%);
 
     @supports (backdrop-filter: blur(1rem)) {
