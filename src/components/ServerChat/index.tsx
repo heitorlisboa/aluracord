@@ -24,7 +24,7 @@ ServerChatWrapper.displayName = "ServerChatWrapper";
 
 interface ServerChatProps {
   channel: string;
-  messages?: MessageResponse[];
+  messages: MessageResponse[];
 }
 
 const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
@@ -49,8 +49,7 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
   }, [messages]);
 
   useEffect(() => {
-    if ((messages && messages.length === 0) || scrollIsOnBottom)
-      adjustChatScroll();
+    if (messages.length === 0 || scrollIsOnBottom) adjustChatScroll();
   }, [messages]);
 
   return (
@@ -60,7 +59,7 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
           className={styles.scrollerInner}
           aria-label={`Mensagens em ${channel}`}
         >
-          {messages && messages.length > 0 ? (
+          {messages.length > 0 ? (
             <>
               {messages.map((msg, index) => {
                 let hideAuthor = false;
