@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import type { FC } from "react";
 import type { MessageResponse } from "../../types";
 import styles from "./ServerChat.module.scss";
@@ -31,13 +31,26 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
   const scrollerDivRef = useRef<HTMLDivElement>(null);
 
   function adjustChatScroll() {
-    const element = scrollerDivRef.current;
+    const scroller = scrollerDivRef.current;
 
-    if (element) element.scrollTop = element.scrollHeight;
+    if (scroller) scroller.scrollTop = scroller.scrollHeight;
   }
 
+  const scrollIsOnBottom = useMemo(() => {
+    const scroller = scrollerDivRef.current;
+    if (scroller) {
+      const scrollBottom = scroller.scrollTop + scroller.offsetHeight;
+
+      if (scrollBottom === scroller.scrollHeight) {
+        return true;
+      }
+    }
+    return false;
+  }, [messages]);
+
   useEffect(() => {
-    adjustChatScroll();
+    if ((messages && messages.length === 0) || scrollIsOnBottom)
+      adjustChatScroll();
   }, [messages]);
 
   return (
