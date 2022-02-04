@@ -6,17 +6,16 @@ import styles from "./ProfileCard.module.scss";
 
 interface ProfileCardProps {
   userInfo: GitHubUserInfo | undefined;
-  isLoading: boolean;
 }
 
-const ProfileCard: FC<ProfileCardProps> = ({ userInfo, isLoading }) => {
+const ProfileCard: FC<ProfileCardProps> = ({ userInfo }) => {
   const { handleClickOut } = useContext(
     ProfileContext
   ) as ProfileContextInterface;
 
   return (
     <div className={styles.wrapper}>
-      {!isLoading && userInfo ? (
+      {userInfo ? (
         <div className={styles.profileCard}>
           <img
             className={styles.avatar}

@@ -59,7 +59,6 @@ const Chat: NextPage = () => {
           {profile.isVisible && (
             <ProfileCard
               userInfo={profile.userInfo}
-              isLoading={profile.isLoading}
             />
           )}
         </div>

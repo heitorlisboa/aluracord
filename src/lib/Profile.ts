@@ -13,23 +13,21 @@ import type {
  * as well as the click in and click out profile handlers
  */
 export const useProfile = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [userInfo, setUserInfo] = useState<GitHubUserInfo>();
 
   const handleClickIn: ClickProfileHandler = (username) => {
-    setIsLoading(true);
     setIsVisible(true);
-    fetchUserInfo(username, setUserInfo).then(() => {
-      setIsLoading(false);
-    });
+    fetchUserInfo(username, setUserInfo);
   };
 
-  const handleClickOut: ClickOutProfileHandler = () => setIsVisible(false);
+  const handleClickOut: ClickOutProfileHandler = () => {
+    setIsVisible(false);
+    setUserInfo(undefined);
+  };
 
   return {
     isVisible,
-    isLoading,
     userInfo,
     handleClickIn,
     handleClickOut,
