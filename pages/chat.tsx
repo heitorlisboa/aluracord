@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useStore } from "../src/lib/Store";
 import { useProfile } from "../src/lib/Profile";
 import UserContext from "../src/lib/UserContext";
@@ -9,8 +9,6 @@ import type { NextPage } from "next";
 import type { CategoriesObject } from "../src/types";
 
 import styles from "../src/styles/pages/Chat.module.scss";
-import navStyles from "../src/components/Navigations/Navigations.module.scss";
-import userListStyles from "../src/components/UserList/UserList.module.scss";
 
 import ServerHeader from "../src/components/ServerHeader";
 import ServerChat from "../src/components/ServerChat";
@@ -28,11 +26,9 @@ const Chat: NextPage = () => {
   const [categories, setCategories] = useState<CategoriesObject>({
     "Canais de texto": ["Geral"],
   });
-  const primaryContainerRef = useRef<HTMLDivElement>(null);
-  const navigationsRef = useRef<HTMLDivElement>(null);
-  const userListRef = useRef<HTMLDivElement>(null);
   const { messages, users } = useStore();
   const profile = useProfile();
+  const { containerRef } = useContext(MobileContext);
 
   useEffect(() => {
     if (!currentUser) router.replace("/");
@@ -46,48 +42,27 @@ const Chat: NextPage = () => {
           handleClickOut: profile.handleClickOut,
         }}
       >
-        <MobileContext.Provider
-          value={{
-            containerRef: primaryContainerRef,
-            disabledContainerClass: styles.disabled,
-            navigationsRef: navigationsRef,
-            activeNavigationsClass: navStyles.active,
-            userListRef: userListRef,
-            activeUserListClass: userListStyles.active,
-          }}
-        >
-          <div className={styles.primaryContainer} ref={primaryContainerRef}>
-            <Navigations
-              title={serverTitle}
-              categories={categories}
-              ref={navigationsRef}
-            />
-            <div className={styles.secondaryContainer}>
-              <ServerHeader channel={channelName} />
-              {isHome && !isDirectMessage && (
-                <main aria-label="Amigos">
-                  <ul aria-label="Lista de amigos"></ul>
-                </main>
-              )}
-              {(!isHome || (isHome && isDirectMessage)) && (
-                <ServerChat channel={channelName} messages={messages} />
-              )}
-              {!isHome && (
-                <UserList
-                  channel={channelName}
-                  users={users}
-                  ref={userListRef}
-                />
-              )}
-            </div>
-            {profile.isVisible && (
-              <ProfileCard
-                userInfo={profile.userInfo}
-                isLoading={profile.isLoading}
-              />
+        <div className={styles.primaryContainer} ref={containerRef}>
+          <Navigations title={serverTitle} categories={categories} />
+          <div className={styles.secondaryContainer}>
+            <ServerHeader channel={channelName} />
+            {isHome && !isDirectMessage && (
+              <main aria-label="Amigos">
+                <ul aria-label="Lista de amigos"></ul>
+              </main>
             )}
+            {(!isHome || (isHome && isDirectMessage)) && (
+              <ServerChat channel={channelName} messages={messages} />
+            )}
+            {!isHome && <UserList channel={channelName} users={users} />}
           </div>
-        </MobileContext.Provider>
+          {profile.isVisible && (
+            <ProfileCard
+              userInfo={profile.userInfo}
+              isLoading={profile.isLoading}
+            />
+          )}
+        </div>
       </ProfileContext.Provider>
     </UserContext.Provider>
   );

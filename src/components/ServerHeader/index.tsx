@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import MobileContext from "../../lib/MobileContext";
 import type { FC } from "react";
-import type { MobileContextInterface } from "../../types";
 import styles from "./ServerHeader.module.scss";
 
 interface ServerHeaderProps {
@@ -9,7 +8,7 @@ interface ServerHeaderProps {
 }
 
 const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
-  const context = useContext(MobileContext) as MobileContextInterface;
+  const context = useContext(MobileContext);
 
   function handleOpenMenu() {
     const navigationsElement = context.navigationsRef.current;
