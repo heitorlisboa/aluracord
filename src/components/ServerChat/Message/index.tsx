@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { deleteMessage } from "../../../lib/Store";
 import UserContext from "../../../lib/UserContext";
+import ProfileContext from "../../../lib/ProfileContext";
+import linkToHTMLAnchor from "../../../utils/linkToHTMLAnchor";
+
 import type { FC } from "react";
 import type {
   MessageResponse,
   ProfileContextInterface,
   UserContextInterface,
 } from "../../../types";
+
 import styles from "./Message.module.scss";
-import ProfileContext from "../../../lib/ProfileContext";
 
 interface MessageProps {
   children: MessageResponse;
@@ -89,7 +92,8 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
         </>
       )}
 
-      <div className={styles.content}>{message.content}</div>
+      <div className={styles.content}>{linkToHTMLAnchor(message.content)}</div>
+
       {message.author === currentUser && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
           <img
