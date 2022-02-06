@@ -5,15 +5,21 @@
 .channel {
   font-size: fs.$medium;
   color: clr.$secondary-dark;
-  
-  padding: gp.$smaller gp.$medium;
+
   border-radius: 5px;
-  
-  cursor: pointer;
-  
+
   &:hover {
     background-color: clr.$primary-darker-transparent;
 
     color: clr.$secondary-medium;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    display: block;
+
+    padding: gp.$smaller gp.$medium;
   }
 }

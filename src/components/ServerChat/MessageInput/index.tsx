@@ -63,6 +63,7 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
         name="message"
         placeholder={`Conversar em ${channel}`}
         aria-label={`Conversar em ${channel}`}
+        aria-multiline={true}
         ref={messageInputRef}
         value={messageText}
         onChange={handleChange}

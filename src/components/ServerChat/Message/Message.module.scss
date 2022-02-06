@@ -11,15 +11,19 @@ $avatar-width: 40px;
   padding-left: calc($avatar-width + gp.$big);
   padding-right: gp.$medium;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     background-color: clr.$primary-darker-transparent;
-    .timeStampTooltip,
-    .buttons {
-      opacity: 1;
-    }
 
     .buttons {
+      opacity: 1;
       pointer-events: auto;
+    }
+  }
+
+  &:hover {
+    .timeStampTooltip {
+      opacity: 1;
     }
   }
 }
@@ -50,7 +54,7 @@ $avatar-width: 40px;
 
 .username {
   @extend %text-ellipsis;
-  
+
   &:hover {
     text-decoration: underline;
   }

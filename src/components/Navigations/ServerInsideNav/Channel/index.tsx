@@ -6,7 +6,11 @@ interface ChannelProps {
 }
 
 const Channel: FC<ChannelProps> = ({ title }) => {
-  return <li className={styles.channel}>{title}</li>;
+  return (
+    <li className={styles.channel}>
+      <a href="#">{title}</a>
+    </li>
+  );
 };
 
 export default Channel;

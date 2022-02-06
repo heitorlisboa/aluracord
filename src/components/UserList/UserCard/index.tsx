@@ -21,6 +21,8 @@ const UserCard: FC<UserCardProps> = ({ username, onClickHandler }) => {
         onClickHandler();
         handleClickIn(username);
       }}
+      role="button"
+      tabIndex={0}
     >
       <img
         className={styles.avatar}

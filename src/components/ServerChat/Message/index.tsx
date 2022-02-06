@@ -40,7 +40,11 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   }
 
   return (
-    <li className={styles.message} aria-roledescription="Mensagem">
+    <li
+      className={styles.message}
+      aria-roledescription="Mensagem"
+      aria-setsize={-1}
+    >
       {onlyContent ? (
         <>
           <div className={styles.timeStampTooltip}>
@@ -68,6 +72,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
               id={`message-username-${message.id}`}
               className={styles.username}
               onClick={() => handleClickIn(message.author)}
+              tabIndex={0}
             >
               {message.author}
             </span>
@@ -91,6 +96,8 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
             src="/svg/delete-icon.svg"
             alt="Deletar"
             onClick={handleClickDelete}
+            role="button"
+            tabIndex={0}
           />
         </div>
       )}

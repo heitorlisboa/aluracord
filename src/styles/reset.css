@@ -19,6 +19,11 @@ dd {
   margin: 0;
 }
 
+/* Remove default button padding */
+button {
+  padding: unset;
+}
+
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul,
 ol {
