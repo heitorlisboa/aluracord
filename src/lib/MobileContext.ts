@@ -10,8 +10,10 @@ const MobileContext = createContext<MobileContextInterface>({
   disabledContainerClass: chatPageStyles.disabled,
   navigationsRef: createRef<HTMLDivElement>(),
   activeNavigationsClass: navStyles.active,
+  navigationsButtonRef: createRef<HTMLButtonElement>(),
   userListRef: createRef<HTMLDivElement>(),
   activeUserListClass: userListStyles.active,
+  userListButtonRef: createRef<HTMLButtonElement>(),
 });
 
 export default MobileContext;

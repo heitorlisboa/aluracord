@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import MobileContext from "../../lib/MobileContext";
 import useOutsideListener from "../../lib/OutsideListener";
-import type { ServerInsideNavProps } from "./ServerInsideNav";
 import type { FC } from "react";
+import type { ServerInsideNavProps } from "./ServerInsideNav";
 import styles from "./Navigations.module.scss";
 
 import ServerList from "./ServerList";
 import ServerInsideNav from "./ServerInsideNav";
 
-interface NavigationsProps extends ServerInsideNavProps {}
+type NavigationsProps = ServerInsideNavProps;
 
 const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
   const context = useContext(MobileContext);
 
   function handleCloseMenu() {
     const navigationsElement = context.navigationsRef.current;
+    const navigationsButton = context.navigationsButtonRef.current;
     const containerElement = context.containerRef.current;
 
     const otherElement = context.userListRef.current;
@@ -22,8 +23,12 @@ const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
       context.activeUserListClass
     );
 
-    if (navigationsElement && containerElement && !otherElementIsActive) {
+    const elementsAreValid =
+      navigationsElement && navigationsButton && containerElement;
+
+    if (elementsAreValid && !otherElementIsActive) {
       navigationsElement.classList.remove(context.activeNavigationsClass);
+      navigationsButton.ariaExpanded = "false";
       containerElement.classList.remove(context.disabledContainerClass);
     }
   }
@@ -31,7 +36,11 @@ const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
   useOutsideListener(context.navigationsRef, handleCloseMenu);
 
   return (
-    <div className={styles.container} ref={context.navigationsRef}>
+    <div
+      id="navigations"
+      className={styles.container}
+      ref={context.navigationsRef}
+    >
       <ServerList />
       <ServerInsideNav title={title} categories={categories} />
     </div>

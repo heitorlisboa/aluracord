@@ -12,33 +12,52 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
 
   function handleOpenMenu() {
     const navigationsElement = context.navigationsRef.current;
+    const navigationsButton = context.navigationsButtonRef.current;
     const containerElement = context.containerRef.current;
 
-    if (navigationsElement && containerElement) {
+    const elementsAreValid =
+      navigationsElement && navigationsButton && containerElement;
+
+    if (elementsAreValid) {
       navigationsElement.classList.add(context.activeNavigationsClass);
+      navigationsButton.ariaExpanded = "true";
       containerElement.classList.add(context.disabledContainerClass);
     }
   }
 
   function handleOpenUserList() {
     const userListElement = context.userListRef.current;
+    const userListButton = context.userListButtonRef.current;
     const containerElement = context.containerRef.current;
 
-    if (userListElement && containerElement) {
+    const elementsAreValid =
+      userListElement && userListButton && containerElement;
+
+    if (elementsAreValid) {
       userListElement.classList.add(context.activeUserListClass);
+      userListButton.ariaExpanded = "true";
       containerElement.classList.add(context.disabledContainerClass);
     }
   }
 
   return (
     <section className={styles.header} aria-label="Cabeçalho do canal">
-      <button className={styles.mobileMenuButton} onClick={handleOpenMenu}>
+      <button
+        className={styles.mobileMenuButton}
+        onClick={handleOpenMenu}
+        ref={context.navigationsButtonRef}
+        aria-controls="navigations"
+        aria-expanded="false"
+      >
         <span className="sr-only">Menu</span>
       </button>
       <h3 className={styles.title}>{channel}</h3>
       <button
         className={styles.mobileUserListButton}
         onClick={handleOpenUserList}
+        ref={context.userListButtonRef}
+        aria-controls="user-list"
+        aria-expanded="false"
       >
         <span className="sr-only">Lista de usuários</span>
       </button>

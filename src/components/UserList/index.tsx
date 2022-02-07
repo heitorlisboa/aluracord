@@ -23,6 +23,7 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
 
   function handleCloseUserList() {
     const userListElement = context.userListRef.current;
+    const userListButton = context.userListButtonRef.current;
     const containerElement = context.containerRef.current;
 
     const otherElement = context.navigationsRef.current;
@@ -30,8 +31,12 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
       context.activeNavigationsClass
     );
 
-    if (userListElement && containerElement && !otherElementIsActive) {
+    const elementsAreValid =
+      userListElement && userListButton && containerElement;
+
+    if (elementsAreValid && !otherElementIsActive) {
       userListElement.classList.remove(context.activeUserListClass);
+      userListButton.ariaExpanded = "false";
       containerElement.classList.remove(context.disabledContainerClass);
     }
   }
@@ -40,6 +45,7 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
 
   return (
     <aside
+      id="user-list"
       className={styles.sidebar}
       aria-label={`Lista de membros para ${channel} (canal)`}
       ref={context.userListRef}
