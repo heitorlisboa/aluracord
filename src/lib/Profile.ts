@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { fetchUserInfo } from "./Store";
 import type {
   ClickOutProfileHandler,
@@ -15,10 +15,13 @@ import type {
 export const useProfile = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [userInfo, setUserInfo] = useState<GitHubUserInfo>();
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleClickIn: ClickProfileHandler = (username) => {
     setIsVisible(true);
-    fetchUserInfo(username, setUserInfo);
+    fetchUserInfo(username, setUserInfo).then(() => {
+      if (ref.current) ref.current.focus();
+    });
   };
 
   const handleClickOut: ClickOutProfileHandler = () => {
@@ -31,5 +34,6 @@ export const useProfile = () => {
     userInfo,
     handleClickIn,
     handleClickOut,
+    ref,
   };
 };
