@@ -85,6 +85,15 @@ $avatar-width: 40px;
 .content {
   padding-bottom: gp.$smaller;
   white-space: break-spaces;
+
+  a {
+    color: clr.$info;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .buttons {
