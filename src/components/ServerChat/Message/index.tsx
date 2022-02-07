@@ -70,6 +70,8 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
           <h2
             className={styles.header}
             aria-labelledby={`message-username-${message.id}`}
+            // Usar esse id no contexto do reply
+            aria-describedby={`message-context-${message.id}`}
           >
             <button
               aria-description="Abre o perfil do usuário"
