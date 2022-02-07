@@ -15,21 +15,21 @@ const UserCard: FC<UserCardProps> = ({ username, onClickHandler }) => {
   ) as ProfileContextInterface;
 
   return (
-    <li
-      className={styles.card}
-      onClick={() => {
-        onClickHandler();
-        handleClickIn(username);
-      }}
-      role="button"
-      tabIndex={0}
-    >
-      <img
-        className={styles.avatar}
-        src={`https://github.com/${username}.png`}
-        alt={`Foto de perfil de ${username}`}
-      />
-      <span className={styles.username}>{username}</span>
+    <li className={styles.card}>
+      <button
+        aria-description="Abre o perfil do usuário"
+        onClick={() => {
+          onClickHandler();
+          handleClickIn(username);
+        }}
+      >
+        <img
+          className={styles.avatar}
+          src={`https://github.com/${username}.png`}
+          alt={`Foto de perfil de ${username}`}
+        />
+        <span className={styles.username}>{username}</span>
+      </button>
     </li>
   );
 };

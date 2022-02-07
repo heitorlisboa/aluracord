@@ -71,14 +71,17 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
             className={styles.header}
             aria-labelledby={`message-username-${message.id}`}
           >
-            <span
-              id={`message-username-${message.id}`}
-              className={styles.username}
+            <button
+              aria-description="Abre o perfil do usuário"
               onClick={() => handleClickIn(message.author)}
-              tabIndex={0}
             >
-              {message.author}
-            </span>
+              <span
+                id={`message-username-${message.id}`}
+                className={styles.username}
+              >
+                {message.author}
+              </span>
+            </button>
             <span>
               <time
                 className={styles.timeStamp}
@@ -96,13 +99,9 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
 
       {message.author === currentUser && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
-          <img
-            src="/svg/delete-icon.svg"
-            alt="Deletar"
-            onClick={handleClickDelete}
-            role="button"
-            tabIndex={0}
-          />
+          <button onClick={handleClickDelete} aria-label="Deletar">
+            <img src="/svg/delete-icon.svg" alt="" />
+          </button>
         </div>
       )}
     </li>
