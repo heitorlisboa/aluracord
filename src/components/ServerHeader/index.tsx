@@ -20,6 +20,9 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
 
     if (elementsAreValid) {
       navigationsElement.classList.add(context.activeNavigationsClass);
+      navigationsElement.tabIndex = -1;
+      navigationsElement.focus();
+      navigationsElement.removeAttribute("tabindex");
       navigationsButton.ariaExpanded = "true";
       containerElement.classList.add(context.disabledContainerClass);
     }
@@ -35,13 +38,20 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
 
     if (elementsAreValid) {
       userListElement.classList.add(context.activeUserListClass);
+      userListElement.tabIndex = -1;
+      userListElement.focus();
+      userListElement.removeAttribute("tabindex");
       userListButton.ariaExpanded = "true";
       containerElement.classList.add(context.disabledContainerClass);
     }
   }
 
   return (
-    <section className={styles.header} aria-label="Cabeçalho do canal">
+    <section
+      className={styles.header}
+      aria-label="Cabeçalho do canal"
+      ref={context.headerRef}
+    >
       <button
         className={styles.mobileMenuButton}
         onClick={handleOpenMenu}

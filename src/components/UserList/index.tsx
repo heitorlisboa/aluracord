@@ -23,6 +23,11 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
 
   function handleCloseUserList() {
     const userListElement = context.userListRef.current;
+    const elementIsActive = userListElement?.classList.contains(
+      context.activeUserListClass
+    );
+    if (!elementIsActive) return;
+
     const userListButton = context.userListButtonRef.current;
     const containerElement = context.containerRef.current;
 

@@ -49,6 +49,7 @@ export interface ProfileContextInterface {
 export interface MobileContextInterface {
   containerRef: RefObject<HTMLDivElement>;
   disabledContainerClass: string;
+  headerRef: RefObject<HTMLDivElement>;
   navigationsRef: RefObject<HTMLDivElement>;
   activeNavigationsClass: string;
   navigationsButtonRef: RefObject<HTMLButtonElement>;

@@ -15,6 +15,11 @@ const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
 
   function handleCloseMenu() {
     const navigationsElement = context.navigationsRef.current;
+    const elementIsActive = navigationsElement?.classList.contains(
+      context.activeNavigationsClass
+    );
+    if (!elementIsActive) return;
+
     const navigationsButton = context.navigationsButtonRef.current;
     const containerElement = context.containerRef.current;
 

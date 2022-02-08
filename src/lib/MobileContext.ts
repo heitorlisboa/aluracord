@@ -8,6 +8,7 @@ import userListStyles from "../components/UserList/UserList.module.scss";
 const MobileContext = createContext<MobileContextInterface>({
   containerRef: createRef<HTMLDivElement>(),
   disabledContainerClass: chatPageStyles.disabled,
+  headerRef: createRef<HTMLDivElement>(),
   navigationsRef: createRef<HTMLDivElement>(),
   activeNavigationsClass: navStyles.active,
   navigationsButtonRef: createRef<HTMLButtonElement>(),
