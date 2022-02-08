@@ -16,8 +16,6 @@ $max-width: 350px;
   background-color: clr.$primary-light-transparent;
   backdrop-filter: blur(0.25rem);
 
-  color: clr.$secondary-light;
-
   display: grid;
   justify-items: center;
   align-items: center;
@@ -47,8 +45,6 @@ $max-width: 350px;
 
 .usernameInput,
 .submitButton {
-  color: clr.$secondary-light;
-
   width: 100%;
 
   padding: gp.$smaller gp.$small;

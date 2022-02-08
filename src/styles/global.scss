@@ -38,11 +38,17 @@ html {
 
 body {
   overflow-x: hidden;
+  color: clr.$secondary-light;
+}
+
+button,
+input,
+textarea {
+  color: inherit;
 }
 
 button {
   background-color: unset;
-  color: inherit;
   cursor: pointer;
 }
 
