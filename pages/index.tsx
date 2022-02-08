@@ -1,12 +1,17 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import validateInput from "../src/validators/validateInput";
+import addAlert from "../src/lib/addAlert";
 import type { NextPage } from "next";
 import type { ChangeEvent, FormEvent } from "react";
+import type { AlertCreated, AlertInterface } from "../src/types";
 import styles from "../src/styles/pages/Home.module.scss";
-import validateInput from "../src/validators/validateInput";
+
+import Alert from "../src/components/Alert";
 
 const Home: NextPage = () => {
   const [username, setUsername] = useState("");
+  const [alerts, setAlerts] = useState<AlertInterface[]>([]);
   const router = useRouter();
   const userImageRef = useRef<HTMLImageElement>(null);
   const defaultUserImage = "/img/user-icon.jpg";
@@ -29,14 +34,20 @@ const Home: NextPage = () => {
   function handleSubmitForm(event: FormEvent) {
     event.preventDefault();
     fetch(`https://api.github.com/users/${username}`).then((res) => {
-      if (res.status !== 200) alert("Insira um usuário do github existente");
-      else
+      if (res.status !== 200) {
+        const newAlert: AlertCreated = {
+          type: "danger",
+          message: "Insira um usuário do GitHub válido",
+        };
+        addAlert(newAlert, alerts, setAlerts);
+      } else {
         router.push({
           pathname: "/chat",
           query: {
             username,
           },
         });
+      }
     });
   }
 
@@ -46,6 +57,11 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
+      {alerts.map((alert, index) => (
+        <Alert key={index} type={alert.type} ref={alert.ref}>
+          {alert.message}
+        </Alert>
+      ))}
       <article className={styles.loginCard}>
         <div className={styles.login}>
           <h1>Boas vindas!</h1>

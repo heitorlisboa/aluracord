@@ -1,0 +1,42 @@
+@use "../../styles/partials/colors" as clr;
+@use "../../styles/partials/gaps" as gp;
+
+.container {
+  --inline-gap: gp.$medium;
+
+  // Background color to increase readability in case backdrop filter is not supported
+  background-color: clr.$primary-darker-transparent;
+
+  position: absolute;
+  top: gp.$medium;
+  width: fit-content;
+  max-width: 700px;
+  z-index: 1;
+
+  margin-inline: gp.$medium;
+  padding: gp.$medium gp.$big;
+  border: 3px solid;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 clr.$primary-darker-transparent;
+
+  @supports (backdrop-filter: blur(1rem)) {
+    background-color: clr.$primary-dark-transparent;
+    backdrop-filter: blur(0.5rem);
+  }
+}
+
+.success {
+  border-color: clr.$success;
+}
+
+.warning {
+  border-color: clr.$warning;
+}
+
+.danger {
+  border-color: clr.$danger;
+}
+
+.info {
+  border-color: clr.$info;
+}

@@ -67,3 +67,31 @@ button {
   white-space: nowrap;
   width: 1px;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fade-in 500ms;
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  .fade-out {
+    animation: fade-out 500ms;
+
+    @keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+}

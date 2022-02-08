@@ -4,6 +4,18 @@ export interface ObjectOfLists<T> {
   [key: string]: T[];
 }
 
+export interface TypeOfAlert {
+  type: "success" | "warning" | "danger" | "info";
+}
+
+export interface AlertCreated extends TypeOfAlert {
+  message: string;
+}
+
+export interface AlertInterface extends AlertCreated {
+  ref: RefObject<HTMLDivElement>;
+}
+
 export type CategoriesObject = ObjectOfLists<string>;
 
 export interface MessageCreated {
