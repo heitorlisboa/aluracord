@@ -67,17 +67,11 @@ const Home: NextPage = () => {
           </form>
         </div>
         <div className={styles.user}>
-          <a
-            href={`https://github.com/${username}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src={`https://github.com/${username}.png`}
-              onError={handleInvalidUser}
-              ref={userImageRef}
-            />
-          </a>
+          <img
+            src={`https://github.com/${username}.png`}
+            onError={handleInvalidUser}
+            ref={userImageRef}
+          />
           <span className={styles.username}>{username || "Seu nome"}</span>
         </div>
       </article>
