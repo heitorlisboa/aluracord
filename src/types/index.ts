@@ -37,7 +37,10 @@ export interface GitHubUserInfo {
   blog: string | null;
 }
 
-export type ClickProfileHandler = (username: string) => void;
+export type ClickProfileHandler = (
+  username: string,
+  buttonRef?: RefObject<HTMLButtonElement>
+) => void;
 
 export type ClickOutProfileHandler = () => void;
 

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import ProfileContext from "../../../lib/ProfileContext";
 import type { FC } from "react";
 import type { ProfileContextInterface } from "../../../types";
@@ -14,14 +14,18 @@ const UserCard: FC<UserCardProps> = ({ username, onClickHandler }) => {
     ProfileContext
   ) as ProfileContextInterface;
 
+  const profileButtonRef = useRef<HTMLButtonElement>(null);
+
   return (
     <li className={styles.card}>
       <button
         aria-description="Abre o perfil do usuário"
+        aria-expanded="false"
         onClick={() => {
           onClickHandler();
-          handleClickIn(username);
+          handleClickIn(username, profileButtonRef);
         }}
+        ref={profileButtonRef}
       >
         <img
           className={styles.avatar}

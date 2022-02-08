@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { deleteMessage } from "../../../lib/Store";
 import UserContext from "../../../lib/UserContext";
 import ProfileContext from "../../../lib/ProfileContext";
@@ -23,6 +23,7 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   const { handleClickIn } = useContext(
     ProfileContext
   ) as ProfileContextInterface;
+  const profileButtonRef = useRef<HTMLButtonElement>(null);
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
     day: "2-digit",
@@ -75,7 +76,9 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
           >
             <button
               aria-description="Abre o perfil do usuário"
-              onClick={() => handleClickIn(message.author)}
+              aria-expanded="false"
+              onClick={() => handleClickIn(message.author, profileButtonRef)}
+              ref={profileButtonRef}
             >
               <span
                 id={`message-username-${message.id}`}

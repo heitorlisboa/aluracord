@@ -15,10 +15,15 @@ import type {
 export const useProfile = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [userInfo, setUserInfo] = useState<GitHubUserInfo>();
+  const [buttonClicked, setButtonClicked] = useState<HTMLButtonElement>();
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleClickIn: ClickProfileHandler = (username) => {
+  const handleClickIn: ClickProfileHandler = (username, buttonRef) => {
     setIsVisible(true);
+    if (buttonRef && buttonRef.current) {
+      setButtonClicked(buttonRef.current);
+      buttonRef.current.ariaExpanded = "true";
+    }
     fetchUserInfo(username, setUserInfo).then(() => {
       if (ref.current) ref.current.focus();
     });
@@ -27,6 +32,10 @@ export const useProfile = () => {
   const handleClickOut: ClickOutProfileHandler = () => {
     setIsVisible(false);
     setUserInfo(undefined);
+    if (buttonClicked) {
+      buttonClicked.ariaExpanded = "false";
+      setButtonClicked(undefined);
+    }
   };
 
   return {
