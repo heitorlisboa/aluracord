@@ -28,7 +28,7 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
         addMessage({
           author: context.currentUser,
           date: new Date().toISOString(),
-          content: messageText,
+          content: messageText.trim(),
         });
         setMessageText("");
       }
