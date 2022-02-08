@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import MobileContext from "../../lib/MobileContext";
-import type { FC } from "react";
+import temporaryFocus from "../../utils/temporaryFocus";
+import type { FC, RefObject } from "react";
 import styles from "./ServerHeader.module.scss";
 
 interface ServerHeaderProps {
@@ -10,38 +11,21 @@ interface ServerHeaderProps {
 const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
   const context = useContext(MobileContext);
 
-  function handleOpenMenu() {
-    const navigationsElement = context.navigationsRef.current;
-    const navigationsButton = context.navigationsButtonRef.current;
+  function handleOpen(
+    elementRef: RefObject<HTMLDivElement>,
+    buttonRef: RefObject<HTMLButtonElement>,
+    activeElementClass: string
+  ) {
+    const element = elementRef.current;
+    const button = buttonRef.current;
     const containerElement = context.containerRef.current;
 
-    const elementsAreValid =
-      navigationsElement && navigationsButton && containerElement;
+    const elementsAreValid = element && button && containerElement;
 
     if (elementsAreValid) {
-      navigationsElement.classList.add(context.activeNavigationsClass);
-      navigationsElement.tabIndex = -1;
-      navigationsElement.focus();
-      navigationsElement.removeAttribute("tabindex");
-      navigationsButton.ariaExpanded = "true";
-      containerElement.classList.add(context.disabledContainerClass);
-    }
-  }
-
-  function handleOpenUserList() {
-    const userListElement = context.userListRef.current;
-    const userListButton = context.userListButtonRef.current;
-    const containerElement = context.containerRef.current;
-
-    const elementsAreValid =
-      userListElement && userListButton && containerElement;
-
-    if (elementsAreValid) {
-      userListElement.classList.add(context.activeUserListClass);
-      userListElement.tabIndex = -1;
-      userListElement.focus();
-      userListElement.removeAttribute("tabindex");
-      userListButton.ariaExpanded = "true";
+      element.classList.add(activeElementClass);
+      temporaryFocus(element);
+      button.ariaExpanded = "true";
       containerElement.classList.add(context.disabledContainerClass);
     }
   }
@@ -54,7 +38,13 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
     >
       <button
         className={styles.mobileMenuButton}
-        onClick={handleOpenMenu}
+        onClick={() => {
+          handleOpen(
+            context.navigationsRef,
+            context.navigationsButtonRef,
+            context.activeNavigationsClass
+          );
+        }}
         ref={context.navigationsButtonRef}
         aria-controls="navigations"
         aria-expanded="false"
@@ -64,7 +54,13 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
       <h3 className={styles.title}>{channel}</h3>
       <button
         className={styles.mobileUserListButton}
-        onClick={handleOpenUserList}
+        onClick={() => {
+          handleOpen(
+            context.userListRef,
+            context.userListButtonRef,
+            context.activeUserListClass
+          );
+        }}
         ref={context.userListButtonRef}
         aria-controls="user-list"
         aria-expanded="false"
