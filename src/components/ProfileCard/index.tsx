@@ -88,4 +88,6 @@ const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
   }
 );
 
+ProfileCard.displayName = "ProfileCard";
+
 export default ProfileCard;
