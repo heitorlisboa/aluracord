@@ -9,7 +9,7 @@ import styles from "../src/styles/pages/Home.module.scss";
 
 import Alert from "../src/components/Alert";
 
-const Home: NextPage = () => {
+const Login: NextPage = () => {
   const [username, setUsername] = useState("");
   const [alerts, setAlerts] = useState<AlertInterface[]>([]);
   const router = useRouter();
@@ -95,4 +95,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Login;
