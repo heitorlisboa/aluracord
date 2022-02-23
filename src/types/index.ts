@@ -72,3 +72,8 @@ export interface MobileContextInterface {
   activeUserListClass: string;
   userListButtonRef: RefObject<HTMLButtonElement>;
 }
+
+interface ChatRouterQuery {
+  server: string;
+  channel: string;
+}
