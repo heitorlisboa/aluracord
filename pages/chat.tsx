@@ -57,9 +57,7 @@ const Chat: NextPage = () => {
             {!isHome && <UserList channel={channelName} users={users} />}
           </div>
           {profile.isVisible && (
-            <ProfileCard
-              userInfo={profile.userInfo}
-            />
+            <ProfileCard userInfo={profile.userInfo} ref={profile.ref} />
           )}
         </div>
       </ProfileContext.Provider>
