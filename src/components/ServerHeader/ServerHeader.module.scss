@@ -1,8 +1,8 @@
-@use "../../styles/partials/colors" as clr;
-@use "../../styles/partials/font-sizes" as fs;
-@use "../../styles/partials/gaps" as gp;
-@use "../../styles/partials/screen-breakpoints" as sb;
-@use "../../styles/partials/placeholder-selectors";
+@use '../../styles/partials/colors' as clr;
+@use '../../styles/partials/font-sizes' as fs;
+@use '../../styles/partials/gaps' as gp;
+@use '../../styles/partials/screen-breakpoints' as sb;
+@use '../../styles/partials/placeholder-selectors';
 
 .header {
   background-color: clr.$primary-dark-transparent;

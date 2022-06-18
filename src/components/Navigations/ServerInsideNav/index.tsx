@@ -1,8 +1,8 @@
-import type { FC } from "react";
-import type { CategoriesObject } from "../../../types";
-import styles from "./ServerInsideNav.module.scss";
+import type { FC } from 'react';
+import type { CategoriesObject } from '../../../types';
+import styles from './ServerInsideNav.module.scss';
 
-import ChannelList from "./ChannelList";
+import ChannelList from './ChannelList';
 
 export interface ServerInsideNavProps {
   title: string;
@@ -16,7 +16,10 @@ const ServerInsideNav: FC<ServerInsideNavProps> = ({
   categories,
 }) => {
   return (
-    <nav className={styles.nav} aria-label={isHome ? "Servidor" : "Canais privados"}>
+    <nav
+      className={styles.nav}
+      aria-label={isHome ? 'Servidor' : 'Canais privados'}
+    >
       {!isHome && (
         <>
           <h1 className={styles.title}>{title}</h1>

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import MobileContext from "../../lib/MobileContext";
-import useOutsideListener from "../../lib/OutsideListener";
-import type { FC } from "react";
-import type { UserResponse } from "../../types";
-import styles from "./UserList.module.scss";
+import React, { useContext } from 'react';
+import MobileContext from '../../lib/MobileContext';
+import useOutsideListener from '../../lib/OutsideListener';
+import type { FC } from 'react';
+import type { UserResponse } from '../../types';
+import styles from './UserList.module.scss';
 
-import UserCard from "./UserCard";
+import UserCard from './UserCard';
 
 const UserListWrapper: FC = ({ children }) => (
   <div className={styles.listWrapper}>
@@ -41,7 +41,7 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
 
     if (elementsAreValid && !otherElementIsActive) {
       userListElement.classList.remove(context.activeUserListClass);
-      userListButton.ariaExpanded = "false";
+      userListButton.ariaExpanded = 'false';
       containerElement.classList.remove(context.disabledContainerClass);
     }
   }
@@ -70,6 +70,6 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
   );
 };
 
-UserList.displayName = "UserList";
+UserList.displayName = 'UserList';
 
 export default UserList;

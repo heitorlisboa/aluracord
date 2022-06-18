@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useRef } from "react";
-import type { FC } from "react";
-import type { MessageResponse } from "../../types";
-import styles from "./ServerChat.module.scss";
+import React, { useEffect, useMemo, useRef } from 'react';
+import type { FC } from 'react';
+import type { MessageResponse } from '../../types';
+import styles from './ServerChat.module.scss';
 
-import Message from "./Message";
-import LoadingMessage from "./LoadingMessage";
-import MessageInput from "./MessageInput";
+import Message from './Message';
+import LoadingMessage from './LoadingMessage';
+import MessageInput from './MessageInput';
 
 const ServerChatWrapper = React.forwardRef<
   HTMLDivElement,
@@ -20,7 +20,7 @@ const ServerChatWrapper = React.forwardRef<
   );
 });
 
-ServerChatWrapper.displayName = "ServerChatWrapper";
+ServerChatWrapper.displayName = 'ServerChatWrapper';
 
 interface ServerChatProps {
   channel: string;

@@ -1,17 +1,17 @@
-import { useContext, useRef } from "react";
-import { deleteMessage } from "../../../lib/Store";
-import UserContext from "../../../lib/UserContext";
-import ProfileContext from "../../../lib/ProfileContext";
-import linkToHTMLAnchor from "../../../utils/linkToHTMLAnchor";
+import { useContext, useRef } from 'react';
+import { deleteMessage } from '../../../lib/Store';
+import UserContext from '../../../lib/UserContext';
+import ProfileContext from '../../../lib/ProfileContext';
+import linkToHTMLAnchor from '../../../utils/linkToHTMLAnchor';
 
-import type { FC } from "react";
+import type { FC } from 'react';
 import type {
   MessageResponse,
   ProfileContextInterface,
   UserContextInterface,
-} from "../../../types";
+} from '../../../types';
 
-import styles from "./Message.module.scss";
+import styles from './Message.module.scss';
 
 interface MessageProps {
   children: MessageResponse;
@@ -26,15 +26,15 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
   const profileButtonRef = useRef<HTMLButtonElement>(null);
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
   });
   const timeFormatter = new Intl.DateTimeFormat([], {
-    hour: "2-digit",
-    minute: "2-digit",
+    hour: '2-digit',
+    minute: '2-digit',
   });
 
   const convertedDate = new Date(message.date);

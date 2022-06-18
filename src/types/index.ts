@@ -1,11 +1,11 @@
-import type { RefObject } from "react";
+import type { RefObject } from 'react';
 
 export interface ObjectOfLists<T> {
   [key: string]: T[];
 }
 
 export interface TypeOfAlert {
-  type: "success" | "warning" | "danger" | "info";
+  type: 'success' | 'warning' | 'danger' | 'info';
 }
 
 export interface AlertCreated extends TypeOfAlert {

@@ -1,7 +1,7 @@
-@use "../../styles/partials/colors" as clr;
-@use "../../styles/partials/gaps" as gp;
-@use "../../styles/partials/screen-breakpoints" as sb;
-@use "../../styles/partials/component-sizes" as size;
+@use '../../styles/partials/colors' as clr;
+@use '../../styles/partials/gaps' as gp;
+@use '../../styles/partials/screen-breakpoints' as sb;
+@use '../../styles/partials/component-sizes' as size;
 
 .sidebar {
   background-color: clr.$primary-medium-transparent;

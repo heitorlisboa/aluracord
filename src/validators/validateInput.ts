@@ -1,5 +1,5 @@
 function validateInput(input: string, regex: RegExp) {
-  let combinedMatches = "";
+  let combinedMatches = '';
   const matches = input.matchAll(regex);
 
   for (let match of matches) {

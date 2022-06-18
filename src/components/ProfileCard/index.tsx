@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import ProfileContext from "../../lib/ProfileContext";
-import type { GitHubUserInfo, ProfileContextInterface } from "../../types";
-import styles from "./ProfileCard.module.scss";
+import React, { useContext } from 'react';
+import ProfileContext from '../../lib/ProfileContext';
+import type { GitHubUserInfo, ProfileContextInterface } from '../../types';
+import styles from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
   userInfo: GitHubUserInfo | undefined;
@@ -88,6 +88,6 @@ const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
   }
 );
 
-ProfileCard.displayName = "ProfileCard";
+ProfileCard.displayName = 'ProfileCard';
 
 export default ProfileCard;

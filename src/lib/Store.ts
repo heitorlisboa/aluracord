@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
-import type { Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import type { Dispatch, SetStateAction } from 'react';
 import type {
   MessageResponse,
   MessageCreated,
   UserResponse,
   GitHubUserInfo,
-} from "../types";
+} from '../types';
 
 // The database access
 export const supabase = createClient(
@@ -41,22 +41,22 @@ export const useStore = () => {
 
     // Listen for new and deleted messages
     const messageListener = supabase
-      .from("messages")
-      .on("INSERT", (payload) => {
+      .from('messages')
+      .on('INSERT', (payload) => {
         handleNewMessage(payload.new);
       })
-      .on("DELETE", (payload) => {
+      .on('DELETE', (payload) => {
         handleDeletedMessage(payload.old);
       })
       .subscribe();
 
     // Listen for new and deleted users
     const userListener = supabase
-      .from("users")
-      .on("INSERT", (payload) => {
+      .from('users')
+      .on('INSERT', (payload) => {
         handleNewUser(payload.new);
       })
-      .on("DELETE", (payload) => {
+      .on('DELETE', (payload) => {
         handleDeletedUser(payload.old);
       })
       .subscribe();
@@ -113,7 +113,7 @@ export const useStore = () => {
 export const fetchMessages = async (
   setState?: Dispatch<SetStateAction<MessageResponse[]>>
 ) => {
-  let { body } = await supabase.from("messages").select("*").order("date");
+  let { body } = await supabase.from('messages').select('*').order('date');
   if (setState) setState(body as MessageResponse[]);
   return body as MessageResponse[];
 };
@@ -126,7 +126,7 @@ export const fetchMessages = async (
 export const fetchAllUsers = async (
   setState?: Dispatch<SetStateAction<UserResponse[]>>
 ) => {
-  let { body } = await supabase.from("users").select("*").order("username");
+  let { body } = await supabase.from('users').select('*').order('username');
   if (setState) setState(body as UserResponse[]);
   return body as UserResponse[];
 };
@@ -153,7 +153,7 @@ export const fetchUserInfo = async (
  * @returns The message that was added
  */
 export const addMessage = async (message: MessageCreated) => {
-  let { body } = await supabase.from("messages").insert(message);
+  let { body } = await supabase.from('messages').insert(message);
   // This function will check if the user already exists before creating it
   await addUser(message.author);
   await incrementMessageCount(message.author);
@@ -167,7 +167,7 @@ export const addMessage = async (message: MessageCreated) => {
  */
 export const deleteMessage = async (message: MessageResponse) => {
   let { body } = await supabase
-    .from("messages")
+    .from('messages')
     .delete()
     .match({ id: message.id });
   await decrementMessageCount(message.author);
@@ -180,7 +180,7 @@ export const deleteMessage = async (message: MessageResponse) => {
  * @param username The username to increment the count
  */
 const incrementMessageCount = async (username: string) => {
-  await supabase.rpc("increment", { row_username: username });
+  await supabase.rpc('increment', { row_username: username });
 };
 
 /**
@@ -188,7 +188,7 @@ const incrementMessageCount = async (username: string) => {
  * @param username The username to decrement the count
  */
 const decrementMessageCount = async (username: string) => {
-  await supabase.rpc("decrement", { row_username: username });
+  await supabase.rpc('decrement', { row_username: username });
 };
 
 /**
@@ -197,10 +197,10 @@ const decrementMessageCount = async (username: string) => {
  * @returns The users added (null if none was added)
  */
 const addUser = async (username: string) => {
-  let search = await supabase.from("users").select("*").match({ username });
+  let search = await supabase.from('users').select('*').match({ username });
   let body: UserResponse[] | null = null;
   if (search.body && search.body.length === 0) {
-    body = (await supabase.from("users").insert({ username })).body;
+    body = (await supabase.from('users').insert({ username })).body;
   }
   return body;
 };
@@ -211,7 +211,7 @@ const addUser = async (username: string) => {
  */
 const deleteZeroMessagesUsers = async () => {
   let { body } = await supabase
-    .from("users")
+    .from('users')
     .delete()
     .match({ message_count: 0 });
   return body;

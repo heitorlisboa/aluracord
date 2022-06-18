@@ -1,5 +1,5 @@
-import type { FC, HTMLAttributes } from "react";
-import styles from "./ServerButton.module.scss";
+import type { FC, HTMLAttributes } from 'react';
+import styles from './ServerButton.module.scss';
 
 interface ServerButtonProps extends HTMLAttributes<HTMLButtonElement> {
   src: string;
@@ -13,4 +13,4 @@ const ServerButton: FC<ServerButtonProps> = ({ src, ...otherProps }) => {
   );
 };
 
-export default ServerButton
+export default ServerButton;

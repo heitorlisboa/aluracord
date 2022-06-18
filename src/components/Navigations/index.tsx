@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import MobileContext from "../../lib/MobileContext";
-import useOutsideListener from "../../lib/OutsideListener";
-import type { FC } from "react";
-import type { ServerInsideNavProps } from "./ServerInsideNav";
-import styles from "./Navigations.module.scss";
+import React, { useContext } from 'react';
+import MobileContext from '../../lib/MobileContext';
+import useOutsideListener from '../../lib/OutsideListener';
+import type { FC } from 'react';
+import type { ServerInsideNavProps } from './ServerInsideNav';
+import styles from './Navigations.module.scss';
 
-import ServerList from "./ServerList";
-import ServerInsideNav from "./ServerInsideNav";
+import ServerList from './ServerList';
+import ServerInsideNav from './ServerInsideNav';
 
 type NavigationsProps = ServerInsideNavProps;
 
@@ -33,7 +33,7 @@ const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
 
     if (elementsAreValid && !otherElementIsActive) {
       navigationsElement.classList.remove(context.activeNavigationsClass);
-      navigationsButton.ariaExpanded = "false";
+      navigationsButton.ariaExpanded = 'false';
       containerElement.classList.remove(context.disabledContainerClass);
     }
   }
@@ -52,6 +52,6 @@ const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
   );
 };
 
-Navigations.displayName = "Navigations";
+Navigations.displayName = 'Navigations';
 
 export default Navigations;

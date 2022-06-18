@@ -1,7 +1,7 @@
-import type { FC } from "react";
-import styles from "./ServerList.module.scss";
+import type { FC } from 'react';
+import styles from './ServerList.module.scss';
 
-import ServerButton from "./ServerButton";
+import ServerButton from './ServerButton';
 
 interface ServerListProps {
   serverList?: any[];

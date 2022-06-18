@@ -1,9 +1,9 @@
-import { useContext, useRef, useState, useEffect } from "react";
-import { addMessage } from "../../../lib/Store";
-import UserContext from "../../../lib/UserContext";
-import type { FC, ChangeEvent, KeyboardEvent } from "react";
-import type { UserContextInterface } from "../../../types";
-import styles from "./MessageInput.module.scss";
+import { useContext, useRef, useState, useEffect } from 'react';
+import { addMessage } from '../../../lib/Store';
+import UserContext from '../../../lib/UserContext';
+import type { FC, ChangeEvent, KeyboardEvent } from 'react';
+import type { UserContextInterface } from '../../../types';
+import styles from './MessageInput.module.scss';
 
 interface MessageInputProps {
   channel: string;
@@ -12,7 +12,7 @@ interface MessageInputProps {
 const MessageInput: FC<MessageInputProps> = ({ channel }) => {
   const context = useContext(UserContext) as UserContextInterface;
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
-  const [messageText, setMessageText] = useState("");
+  const [messageText, setMessageText] = useState('');
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setMessageText(event.target.value);
@@ -22,7 +22,7 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
     const keyPressed = event.key;
     const trimmedMessage = messageText.trim();
 
-    if (keyPressed === "Enter" && !event.shiftKey) {
+    if (keyPressed === 'Enter' && !event.shiftKey) {
       event.preventDefault();
       if (trimmedMessage) {
         addMessage({
@@ -30,7 +30,7 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
           date: new Date().toISOString(),
           content: messageText.trim(),
         });
-        setMessageText("");
+        setMessageText('');
       }
     }
   }
@@ -47,8 +47,8 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
         this line of code wasn't here, the textarea wouldn't ever
         readjust to it's default height.
       */
-      element.style.height = "0px";
-      element.style.height = element.scrollHeight + "px";
+      element.style.height = '0px';
+      element.style.height = element.scrollHeight + 'px';
     }
   }
 

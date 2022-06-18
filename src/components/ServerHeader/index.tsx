@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import MobileContext from "../../lib/MobileContext";
-import temporaryFocus from "../../utils/temporaryFocus";
-import type { FC, RefObject } from "react";
-import styles from "./ServerHeader.module.scss";
+import { useContext } from 'react';
+import MobileContext from '../../lib/MobileContext';
+import temporaryFocus from '../../utils/temporaryFocus';
+import type { FC, RefObject } from 'react';
+import styles from './ServerHeader.module.scss';
 
 interface ServerHeaderProps {
   channel?: string;
@@ -25,7 +25,7 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
     if (elementsAreValid) {
       element.classList.add(activeElementClass);
       temporaryFocus(element);
-      button.ariaExpanded = "true";
+      button.ariaExpanded = 'true';
       containerElement.classList.add(context.disabledContainerClass);
     }
   }

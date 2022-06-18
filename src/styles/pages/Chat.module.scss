@@ -1,8 +1,8 @@
-@use "../partials/colors" as clr;
-@use "../partials/gaps" as gp;
-@use "../partials/screen-breakpoints" as sb;
-@use "../partials/component-sizes" as size;
-@use "../partials/placeholder-selectors";
+@use '../partials/colors' as clr;
+@use '../partials/gaps' as gp;
+@use '../partials/screen-breakpoints' as sb;
+@use '../partials/component-sizes' as size;
+@use '../partials/placeholder-selectors';
 
 .primaryContainer {
   background-image: url(/img/background-alt.webp);
@@ -27,7 +27,7 @@
 @media (max-width: sb.$max-mobile) {
   .primaryContainer {
     &::after {
-      content: "";
+      content: '';
       background-color: hsla(0, 0%, 0%, 0.7);
 
       position: absolute;

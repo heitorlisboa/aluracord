@@ -1,7 +1,7 @@
-import type { FC } from "react";
-import styles from "./ChannelList.module.scss";
+import type { FC } from 'react';
+import styles from './ChannelList.module.scss';
 
-import Channel from "../Channel";
+import Channel from '../Channel';
 
 interface ChannelListProps {
   categoryName: string;
@@ -15,7 +15,7 @@ const ChannelList: FC<ChannelListProps> = ({ categoryName, channelList }) => {
       className={styles.list}
       aria-labelledby={`channel-list-title_id`}
       aria-roledescription={
-        "Categoria de canais. Ao clicar expande ou retrai a lista de canais dessa categoria."
+        'Categoria de canais. Ao clicar expande ou retrai a lista de canais dessa categoria.'
       }
     >
       <h2

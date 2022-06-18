@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
-import { fetchUserInfo } from "./Store";
+import { useState, useRef } from 'react';
+import { fetchUserInfo } from './Store';
 import type {
   ClickOutProfileHandler,
   ClickProfileHandler,
   GitHubUserInfo,
-} from "../types";
+} from '../types';
 
 /**
  * Concentrates the profile states, information fetching and profile
@@ -22,7 +22,7 @@ export const useProfile = () => {
     setIsVisible(true);
     if (buttonRef && buttonRef.current) {
       setButtonClicked(buttonRef.current);
-      buttonRef.current.ariaExpanded = "true";
+      buttonRef.current.ariaExpanded = 'true';
     }
     fetchUserInfo(username, setUserInfo).then(() => {
       if (ref.current) ref.current.focus();
@@ -33,7 +33,7 @@ export const useProfile = () => {
     setIsVisible(false);
     setUserInfo(undefined);
     if (buttonClicked) {
-      buttonClicked.ariaExpanded = "false";
+      buttonClicked.ariaExpanded = 'false';
       setButtonClicked(undefined);
     }
   };

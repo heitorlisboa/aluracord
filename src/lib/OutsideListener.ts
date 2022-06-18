@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import type { RefObject } from "react";
+import { useEffect } from 'react';
+import type { RefObject } from 'react';
 
 /**
  * Listen for clicks outside an element
@@ -17,11 +17,11 @@ function useOutsideListener(ref: RefObject<HTMLElement>, handler: () => void) {
     };
 
     // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     // Cleanup on unmount
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [ref]);
 }

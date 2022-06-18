@@ -1,6 +1,6 @@
-import React from "react";
-import type { TypeOfAlert } from "../../types";
-import styles from "./Alert.module.scss";
+import React from 'react';
+import type { TypeOfAlert } from '../../types';
+import styles from './Alert.module.scss';
 
 type AlertProps = TypeOfAlert & React.HTMLAttributes<HTMLDivElement>;
 
@@ -14,6 +14,6 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   }
 );
 
-Alert.displayName = "Alert";
+Alert.displayName = 'Alert';
 
 export default Alert;

@@ -1,20 +1,20 @@
-import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
-import validateInput from "../src/validators/validateInput";
-import addAlert from "../src/lib/addAlert";
-import type { NextPage } from "next";
-import type { ChangeEvent, FormEvent } from "react";
-import type { AlertCreated, AlertInterface } from "../src/types";
-import styles from "../src/styles/pages/Home.module.scss";
+import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import validateInput from '../validators/validateInput';
+import addAlert from '../lib/addAlert';
+import type { NextPage } from 'next';
+import type { ChangeEvent, FormEvent } from 'react';
+import type { AlertCreated, AlertInterface } from '../types';
+import styles from '../styles/pages/Home.module.scss';
 
-import Alert from "../src/components/Alert";
+import Alert from '../components/Alert';
 
 const Login: NextPage = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const [alerts, setAlerts] = useState<AlertInterface[]>([]);
   const router = useRouter();
   const userImageRef = useRef<HTMLImageElement>(null);
-  const defaultUserImage = "/img/user-icon.jpg";
+  const defaultUserImage = '/img/user-icon.jpg';
 
   function handleUsernameChange(event: ChangeEvent<HTMLInputElement>) {
     let newUsername = event.target.value;
@@ -36,13 +36,13 @@ const Login: NextPage = () => {
     fetch(`https://api.github.com/users/${username}`).then((res) => {
       if (res.status !== 200) {
         const newAlert: AlertCreated = {
-          type: "danger",
-          message: "Insira um usuário do GitHub válido",
+          type: 'danger',
+          message: 'Insira um usuário do GitHub válido',
         };
         addAlert(newAlert, alerts, setAlerts);
       } else {
         router.push({
-          pathname: "/chat",
+          pathname: '/chat',
           query: {
             username,
           },
@@ -88,7 +88,7 @@ const Login: NextPage = () => {
             onError={handleInvalidUser}
             ref={userImageRef}
           />
-          <span className={styles.username}>{username || "Seu nome"}</span>
+          <span className={styles.username}>{username || 'Seu nome'}</span>
         </div>
       </article>
     </div>

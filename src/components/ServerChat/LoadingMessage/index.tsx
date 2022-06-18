@@ -1,4 +1,4 @@
-import styles from "./LoadingMessage.module.scss";
+import styles from './LoadingMessage.module.scss';
 
 function LoadingMessage() {
   return (

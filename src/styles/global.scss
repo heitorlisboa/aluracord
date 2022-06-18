@@ -1,8 +1,8 @@
-@use "./partials/colors" as clr;
-@use "./partials/gaps" as gp;
+@use './partials/colors' as clr;
+@use './partials/gaps' as gp;
 
 :root {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 ::-webkit-scrollbar {

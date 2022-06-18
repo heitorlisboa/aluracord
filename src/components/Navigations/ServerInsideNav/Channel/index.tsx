@@ -1,5 +1,5 @@
-import type { FC } from "react";
-import styles from "./Channel.module.scss";
+import type { FC } from 'react';
+import styles from './Channel.module.scss';
 
 interface ChannelProps {
   title: string;

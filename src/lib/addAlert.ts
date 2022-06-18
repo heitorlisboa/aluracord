@@ -1,7 +1,7 @@
-import { createRef } from "react";
-import isInList from "../utils/isInList";
-import type { Dispatch, SetStateAction } from "react";
-import type { AlertCreated, AlertInterface } from "../types";
+import { createRef } from 'react';
+import isInList from '../utils/isInList';
+import type { Dispatch, SetStateAction } from 'react';
+import type { AlertCreated, AlertInterface } from '../types';
 
 export default function addAlert(
   alert: AlertCreated,
@@ -20,7 +20,7 @@ export default function addAlert(
     setter([...alertList, newAlert]);
 
     setTimeout(() => {
-      ref.current?.classList.add("fade-out");
+      ref.current?.classList.add('fade-out');
     }, timeout);
 
     setTimeout(() => {
