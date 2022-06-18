@@ -1,6 +1,6 @@
 {
   "name": "aluracord",
-  "private": true,
+  "license": "GPL-3.0-only",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
