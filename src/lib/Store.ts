@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import type { Dispatch, SetStateAction } from 'react';
+
 import type {
   MessageResponse,
   MessageCreated,
   UserResponse,
   GitHubUserInfo,
-} from '../types';
+} from '@/types';
 
 // The database access
 export const supabase = createClient(

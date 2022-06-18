@@ -1,6 +1,8 @@
 import type { FC } from 'react';
-import type { CategoriesObject } from '../../../types';
+
 import styles from './ServerInsideNav.module.scss';
+
+import type { CategoriesObject } from '@/types';
 
 import ChannelList from './ChannelList';
 

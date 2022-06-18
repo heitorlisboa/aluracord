@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useRef } from 'react';
-import type { FC } from 'react';
-import type { MessageResponse } from '../../types';
+import React, { type FC, useEffect, useMemo, useRef } from 'react';
+
 import styles from './ServerChat.module.scss';
+
+import type { MessageResponse } from '@/types';
 
 import Message from './Message';
 import LoadingMessage from './LoadingMessage';

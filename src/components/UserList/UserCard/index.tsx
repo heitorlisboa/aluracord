@@ -1,8 +1,10 @@
-import { useContext, useRef } from 'react';
-import ProfileContext from '../../../lib/ProfileContext';
-import type { FC } from 'react';
-import type { ProfileContextInterface } from '../../../types';
+import { type FC, useContext, useRef } from 'react';
+
 import styles from './UserCard.module.scss';
+
+import ProfileContext from '@/lib/ProfileContext';
+
+import type { ProfileContextInterface } from '@/types';
 
 interface UserCardProps {
   username: string;

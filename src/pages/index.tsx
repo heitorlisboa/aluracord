@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import validateInput from '../validators/validateInput';
-import addAlert from '../lib/addAlert';
 import type { NextPage } from 'next';
 import type { ChangeEvent, FormEvent } from 'react';
-import type { AlertCreated, AlertInterface } from '../types';
-import styles from '../styles/pages/Home.module.scss';
 
-import Alert from '../components/Alert';
+import styles from '@/styles/pages/Home.module.scss';
+
+import addAlert from '@/lib/addAlert';
+
+import Alert from '@/components/Alert';
+import validateInput from '@/validators/validateInput';
+import type { AlertCreated, AlertInterface } from '@/types';
 
 const Login: NextPage = () => {
   const [username, setUsername] = useState('');

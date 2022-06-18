@@ -1,20 +1,21 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { useStore } from '../lib/Store';
-import { useProfile } from '../lib/Profile';
-import UserContext from '../lib/UserContext';
-import ProfileContext from '../lib/ProfileContext';
-import MobileContext from '../lib/MobileContext';
 import type { NextPage } from 'next';
-import type { CategoriesObject } from '../types';
 
-import styles from '../styles/pages/Chat.module.scss';
+import styles from '@/styles/pages/Chat.module.scss';
 
-import ServerHeader from '../components/ServerHeader';
-import ServerChat from '../components/ServerChat';
-import UserList from '../components/UserList';
-import ProfileCard from '../components/ProfileCard';
-import Navigations from '../components/Navigations';
+import { useStore } from '@/lib/Store';
+import { useProfile } from '@/lib/Profile';
+import UserContext from '@/lib/UserContext';
+import ProfileContext from '@/lib/ProfileContext';
+import MobileContext from '@/lib/MobileContext';
+
+import ServerHeader from '@/components/ServerHeader';
+import ServerChat from '@/components/ServerChat';
+import UserList from '@/components/UserList';
+import ProfileCard from '@/components/ProfileCard';
+import Navigations from '@/components/Navigations';
+import type { CategoriesObject } from '@/types';
 
 const Chat: NextPage = () => {
   const router = useRouter();

@@ -1,8 +1,9 @@
-import { useContext } from 'react';
-import MobileContext from '../../lib/MobileContext';
-import temporaryFocus from '../../utils/temporaryFocus';
-import type { FC, RefObject } from 'react';
+import { type FC, type RefObject, useContext } from 'react';
+
 import styles from './ServerHeader.module.scss';
+
+import MobileContext from '@/lib/MobileContext';
+import temporaryFocus from '@/utils/temporaryFocus';
 
 interface ServerHeaderProps {
   channel?: string;

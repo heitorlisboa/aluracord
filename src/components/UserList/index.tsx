@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
-import MobileContext from '../../lib/MobileContext';
-import useOutsideListener from '../../lib/OutsideListener';
-import type { FC } from 'react';
-import type { UserResponse } from '../../types';
+import { type FC, useContext } from 'react';
+
 import styles from './UserList.module.scss';
+
+import MobileContext from '@/lib/MobileContext';
+import useOutsideListener from '@/lib/OutsideListener';
+
+import type { UserResponse } from '@/types';
 
 import UserCard from './UserCard';
 

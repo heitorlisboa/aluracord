@@ -1,4 +1,5 @@
 import type { FC, HTMLAttributes } from 'react';
+
 import styles from './ServerButton.module.scss';
 
 interface ServerButtonProps extends HTMLAttributes<HTMLButtonElement> {

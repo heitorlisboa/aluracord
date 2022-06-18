@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
-import ProfileContext from '../../lib/ProfileContext';
-import type { GitHubUserInfo, ProfileContextInterface } from '../../types';
+
 import styles from './ProfileCard.module.scss';
+
+import ProfileContext from '@/lib/ProfileContext';
+
+import type { GitHubUserInfo, ProfileContextInterface } from '@/types';
 
 interface ProfileCardProps {
   userInfo: GitHubUserInfo | undefined;

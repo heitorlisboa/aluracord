@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
-import MobileContext from '../../lib/MobileContext';
-import useOutsideListener from '../../lib/OutsideListener';
+import { useContext } from 'react';
 import type { FC } from 'react';
-import type { ServerInsideNavProps } from './ServerInsideNav';
+
 import styles from './Navigations.module.scss';
+
+import MobileContext from '@/lib/MobileContext';
+import useOutsideListener from '@/lib/OutsideListener';
 
 import ServerList from './ServerList';
 import ServerInsideNav from './ServerInsideNav';
+import type { ServerInsideNavProps } from './ServerInsideNav';
 
 type NavigationsProps = ServerInsideNavProps;
 

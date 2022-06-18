@@ -1,17 +1,17 @@
-import { useContext, useRef } from 'react';
-import { deleteMessage } from '../../../lib/Store';
-import UserContext from '../../../lib/UserContext';
-import ProfileContext from '../../../lib/ProfileContext';
-import linkToHTMLAnchor from '../../../utils/linkToHTMLAnchor';
+import { type FC, useContext, useRef } from 'react';
 
-import type { FC } from 'react';
+import styles from './Message.module.scss';
+
+import { deleteMessage } from '@/lib/Store';
+import UserContext from '@/lib/UserContext';
+import ProfileContext from '@/lib/ProfileContext';
+import linkToHTMLAnchor from '@/utils/linkToHTMLAnchor';
+
 import type {
   MessageResponse,
   ProfileContextInterface,
   UserContextInterface,
-} from '../../../types';
-
-import styles from './Message.module.scss';
+} from '@/types';
 
 interface MessageProps {
   children: MessageResponse;

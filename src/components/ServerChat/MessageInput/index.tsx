@@ -1,9 +1,12 @@
 import { useContext, useRef, useState, useEffect } from 'react';
-import { addMessage } from '../../../lib/Store';
-import UserContext from '../../../lib/UserContext';
 import type { FC, ChangeEvent, KeyboardEvent } from 'react';
-import type { UserContextInterface } from '../../../types';
+
 import styles from './MessageInput.module.scss';
+
+import { addMessage } from '@/lib/Store';
+import UserContext from '@/lib/UserContext';
+
+import type { UserContextInterface } from '@/types';
 
 interface MessageInputProps {
   channel: string;

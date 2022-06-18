@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import type { RefObject } from 'react';
+import { type RefObject, useEffect } from 'react';
 
 /**
  * Listen for clicks outside an element

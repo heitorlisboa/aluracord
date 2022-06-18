@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import styles from './ChannelList.module.scss';
 
 import Channel from '../Channel';

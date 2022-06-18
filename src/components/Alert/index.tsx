@@ -1,6 +1,8 @@
 import React from 'react';
-import type { TypeOfAlert } from '../../types';
+
 import styles from './Alert.module.scss';
+
+import type { TypeOfAlert } from '@/types';
 
 type AlertProps = TypeOfAlert & React.HTMLAttributes<HTMLDivElement>;
 

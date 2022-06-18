@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import styles from './ServerList.module.scss';
 
 import ServerButton from './ServerButton';

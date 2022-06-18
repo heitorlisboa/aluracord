@@ -1,7 +1,8 @@
-import { createRef } from 'react';
-import isInList from '../utils/isInList';
-import type { Dispatch, SetStateAction } from 'react';
-import type { AlertCreated, AlertInterface } from '../types';
+import { createRef, type Dispatch, type SetStateAction } from 'react';
+
+import isInList from '@/utils/isInList';
+
+import type { AlertCreated, AlertInterface } from '@/types';
 
 export default function addAlert(
   alert: AlertCreated,
