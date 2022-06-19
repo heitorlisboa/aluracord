@@ -52,7 +52,7 @@ export const ProfileCard = forwardRef<HTMLDivElement, ProfileCardProps>(
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img src="/svg/github-icon.svg" alt="GitHub" />
+                    <img src="/icons/github-icon.svg" alt="GitHub" />
                   </a>
                   {userInfo.twitter_username && (
                     <a
@@ -60,12 +60,12 @@ export const ProfileCard = forwardRef<HTMLDivElement, ProfileCardProps>(
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img src="/svg/twitter-icon.svg" alt="Twitter" />
+                      <img src="/icons/twitter-icon.svg" alt="Twitter" />
                     </a>
                   )}
                   {userInfo.blog && (
                     <a href={userInfo.blog} target="_blank" rel="noreferrer">
-                      <img src="/svg/web-icon.svg" alt="Blog/Website" />
+                      <img src="/icons/web-icon.svg" alt="Blog/Website" />
                     </a>
                   )}
                 </div>
@@ -76,12 +76,12 @@ export const ProfileCard = forwardRef<HTMLDivElement, ProfileCardProps>(
               aria-label="Fechar perfil"
               onClick={handleClickOut}
             >
-              <img src="/svg/close-icon.svg" alt="" />
+              <img src="/icons/close-icon.svg" alt="" />
             </button>
           </div>
         ) : (
           <div className={styles.profileCard}>
-            <img className={styles.loading} src="/svg/loading.svg" alt="" />
+            <img className={styles.loading} src="/icons/loading.svg" alt="" />
           </div>
         )}
       </div>

@@ -15,7 +15,7 @@ export default function Login() {
   const [alerts, setAlerts] = useState<AlertType[]>([]);
   const router = useRouter();
   const userImageRef = useRef<HTMLImageElement>(null);
-  const defaultUserImage = '/img/user-icon.jpg';
+  const defaultUserImage = '/img/default-user-image.jpg';
 
   function handleUsernameChange(event: ChangeEvent<HTMLInputElement>) {
     let newUsername = event.target.value;

@@ -103,7 +103,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
       {message.author === currentUser && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
           <button onClick={handleClickDelete} aria-label="Deletar">
-            <img src="/svg/delete-icon.svg" alt="" />
+            <img src="/icons/delete-icon.svg" alt="" />
           </button>
         </div>
       )}
