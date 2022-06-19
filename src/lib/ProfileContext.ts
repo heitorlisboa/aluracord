@@ -1,7 +1,5 @@
 import { createContext } from 'react';
 
-import type { ProfileContextInterface } from '@/types';
+import type { ProfileContextType } from '@/types';
 
-const ProfileContext = createContext<ProfileContextInterface | null>(null);
-
-export default ProfileContext;
+export const ProfileContext = createContext<ProfileContextType | null>(null);

@@ -1,15 +1,15 @@
-import { type FC, type RefObject, useContext } from 'react';
+import { type RefObject, useContext } from 'react';
 
 import styles from './ServerHeader.module.scss';
 
-import MobileContext from '@/lib/MobileContext';
-import temporaryFocus from '@/utils/temporaryFocus';
+import { MobileContext } from '@/lib/MobileContext';
+import { temporaryFocus } from '@/utils/temporaryFocus';
 
-interface ServerHeaderProps {
+type ServerHeaderProps = {
   channel?: string;
-}
+};
 
-const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
+export function ServerHeader({ channel }: ServerHeaderProps) {
   const context = useContext(MobileContext);
 
   function handleOpen(
@@ -70,6 +70,4 @@ const ServerHeader: FC<ServerHeaderProps> = ({ channel }) => {
       </button>
     </section>
   );
-};
-
-export default ServerHeader;
+}

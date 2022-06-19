@@ -1,18 +1,17 @@
 import { useContext } from 'react';
-import type { FC } from 'react';
 
 import styles from './Navigations.module.scss';
 
-import MobileContext from '@/lib/MobileContext';
-import useOutsideListener from '@/lib/OutsideListener';
+import { MobileContext } from '@/lib/MobileContext';
+import { useOutsideListener } from '@/lib/OutsideListener';
 
-import ServerList from './ServerList';
-import ServerInsideNav from './ServerInsideNav';
+import { ServerList } from './ServerList';
+import { ServerInsideNav } from './ServerInsideNav';
 import type { ServerInsideNavProps } from './ServerInsideNav';
 
 type NavigationsProps = ServerInsideNavProps;
 
-const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
+export function Navigations({ title, categories }: NavigationsProps) {
   const context = useContext(MobileContext);
 
   function handleCloseMenu() {
@@ -52,8 +51,4 @@ const Navigations: FC<NavigationsProps> = ({ title, categories }) => {
       <ServerInsideNav title={title} categories={categories} />
     </div>
   );
-};
-
-Navigations.displayName = 'Navigations';
-
-export default Navigations;
+}

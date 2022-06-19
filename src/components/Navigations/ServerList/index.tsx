@@ -1,22 +1,12 @@
-import type { FC } from 'react';
-
 import styles from './ServerList.module.scss';
 
-import ServerButton from './ServerButton';
+import { ServerButton } from './ServerButton';
 
-interface ServerListProps {
-  serverList?: any[];
-}
-
-function Separator() {
-  return <div className={styles.separator} />;
-}
-
-const ServerList: FC<ServerListProps> = () => {
+export function ServerList() {
   return (
     <nav className={styles.nav} aria-label="Barra lateral dos servidores">
       <ServerButton src="/img/user-icon.jpg" aria-label="Início" />
-      <Separator />
+      <div className={styles.separator} />;
       <ul className={styles.serverList} aria-label="Lista de servidores">
         <li>
           <ServerButton src="/img/user-icon.jpg" aria-label="Servidor 1" />
@@ -36,6 +26,4 @@ const ServerList: FC<ServerListProps> = () => {
       </ul>
     </nav>
   );
-};
-
-export default ServerList;
+}

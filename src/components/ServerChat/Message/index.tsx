@@ -1,28 +1,26 @@
-import { type FC, useContext, useRef } from 'react';
+import { useContext, useRef } from 'react';
 
 import styles from './Message.module.scss';
 
 import { deleteMessage } from '@/lib/Store';
-import UserContext from '@/lib/UserContext';
-import ProfileContext from '@/lib/ProfileContext';
-import linkToHTMLAnchor from '@/utils/linkToHTMLAnchor';
+import { UserContext } from '@/lib/UserContext';
+import { ProfileContext } from '@/lib/ProfileContext';
+import { linkToHTMLAnchor } from '@/utils/linkToHTMLAnchor';
 
 import type {
   MessageResponse,
-  ProfileContextInterface,
-  UserContextInterface,
+  ProfileContextType,
+  UserContextType,
 } from '@/types';
 
-interface MessageProps {
+type MessageProps = {
   children: MessageResponse;
   onlyContent?: boolean;
-}
+};
 
-const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
-  const { currentUser } = useContext(UserContext) as UserContextInterface;
-  const { handleClickIn } = useContext(
-    ProfileContext
-  ) as ProfileContextInterface;
+export function Message({ children: message, onlyContent }: MessageProps) {
+  const { currentUser } = useContext(UserContext) as UserContextType;
+  const { handleClickIn } = useContext(ProfileContext) as ProfileContextType;
   const profileButtonRef = useRef<HTMLButtonElement>(null);
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
@@ -111,6 +109,4 @@ const Message: FC<MessageProps> = ({ children: message, onlyContent }) => {
       )}
     </li>
   );
-};
-
-export default Message;
+}

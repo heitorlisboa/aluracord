@@ -1,19 +1,18 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import type { NextPage } from 'next';
 import type { ChangeEvent, FormEvent } from 'react';
 
 import styles from '@/styles/pages/Home.module.scss';
 
-import addAlert from '@/lib/addAlert';
+import { addAlert } from '@/lib/addAlert';
 
-import Alert from '@/components/Alert';
-import validateInput from '@/validators/validateInput';
-import type { AlertCreated, AlertInterface } from '@/types';
+import { Alert } from '@/components/Alert';
+import { validateInput } from '@/validators/validateInput';
+import type { AlertCreated, AlertType } from '@/types';
 
-const Login: NextPage = () => {
+export default function Login() {
   const [username, setUsername] = useState('');
-  const [alerts, setAlerts] = useState<AlertInterface[]>([]);
+  const [alerts, setAlerts] = useState<AlertType[]>([]);
   const router = useRouter();
   const userImageRef = useRef<HTMLImageElement>(null);
   const defaultUserImage = '/img/user-icon.jpg';
@@ -95,6 +94,4 @@ const Login: NextPage = () => {
       </article>
     </div>
   );
-};
-
-export default Login;
+}

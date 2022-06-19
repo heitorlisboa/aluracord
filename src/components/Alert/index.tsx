@@ -1,12 +1,12 @@
-import React from 'react';
+import { forwardRef, type HTMLAttributes } from 'react';
 
 import styles from './Alert.module.scss';
 
 import type { TypeOfAlert } from '@/types';
 
-type AlertProps = TypeOfAlert & React.HTMLAttributes<HTMLDivElement>;
+type AlertProps = TypeOfAlert & HTMLAttributes<HTMLDivElement>;
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ type, children }, ref) => {
     return (
       <div className={`${styles.container} ${styles[type]} fade-in`} ref={ref}>
@@ -17,5 +17,3 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 );
 
 Alert.displayName = 'Alert';
-
-export default Alert;

@@ -1,20 +1,18 @@
-import React, { useContext } from 'react';
+import { forwardRef, useContext } from 'react';
 
 import styles from './ProfileCard.module.scss';
 
-import ProfileContext from '@/lib/ProfileContext';
+import { ProfileContext } from '@/lib/ProfileContext';
 
-import type { GitHubUserInfo, ProfileContextInterface } from '@/types';
+import type { GitHubUserInfo, ProfileContextType } from '@/types';
 
-interface ProfileCardProps {
-  userInfo: GitHubUserInfo | undefined;
-}
+type ProfileCardProps = {
+  userInfo?: GitHubUserInfo;
+};
 
-const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
+export const ProfileCard = forwardRef<HTMLDivElement, ProfileCardProps>(
   ({ userInfo }, ref) => {
-    const { handleClickOut } = useContext(
-      ProfileContext
-    ) as ProfileContextInterface;
+    const { handleClickOut } = useContext(ProfileContext) as ProfileContextType;
 
     return (
       <div className={styles.wrapper} tabIndex={-1} ref={ref}>
@@ -92,5 +90,3 @@ const ProfileCard = React.forwardRef<HTMLDivElement, ProfileCardProps>(
 );
 
 ProfileCard.displayName = 'ProfileCard';
-
-export default ProfileCard;

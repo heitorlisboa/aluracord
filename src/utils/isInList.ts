@@ -1,4 +1,4 @@
-export default function isInList<T>(itemToFind: T, list: T[]) {
+export function isInList<T>(itemToFind: T, list: T[]) {
   let result = false;
   const isComparingObjects = itemToFind instanceof Object;
 

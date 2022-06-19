@@ -14,7 +14,7 @@ import type {
  * @returns The loading, visibility and user information states,
  * as well as the click in and click out profile handlers
  */
-export const useProfile = () => {
+export function useProfile() {
   const [isVisible, setIsVisible] = useState(false);
   const [userInfo, setUserInfo] = useState<GitHubUserInfo>();
   const [buttonClicked, setButtonClicked] = useState<HTMLButtonElement>();
@@ -47,4 +47,4 @@ export const useProfile = () => {
     handleClickOut,
     ref,
   };
-};
+}

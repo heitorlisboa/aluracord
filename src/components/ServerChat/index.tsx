@@ -1,34 +1,35 @@
-import React, { type FC, useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, forwardRef, type HTMLProps } from 'react';
 
 import styles from './ServerChat.module.scss';
 
 import type { MessageResponse } from '@/types';
 
-import Message from './Message';
-import LoadingMessage from './LoadingMessage';
-import MessageInput from './MessageInput';
+import { Message } from './Message';
+import { LoadingMessage } from './LoadingMessage';
+import { MessageInput } from './MessageInput';
 
-const ServerChatWrapper = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLProps<HTMLDivElement>
->(({ children }, ref) => {
-  return (
-    <div className={styles.chatWrapper}>
-      <div className={styles.scroller} ref={ref}>
-        <div className={styles.scrollerContent}>{children}</div>
+type ServerChatWrapperProps = HTMLProps<HTMLDivElement>;
+
+const ServerChatWrapper = forwardRef<HTMLDivElement, ServerChatWrapperProps>(
+  ({ children }, ref) => {
+    return (
+      <div className={styles.chatWrapper}>
+        <div className={styles.scroller} ref={ref}>
+          <div className={styles.scrollerContent}>{children}</div>
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 ServerChatWrapper.displayName = 'ServerChatWrapper';
 
-interface ServerChatProps {
+type ServerChatProps = {
   channel: string;
   messages: MessageResponse[];
-}
+};
 
-const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
+export function ServerChat({ channel, messages }: ServerChatProps) {
   const scrollerDivRef = useRef<HTMLDivElement>(null);
 
   function adjustChatScroll() {
@@ -94,6 +95,4 @@ const ServerChat: FC<ServerChatProps> = ({ channel, messages }) => {
       <MessageInput channel={channel} />
     </main>
   );
-};
-
-export default ServerChat;
+}

@@ -1,22 +1,22 @@
 import { createRef, type Dispatch, type SetStateAction } from 'react';
 
-import isInList from '@/utils/isInList';
+import { isInList } from '@/utils/isInList';
 
-import type { AlertCreated, AlertInterface } from '@/types';
+import type { AlertCreated, AlertType } from '@/types';
 
-export default function addAlert(
+export function addAlert(
   alert: AlertCreated,
-  alertList: AlertInterface[],
-  setter: Dispatch<SetStateAction<AlertInterface[]>>
+  alertList: AlertType[],
+  setter: Dispatch<SetStateAction<AlertType[]>>
 ) {
   const ref = createRef<HTMLDivElement>();
-  const newAlert: AlertInterface = {
+  const newAlert: AlertType = {
     type: alert.type,
     message: alert.message,
     ref: ref,
   };
 
-  if (!isInList<AlertInterface>(newAlert, alertList)) {
+  if (!isInList<AlertType>(newAlert, alertList)) {
     const timeout = 5 * 1000; // 5 seconds
     setter([...alertList, newAlert]);
 

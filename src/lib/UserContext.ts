@@ -1,7 +1,5 @@
 import { createContext } from 'react';
 
-import type { UserContextInterface } from '@/types';
+import type { UserContextType } from '@/types';
 
-const UserContext = createContext<UserContextInterface | null>(null);
-
-export default UserContext;
+export const UserContext = createContext<UserContextType | null>(null);

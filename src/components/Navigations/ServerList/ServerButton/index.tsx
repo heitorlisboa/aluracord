@@ -1,17 +1,15 @@
-import type { FC, HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 
 import styles from './ServerButton.module.scss';
 
-interface ServerButtonProps extends HTMLAttributes<HTMLButtonElement> {
+type ServerButtonProps = HTMLAttributes<HTMLButtonElement> & {
   src: string;
-}
+};
 
-const ServerButton: FC<ServerButtonProps> = ({ src, ...otherProps }) => {
+export function ServerButton({ src, ...otherProps }: ServerButtonProps) {
   return (
     <button className={styles.button} {...otherProps}>
       <img src={src} alt="" />
     </button>
   );
-};
-
-export default ServerButton;
+}

@@ -5,7 +5,10 @@ import { type RefObject, useEffect } from 'react';
  * @param ref The ref of the element that you want to listen
  * @param handler The handler that will be executed when the click out occurs
  */
-function useOutsideListener(ref: RefObject<HTMLElement>, handler: () => void) {
+export function useOutsideListener(
+  ref: RefObject<HTMLElement>,
+  handler: () => void
+) {
   useEffect(() => {
     /**
      * Execute the handler when clicked outside the desired element
@@ -24,5 +27,3 @@ function useOutsideListener(ref: RefObject<HTMLElement>, handler: () => void) {
     };
   }, [ref]);
 }
-
-export default useOutsideListener;

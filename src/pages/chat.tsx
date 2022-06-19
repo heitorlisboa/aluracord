@@ -1,23 +1,22 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
 
 import styles from '@/styles/pages/Chat.module.scss';
 
 import { useStore } from '@/lib/Store';
 import { useProfile } from '@/lib/Profile';
-import UserContext from '@/lib/UserContext';
-import ProfileContext from '@/lib/ProfileContext';
-import MobileContext from '@/lib/MobileContext';
+import { UserContext } from '@/lib/UserContext';
+import { ProfileContext } from '@/lib/ProfileContext';
+import { MobileContext } from '@/lib/MobileContext';
 
-import ServerHeader from '@/components/ServerHeader';
-import ServerChat from '@/components/ServerChat';
-import UserList from '@/components/UserList';
-import ProfileCard from '@/components/ProfileCard';
-import Navigations from '@/components/Navigations';
+import { ServerHeader } from '@/components/ServerHeader';
+import { ServerChat } from '@/components/ServerChat';
+import { UserList } from '@/components/UserList';
+import { ProfileCard } from '@/components/ProfileCard';
+import { Navigations } from '@/components/Navigations';
 import type { CategoriesObject } from '@/types';
 
-const Chat: NextPage = () => {
+export default function ChatPage() {
   const router = useRouter();
   const currentUser = router.query.username;
   const [isHome, setIsHome] = useState(false);
@@ -64,6 +63,4 @@ const Chat: NextPage = () => {
       </ProfileContext.Provider>
     </UserContext.Provider>
   );
-};
-
-export default Chat;
+}

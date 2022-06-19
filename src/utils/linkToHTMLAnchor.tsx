@@ -3,7 +3,7 @@
  * @param text The text which contains the links you want to convert to HTML anchors
  * @returns The resulting value of the text with the anchor elements created
  */
-export default function linkToHTMLAnchor(text: string) {
+export function linkToHTMLAnchor(text: string) {
   const regex = /https?:\/\/[\d\w./?\-=]*[\d\w/?\-=]/g;
   const matches = text.matchAll(regex);
 
@@ -17,10 +17,10 @@ export default function linkToHTMLAnchor(text: string) {
   // Since we'll need to reassign the text value, we'll create a variable for it
   let textToSplit = text;
 
-  for (let match of matches) {
+  for (const match of matches) {
     // This list will have the texts before and after the link (2 items)
     // match[0] because the first value is the RegExpMatchArray is the matching string
-    let splittenText = textToSplit.split(match[0]);
+    const splittenText = textToSplit.split(match[0]);
 
     /* Since it's important to keep the text, we'll insert the part of
     the text that was before the link, and then insert the link */

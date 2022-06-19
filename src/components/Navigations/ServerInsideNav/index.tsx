@@ -1,22 +1,20 @@
-import type { FC } from 'react';
-
 import styles from './ServerInsideNav.module.scss';
 
 import type { CategoriesObject } from '@/types';
 
-import ChannelList from './ChannelList';
+import { ChannelList } from './ChannelList';
 
-export interface ServerInsideNavProps {
+export type ServerInsideNavProps = {
   title: string;
   isHome?: boolean;
   categories: CategoriesObject;
-}
+};
 
-const ServerInsideNav: FC<ServerInsideNavProps> = ({
+export function ServerInsideNav({
   title,
   isHome,
   categories,
-}) => {
+}: ServerInsideNavProps) {
   return (
     <nav
       className={styles.nav}
@@ -36,6 +34,4 @@ const ServerInsideNav: FC<ServerInsideNavProps> = ({
       )}
     </nav>
   );
-};
-
-export default ServerInsideNav;
+}

@@ -1,26 +1,30 @@
-import { type FC, useContext } from 'react';
+import { useContext, type PropsWithChildren } from 'react';
 
 import styles from './UserList.module.scss';
 
-import MobileContext from '@/lib/MobileContext';
-import useOutsideListener from '@/lib/OutsideListener';
+import { MobileContext } from '@/lib/MobileContext';
+import { useOutsideListener } from '@/lib/OutsideListener';
 
 import type { UserResponse } from '@/types';
 
-import UserCard from './UserCard';
+import { UserCard } from './UserCard';
 
-const UserListWrapper: FC = ({ children }) => (
-  <div className={styles.listWrapper}>
-    <div className={styles.scroller}>{children}</div>
-  </div>
-);
+type UserListWrapperProps = PropsWithChildren<unknown>;
 
-interface UserListProps {
-  channel: string;
-  users: UserResponse[];
+function UserListWrapper({ children }: UserListWrapperProps) {
+  return (
+    <div className={styles.listWrapper}>
+      <div className={styles.scroller}>{children}</div>
+    </div>
+  );
 }
 
-const UserList: FC<UserListProps> = ({ channel, users }) => {
+type UserListProps = {
+  channel: string;
+  users: UserResponse[];
+};
+
+export function UserList({ channel, users }: UserListProps) {
   const context = useContext(MobileContext);
 
   function handleCloseUserList() {
@@ -70,8 +74,4 @@ const UserList: FC<UserListProps> = ({ channel, users }) => {
       </UserListWrapper>
     </aside>
   );
-};
-
-UserList.displayName = 'UserList';
-
-export default UserList;
+}

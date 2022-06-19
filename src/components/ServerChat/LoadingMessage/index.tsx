@@ -1,6 +1,6 @@
 import styles from './LoadingMessage.module.scss';
 
-function LoadingMessage() {
+export function LoadingMessage() {
   return (
     <li className={styles.message} aria-hidden="true">
       <div className={styles.avatar} />
@@ -9,5 +9,3 @@ function LoadingMessage() {
     </li>
   );
 }
-
-export default LoadingMessage;

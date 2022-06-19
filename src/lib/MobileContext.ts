@@ -4,9 +4,9 @@ import chatPageStyles from '@/styles/pages/Chat.module.scss';
 import navStyles from '@/components/Navigations/Navigations.module.scss';
 import userListStyles from '@/components/UserList/UserList.module.scss';
 
-import type { MobileContextInterface } from '@/types';
+import type { MobileContextType } from '@/types';
 
-const MobileContext = createContext<MobileContextInterface>({
+export const MobileContext = createContext<MobileContextType>({
   containerRef: createRef<HTMLDivElement>(),
   disabledContainerClass: chatPageStyles.disabled,
   headerRef: createRef<HTMLDivElement>(),
@@ -17,5 +17,3 @@ const MobileContext = createContext<MobileContextInterface>({
   activeUserListClass: userListStyles.active,
   userListButtonRef: createRef<HTMLButtonElement>(),
 });
-
-export default MobileContext;

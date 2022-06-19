@@ -1,19 +1,19 @@
 import { useContext, useRef, useState, useEffect } from 'react';
-import type { FC, ChangeEvent, KeyboardEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 
 import styles from './MessageInput.module.scss';
 
 import { addMessage } from '@/lib/Store';
-import UserContext from '@/lib/UserContext';
+import { UserContext } from '@/lib/UserContext';
 
-import type { UserContextInterface } from '@/types';
+import type { UserContextType } from '@/types';
 
-interface MessageInputProps {
+type MessageInputProps = {
   channel: string;
-}
+};
 
-const MessageInput: FC<MessageInputProps> = ({ channel }) => {
-  const context = useContext(UserContext) as UserContextInterface;
+export function MessageInput({ channel }: MessageInputProps) {
+  const context = useContext(UserContext) as UserContextType;
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const [messageText, setMessageText] = useState('');
 
@@ -74,6 +74,4 @@ const MessageInput: FC<MessageInputProps> = ({ channel }) => {
       />
     </form>
   );
-};
-
-export default MessageInput;
+}

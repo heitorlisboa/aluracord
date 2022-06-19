@@ -1,27 +1,25 @@
-import { type FC, useContext, useRef } from 'react';
+import { useContext, useRef } from 'react';
 
 import styles from './UserCard.module.scss';
 
-import ProfileContext from '@/lib/ProfileContext';
+import { ProfileContext } from '@/lib/ProfileContext';
 
-import type { ProfileContextInterface } from '@/types';
+import type { ProfileContextType } from '@/types';
 
-interface UserCardProps {
+type UserCardProps = {
   username: string;
   onClickHandler: () => void;
-}
+};
 
-const UserCard: FC<UserCardProps> = ({ username, onClickHandler }) => {
-  const { handleClickIn } = useContext(
-    ProfileContext
-  ) as ProfileContextInterface;
+export function UserCard({ username, onClickHandler }: UserCardProps) {
+  const { handleClickIn } = useContext(ProfileContext) as ProfileContextType;
 
   const profileButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <li className={styles.card}>
       <button
-        aria-description="Abre o perfil do usuário"
+        aria-roledescription="Abre o perfil do usuário"
         aria-expanded="false"
         onClick={() => {
           onClickHandler();
@@ -38,6 +36,4 @@ const UserCard: FC<UserCardProps> = ({ username, onClickHandler }) => {
       </button>
     </li>
   );
-};
-
-export default UserCard;
+}

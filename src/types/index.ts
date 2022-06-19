@@ -1,44 +1,44 @@
 import type { RefObject } from 'react';
 
-export interface ObjectOfLists<T> {
+export type ObjectOfLists<T> = {
   [key: string]: T[];
-}
+};
 
-export interface TypeOfAlert {
+export type TypeOfAlert = {
   type: 'success' | 'warning' | 'danger' | 'info';
-}
+};
 
-export interface AlertCreated extends TypeOfAlert {
+export type AlertCreated = {
   message: string;
-}
+} & TypeOfAlert;
 
-export interface AlertInterface extends AlertCreated {
+export type AlertType = {
   ref: RefObject<HTMLDivElement>;
-}
+} & AlertCreated;
 
 export type CategoriesObject = ObjectOfLists<string>;
 
-export interface MessageCreated {
+export type MessageCreated = {
   author: string;
   date: string;
   content: string;
-}
+};
 
-export interface MessageResponse extends MessageCreated {
+export type MessageResponse = {
   id: number;
-}
+} & MessageCreated;
 
-export interface UserResponse {
+export type UserResponse = {
   id: number;
   username: string;
   message_count: number;
-}
+};
 
-export interface UserContextInterface {
+export type UserContextType = {
   currentUser: string;
-}
+};
 
-export interface GitHubUserInfo {
+export type GitHubUserInfo = {
   name: string;
   login: string;
   location: string;
@@ -47,7 +47,7 @@ export interface GitHubUserInfo {
   avatar_url: string;
   twitter_username: string | null;
   blog: string | null;
-}
+};
 
 export type ClickProfileHandler = (
   username: string,
@@ -56,12 +56,12 @@ export type ClickProfileHandler = (
 
 export type ClickOutProfileHandler = () => void;
 
-export interface ProfileContextInterface {
+export type ProfileContextType = {
   handleClickIn: ClickProfileHandler;
   handleClickOut: ClickOutProfileHandler;
-}
+};
 
-export interface MobileContextInterface {
+export type MobileContextType = {
   containerRef: RefObject<HTMLDivElement>;
   disabledContainerClass: string;
   headerRef: RefObject<HTMLDivElement>;
@@ -71,9 +71,4 @@ export interface MobileContextInterface {
   userListRef: RefObject<HTMLDivElement>;
   activeUserListClass: string;
   userListButtonRef: RefObject<HTMLButtonElement>;
-}
-
-interface ChatRouterQuery {
-  server: string;
-  channel: string;
-}
+};

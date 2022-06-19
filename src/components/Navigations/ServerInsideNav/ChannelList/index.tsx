@@ -1,15 +1,13 @@
-import type { FC } from 'react';
-
 import styles from './ChannelList.module.scss';
 
-import Channel from '../Channel';
+import { Channel } from '../Channel';
 
-interface ChannelListProps {
+type ChannelListProps = {
   categoryName: string;
   channelList: string[];
-}
+};
 
-const ChannelList: FC<ChannelListProps> = ({ categoryName, channelList }) => {
+export function ChannelList({ categoryName, channelList }: ChannelListProps) {
   return (
     <ul
       id={`channel-list_id`}
@@ -34,6 +32,4 @@ const ChannelList: FC<ChannelListProps> = ({ categoryName, channelList }) => {
       ))}
     </ul>
   );
-};
-
-export default ChannelList;
+}
