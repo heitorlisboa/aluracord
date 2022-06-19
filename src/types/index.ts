@@ -4,18 +4,6 @@ export type ObjectOfLists<T> = {
   [key: string]: T[];
 };
 
-export type TypeOfAlert = {
-  type: 'success' | 'warning' | 'danger' | 'info';
-};
-
-export type AlertCreated = {
-  message: string;
-} & TypeOfAlert;
-
-export type AlertType = {
-  ref: RefObject<HTMLDivElement>;
-} & AlertCreated;
-
 export type CategoriesObject = ObjectOfLists<string>;
 
 export type MessageCreated = {

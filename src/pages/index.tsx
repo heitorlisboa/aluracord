@@ -1,18 +1,16 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import type { ChangeEvent, FormEvent } from 'react';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from '@/styles/pages/Home.module.scss';
 
-import { addAlert } from '@/lib/addAlert';
-
-import { Alert } from '@/components/Alert';
-import { validateInput } from '@/validators/validateInput';
-import type { AlertCreated, AlertType } from '@/types';
+import { validateInput } from '@/utils/validateInput';
 
 export default function Login() {
   const [username, setUsername] = useState('');
-  const [alerts, setAlerts] = useState<AlertType[]>([]);
   const router = useRouter();
   const userImageRef = useRef<HTMLImageElement>(null);
   const defaultUserImage = '/img/default-user-image.jpg';
@@ -36,11 +34,7 @@ export default function Login() {
     event.preventDefault();
     fetch(`https://api.github.com/users/${username}`).then((res) => {
       if (res.status !== 200) {
-        const newAlert: AlertCreated = {
-          type: 'danger',
-          message: 'Insira um usuário do GitHub válido',
-        };
-        addAlert(newAlert, alerts, setAlerts);
+        toast.error('Insira um usuário do GitHub válido');
       } else {
         router.push({
           pathname: '/chat',
@@ -58,12 +52,7 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      {alerts.map((alert, index) => (
-        <Alert key={index} type={alert.type} ref={alert.ref}>
-          {alert.message}
-        </Alert>
-      ))}
-      <article className={styles.loginCard}>
+      <div className={styles.loginCard}>
         <div className={styles.login}>
           <h1>Boas vindas!</h1>
           <h2 className={styles.subtitle}>Aluracord - Fullmetal Alchemist</h2>
@@ -83,6 +72,7 @@ export default function Login() {
             </button>
           </form>
         </div>
+
         <div className={styles.user}>
           <img
             src={`https://github.com/${username}.png`}
@@ -91,7 +81,9 @@ export default function Login() {
           />
           <span className={styles.username}>{username || 'Seu nome'}</span>
         </div>
-      </article>
+      </div>
+
+      <ToastContainer autoClose={2 * 1000 /* 2 seconds */} />
     </div>
   );
 }
