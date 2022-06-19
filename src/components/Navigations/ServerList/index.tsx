@@ -6,7 +6,7 @@ export function ServerList() {
   return (
     <nav className={styles.nav} aria-label="Barra lateral dos servidores">
       <ServerButton src="/img/default-user-image.jpg" aria-label="Início" />
-      <div className={styles.separator} />;
+      <div className={styles.separator} />
       <ul className={styles.serverList} aria-label="Lista de servidores">
         <li>
           <ServerButton
