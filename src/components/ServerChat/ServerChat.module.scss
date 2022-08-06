@@ -1,5 +1,4 @@
 @use '../../styles/partials/colors' as clr;
-@use '../../styles/partials/gaps' as gp;
 
 .content {
   background-color: clr.$primary-dark-transparent;
@@ -37,5 +36,5 @@
 }
 
 .scrollerSpacer {
-  height: gp.$medium;
+  height: 1rem;
 }

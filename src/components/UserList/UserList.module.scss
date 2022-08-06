@@ -1,5 +1,4 @@
 @use '../../styles/partials/colors' as clr;
-@use '../../styles/partials/gaps' as gp;
 @use '../../styles/partials/screen-breakpoints' as sb;
 @use '../../styles/partials/component-sizes' as size;
 
@@ -23,10 +22,10 @@
 
 .scrollerInner {
   display: flex;
-  gap: gp.$small;
+  gap: 0.5rem;
   flex-direction: column;
 
-  padding: gp.$small;
+  padding: 0.5rem;
 }
 
 @media (max-width: sb.$max-mobile) {

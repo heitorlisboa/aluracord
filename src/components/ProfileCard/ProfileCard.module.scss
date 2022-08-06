@@ -1,6 +1,5 @@
 @use '../../styles/partials/colors' as clr;
 @use '../../styles/partials/font-sizes' as fs;
-@use '../../styles/partials/gaps' as gp;
 @use '../../styles/partials/placeholder-selectors';
 
 .wrapper {
@@ -25,8 +24,8 @@
   width: 300px;
   max-height: 500px;
 
-  padding: gp.$medium;
-  margin: gp.$medium;
+  padding: 1rem;
+  margin: 1rem;
   border-radius: 10px;
   box-shadow: 0 0 10px -2px clr.$secondary-dark;
 }
@@ -46,7 +45,7 @@
   display: flex;
   flex-direction: column;
 
-  margin-bottom: gp.$big;
+  margin-bottom: 1.5rem;
 }
 
 .fullName {
@@ -69,7 +68,7 @@
   }
 
   &Bio {
-    margin-bottom: gp.$small;
+    margin-bottom: 0.5rem;
   }
 
   &Socials {
@@ -93,8 +92,8 @@
 
 .closeButton {
   position: absolute;
-  top: gp.$small;
-  right: gp.$small;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .loading {

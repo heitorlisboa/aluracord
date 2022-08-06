@@ -1,5 +1,4 @@
 @use './colors' as clr;
-@use './gaps' as gp;
 
 %flex-container {
   display: flex;
@@ -27,6 +26,6 @@
 
 %top-section {
   height: 3rem;
-  padding: 0.6rem gp.$medium;
+  padding: 0.6rem 1rem;
   border-bottom: 1px solid clr.$primary-dark-transparent;
 }

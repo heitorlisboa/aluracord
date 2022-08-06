@@ -1,9 +1,8 @@
 @use '../../../../styles/partials/colors' as clr;
 @use '../../../../styles/partials/font-sizes' as fs;
-@use '../../../../styles/partials/gaps' as gp;
 
 .list {
-  margin: gp.$small gp.$medium;
+  margin: 0.5rem 1rem;
 }
 
 .title {
@@ -11,7 +10,7 @@
   color: clr.$secondary-dark;
   text-transform: uppercase;
 
-  margin-bottom: gp.$smaller;
+  margin-bottom: 0.25rem;
 
   cursor: pointer;
 

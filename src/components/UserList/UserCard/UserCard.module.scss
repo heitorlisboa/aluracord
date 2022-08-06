@@ -1,5 +1,4 @@
 @use '../../../styles/partials/colors' as clr;
-@use '../../../styles/partials/gaps' as gp;
 @use '../../../styles/partials/placeholder-selectors';
 
 .card {
@@ -11,11 +10,11 @@
 
   button {
     display: flex;
-    gap: gp.$small;
+    gap: 0.5rem;
     align-items: center;
     width: 100%;
 
-    padding: gp.$smaller gp.$small;
+    padding: 0.25rem 0.5rem;
   }
 }
 

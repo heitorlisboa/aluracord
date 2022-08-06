@@ -1,5 +1,4 @@
 @use '../partials/colors' as clr;
-@use '../partials/gaps' as gp;
 @use '../partials/screen-breakpoints' as sb;
 @use '../partials/component-sizes' as size;
 @use '../partials/placeholder-selectors';
@@ -21,7 +20,7 @@
   display: grid;
   height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: gp.$biggest 1fr;
+  grid-template-rows: 3rem 1fr;
 }
 
 @media (max-width: sb.$max-mobile) {

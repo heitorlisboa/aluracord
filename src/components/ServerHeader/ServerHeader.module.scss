@@ -1,6 +1,5 @@
 @use '../../styles/partials/colors' as clr;
 @use '../../styles/partials/font-sizes' as fs;
-@use '../../styles/partials/gaps' as gp;
 @use '../../styles/partials/screen-breakpoints' as sb;
 @use '../../styles/partials/placeholder-selectors';
 
@@ -9,7 +8,7 @@
 
   grid-column: span 2;
   display: flex;
-  gap: gp.$medium;
+  gap: 1rem;
   @extend %top-section;
 }
 

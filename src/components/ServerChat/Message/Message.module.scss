@@ -1,6 +1,5 @@
 @use '../../../styles/partials/colors' as clr;
 @use '../../../styles/partials/font-sizes' as fs;
-@use '../../../styles/partials/gaps' as gp;
 @use '../../../styles/partials/placeholder-selectors';
 
 $avatar-width: 40px;
@@ -8,8 +7,8 @@ $avatar-width: 40px;
 .message {
   position: relative;
 
-  padding-left: calc($avatar-width + gp.$big);
-  padding-right: gp.$medium;
+  padding-left: calc($avatar-width + 1.5rem);
+  padding-right: 1rem;
 
   &:hover,
   &:focus-within {
@@ -35,11 +34,11 @@ $avatar-width: 40px;
 
 .avatar {
   position: absolute;
-  left: gp.$medium;
+  left: 1rem;
   width: $avatar-width;
   aspect-ratio: 1/1;
 
-  margin-top: gp.$smaller;
+  margin-top: 0.25rem;
   border-radius: 50%;
 }
 
@@ -47,9 +46,9 @@ $avatar-width: 40px;
   font-size: fs.$medium;
 
   display: flex;
-  gap: gp.$small;
+  gap: 0.5rem;
 
-  margin-top: gp.$medium;
+  margin-top: 1rem;
 }
 
 .username {
@@ -77,13 +76,13 @@ $avatar-width: 40px;
 .timeStampTooltip {
   user-select: none;
 
-  left: gp.$medium;
+  left: 1rem;
 
   margin-top: 0.2rem;
 }
 
 .content {
-  padding-bottom: gp.$smaller;
+  padding-bottom: 0.25rem;
   white-space: break-spaces;
 
   a {
@@ -97,8 +96,8 @@ $avatar-width: 40px;
 }
 
 .buttons {
-  right: gp.$medium;
-  top: calc(gp.$medium * -1);
+  right: 1rem;
+  top: calc(1rem * -1);
   pointer-events: none;
 
   img {

@@ -1,13 +1,12 @@
 @use '../../../styles/partials/colors' as clr;
-@use '../../../styles/partials/gaps' as gp;
 
 $avatar-width: 40px;
 
 .message {
   position: relative;
 
-  padding-left: calc($avatar-width + gp.$big);
-  padding-right: gp.$medium;
+  padding-left: calc($avatar-width + 1.5rem);
+  padding-right: 1rem;
   margin-top: 1rem;
 
   &:nth-child(2n) {
@@ -31,7 +30,7 @@ $avatar-width: 40px;
 
 .avatar {
   position: absolute;
-  left: gp.$medium;
+  left: 1rem;
   top: 0;
   width: $avatar-width;
   aspect-ratio: 1/1;

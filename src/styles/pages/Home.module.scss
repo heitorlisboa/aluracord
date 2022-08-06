@@ -1,5 +1,4 @@
 @use '../partials/colors' as clr;
-@use '../partials/gaps' as gp;
 @use '../partials/placeholder-selectors';
 
 $max-width: 350px;
@@ -20,8 +19,8 @@ $max-width: 350px;
   justify-items: center;
   align-items: center;
 
-  margin: gp.$medium;
-  padding: gp.$bigger;
+  margin: 1rem;
+  padding: 2rem;
   border-radius: 10px;
 }
 
@@ -40,14 +39,14 @@ $max-width: 350px;
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin-top: gp.$big;
+  margin-top: 1.5rem;
 }
 
 .usernameInput,
 .submitButton {
   width: 100%;
 
-  padding: gp.$smaller gp.$small;
+  padding: 0.25rem 0.5rem;
   border-radius: 5px;
 }
 
@@ -88,7 +87,7 @@ $max-width: 350px;
 
   max-width: 100%;
 
-  padding-inline: gp.$medium;
+  padding-inline: 1rem;
   border-radius: 100vw;
 }
 
@@ -99,8 +98,8 @@ $max-width: 350px;
   }
 
   .user {
-    gap: gp.$small;
-    padding: gp.$small;
+    gap: 0.5rem;
+    padding: 0.5rem;
 
     img {
       height: 100%;
@@ -117,8 +116,8 @@ $max-width: 350px;
   }
 
   .user {
-    gap: gp.$medium;
-    padding: gp.$medium;
+    gap: 1rem;
+    padding: 1rem;
 
     img {
       width: 100%;
