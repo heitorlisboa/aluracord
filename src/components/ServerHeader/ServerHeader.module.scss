@@ -1,6 +1,6 @@
 @use '../../styles/partials/colors' as clr;
 @use '../../styles/partials/font-sizes' as fs;
-@use '../../styles/partials/screen-breakpoints' as sb;
+@use '../../styles/partials/custom-media' as *;
 @use '../../styles/partials/placeholder-selectors';
 
 .header {
@@ -19,8 +19,11 @@
 .mobileMenuButton,
 .mobileUserListButton {
   display: none;
+}
 
-  @media (max-width: sb.$max-mobile) {
+@include custom-media(max, lg) {
+  .mobileMenuButton,
+  .mobileUserListButton {
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
@@ -31,16 +34,12 @@
     height: 100%;
     aspect-ratio: 1;
   }
-}
 
-.mobileMenuButton {
-  @media (max-width: sb.$max-mobile) {
+  .mobileMenuButton {
     background-image: url(/icons/menu-icon.svg);
   }
-}
 
-.mobileUserListButton {
-  @media (max-width: sb.$max-mobile) {
+  .mobileUserListButton {
     background-image: url(/icons/people-icon.svg);
     margin-left: auto;
   }

@@ -1,4 +1,4 @@
-@use '../../styles/partials/screen-breakpoints' as sb;
+@use '../../styles/partials/custom-media' as *;
 @use '../../styles/partials/component-sizes' as size;
 
 .container {
@@ -7,9 +7,10 @@
   height: 100%;
 }
 
-@media (max-width: sb.$max-mobile) {
+@include custom-media(max, lg) {
   .container {
-    // Background color to increase readability in case backdrop filter is not supported
+    /* Background color to increase readability in case backdrop filter is not
+    supported */
     background-color: hsla(0, 0%, 20%, 0.9);
 
     position: absolute;

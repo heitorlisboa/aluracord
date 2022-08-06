@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+@mixin custom-media($max-or-min, $screen) {
+  $screens: (
+    'sm': 640px,
+    'md': 768px,
+    'lg': 1024px,
+    'xl': 1280px,
+    '2xl': 1536px,
+  );
+
+  @if $max-or-min != max and $max-or-min != min {
+    @error 'Property #{$max-or-min} must be `max` or `min`';
+  }
+
+  @if not map.has-key($screens, $screen) {
+    @error '#{$screen} is not a valid screen, ' +
+      'use one the following: #{map.keys($screens)}';
+  }
+
+  $screen-size: map.get($screens, $screen);
+  $used-screen-size: if($max-or-min == max, $screen-size - 1px, $screen-size);
+
+  @media (#{$max-or-min}-width: $used-screen-size) {
+    @content;
+  }
+}

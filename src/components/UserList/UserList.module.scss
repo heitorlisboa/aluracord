@@ -1,5 +1,5 @@
 @use '../../styles/partials/colors' as clr;
-@use '../../styles/partials/screen-breakpoints' as sb;
+@use '../../styles/partials/custom-media' as *;
 @use '../../styles/partials/component-sizes' as size;
 
 .sidebar {
@@ -28,7 +28,7 @@
   padding: 0.5rem;
 }
 
-@media (max-width: sb.$max-mobile) {
+@include custom-media(max, lg) {
   .sidebar {
     position: absolute;
     right: 0;
@@ -39,7 +39,7 @@
     transition: transform 200ms ease;
 
     @supports (backdrop-filter: blur(1rem)) {
-      background-color: hsla(0, 0, 20%, 0.5);
+      background-color: hsla(0, 0%, 20%, 0.5);
       backdrop-filter: blur(0.5rem);
     }
 
