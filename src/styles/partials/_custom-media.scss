@@ -10,11 +10,12 @@
   );
 
   @if $max-or-min != max and $max-or-min != min {
-    @error 'Property #{$max-or-min} must be `max` or `min`';
+    @error 'Argument with value `#{$max-or-min}` must have value ' +
+      '`max` or `min`';
   }
 
   @if not map.has-key($screens, $screen) {
-    @error '#{$screen} is not a valid screen, ' +
+    @error '`#{$screen}` is not a valid screen size, ' +
       'use one the following: #{map.keys($screens)}';
   }
 
