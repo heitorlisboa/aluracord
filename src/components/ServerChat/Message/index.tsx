@@ -58,8 +58,9 @@ export function Message({ children: message, onlyContent }: MessageProps) {
         <>
           <img
             className={styles.avatar}
+            aria-hidden
             src={`https://github.com/${message.author}.png`}
-            alt={`Foto de perfil de ${message.author}`}
+            alt=""
             onClick={() => handleClickIn(message.author)}
           />
           <h2
