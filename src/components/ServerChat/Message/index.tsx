@@ -69,7 +69,6 @@ export function Message({ children: message, onlyContent }: MessageProps) {
             aria-describedby={`message-context-${message.id}`}
           >
             <button
-              aria-description="Abre o perfil do usuário"
               aria-expanded="false"
               onClick={() => handleClickIn(message.author, profileButtonRef)}
               ref={profileButtonRef}
