@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Aluracord</title>
         <meta
           name="description"
-          content="Aluracord - Um clone do discord feito durante a Imersão React da Alura"
+          content="Aluracord - Um mini-clone do discord feito durante a Imersão React da Alura"
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
