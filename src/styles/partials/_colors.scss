@@ -1,7 +1,7 @@
-$primary-light: #212931;
-$primary-medium: #181f25;
-$primary-dark: #0e1215;
-$primary-darker: #07090a;
+$primary-light: hsl(210, 20%, 16%);
+$primary-medium: hsl(208, 21%, 12%);
+$primary-dark: hsl(206, 20%, 7%);
+$primary-darker: hsl(200, 18%, 3%);
 
 $primary-light-transparent: transparentize(
   $color: $primary-light,
@@ -20,11 +20,9 @@ $primary-darker-transparent: transparentize(
   $amount: 0.3,
 );
 
-$secondary-light: #ffffff;
-$secondary-medium: #cbcbcd;
-$secondary-dark: #8e9297;
+$secondary-light: hsl(0, 0%, 100%);
+$secondary-medium: hsl(240, 2%, 80%);
+$secondary-dark: hsl(213, 4%, 57%);
 
-$success: #3f9142;
-$warning: yellow;
-$danger: hsl(0, 90%, 40%);
+$success: hsl(122, 39%, 41%);
 $info: hsl(209, 80%, 60%);
