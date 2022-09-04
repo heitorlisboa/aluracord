@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
 
 import { fetchUserInfo } from '@/lib/Store';
-
 import type {
   ClickOutProfileHandler,
   ClickProfileHandler,
-  GitHubUserInfo,
-} from '@/types';
+} from '@/lib/ProfileContext';
+
+import type { GitHubUserInfo } from '@/types';
 
 /**
  * Concentrates the profile states, information fetching and profile

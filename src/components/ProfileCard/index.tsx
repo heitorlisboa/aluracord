@@ -2,9 +2,9 @@ import { forwardRef, useContext } from 'react';
 
 import styles from './ProfileCard.module.scss';
 
-import { ProfileContext } from '@/lib/ProfileContext';
+import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
 
-import type { GitHubUserInfo, ProfileContextType } from '@/types';
+import type { GitHubUserInfo } from '@/types';
 
 type ProfileCardProps = {
   userInfo?: GitHubUserInfo;

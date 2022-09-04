@@ -3,15 +3,11 @@ import { useContext, useRef } from 'react';
 import styles from './Message.module.scss';
 
 import { deleteMessage } from '@/lib/Store';
-import { UserContext } from '@/lib/UserContext';
-import { ProfileContext } from '@/lib/ProfileContext';
+import { UserContext, type UserContextType } from '@/lib/UserContext';
+import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
 import { linkToHTMLAnchor } from '@/utils/linkToHTMLAnchor';
 
-import type {
-  MessageResponse,
-  ProfileContextType,
-  UserContextType,
-} from '@/types';
+import type { MessageResponse } from '@/types';
 
 type MessageProps = {
   children: MessageResponse;

@@ -4,9 +4,7 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
 import styles from './MessageInput.module.scss';
 
 import { addMessage } from '@/lib/Store';
-import { UserContext } from '@/lib/UserContext';
-
-import type { UserContextType } from '@/types';
+import { UserContext, type UserContextType } from '@/lib/UserContext';
 
 type MessageInputProps = {
   channel: string;

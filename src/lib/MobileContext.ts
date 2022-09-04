@@ -1,10 +1,20 @@
-import { createContext, createRef } from 'react';
+import { createContext, createRef, type RefObject } from 'react';
 
 import chatPageStyles from '@/styles/pages/Chat.module.scss';
 import navStyles from '@/components/Navigations/Navigations.module.scss';
 import userListStyles from '@/components/UserList/UserList.module.scss';
 
-import type { MobileContextType } from '@/types';
+export type MobileContextType = {
+  containerRef: RefObject<HTMLDivElement>;
+  disabledContainerClass: string;
+  headerRef: RefObject<HTMLDivElement>;
+  navigationsRef: RefObject<HTMLDivElement>;
+  activeNavigationsClass: string;
+  navigationsButtonRef: RefObject<HTMLButtonElement>;
+  userListRef: RefObject<HTMLDivElement>;
+  activeUserListClass: string;
+  userListButtonRef: RefObject<HTMLButtonElement>;
+};
 
 export const MobileContext = createContext<MobileContextType>({
   containerRef: createRef<HTMLDivElement>(),

@@ -2,9 +2,7 @@ import { useContext, useRef } from 'react';
 
 import styles from './UserCard.module.scss';
 
-import { ProfileContext } from '@/lib/ProfileContext';
-
-import type { ProfileContextType } from '@/types';
+import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
 
 type UserCardProps = {
   username: string;
