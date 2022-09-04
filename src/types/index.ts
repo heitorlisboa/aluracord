@@ -1,11 +1,5 @@
 import type { RefObject } from 'react';
 
-export type ObjectOfLists<T> = {
-  [key: string]: T[];
-};
-
-export type CategoriesObject = ObjectOfLists<string>;
-
 export type MessageCreated = {
   author: string;
   date: string;

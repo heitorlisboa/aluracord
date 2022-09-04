@@ -7,11 +7,8 @@ import { useOutsideListener } from '@/lib/OutsideListener';
 
 import { ServerList } from './ServerList';
 import { ServerInsideNav } from './ServerInsideNav';
-import type { ServerInsideNavProps } from './ServerInsideNav';
 
-type NavigationsProps = ServerInsideNavProps;
-
-export function Navigations({ title, categories }: NavigationsProps) {
+export function Navigations() {
   const context = useContext(MobileContext);
 
   function handleCloseMenu() {
@@ -48,7 +45,7 @@ export function Navigations({ title, categories }: NavigationsProps) {
       ref={context.navigationsRef}
     >
       <ServerList />
-      <ServerInsideNav title={title} categories={categories} />
+      <ServerInsideNav />
     </div>
   );
 }

@@ -1,37 +1,15 @@
 import styles from './ServerInsideNav.module.scss';
 
-import type { CategoriesObject } from '@/types';
-
 import { ChannelList } from './ChannelList';
 
-export type ServerInsideNavProps = {
-  title: string;
-  isHome?: boolean;
-  categories: CategoriesObject;
-};
+const serverTitle = 'Servidor';
+const channelList = ['Geral'];
 
-export function ServerInsideNav({
-  title,
-  isHome,
-  categories,
-}: ServerInsideNavProps) {
+export function ServerInsideNav() {
   return (
-    <nav
-      className={styles.nav}
-      aria-label={isHome ? 'Servidor' : 'Canais privados'}
-    >
-      {!isHome && (
-        <>
-          <h1 className={styles.title}>{title}</h1>
-          {Object.keys(categories).map((categoryName, index) => (
-            <ChannelList
-              key={index}
-              categoryName={categoryName}
-              channelList={categories[categoryName]}
-            />
-          ))}
-        </>
-      )}
+    <nav className={styles.nav} aria-label={'Servidor'}>
+      <h1 className={styles.title}>{serverTitle}</h1>
+      <ChannelList categoryName={'Canais de texto'} channelList={channelList} />
     </nav>
   );
 }
