@@ -1,3 +1,4 @@
+@use '../partials/custom-media' as *;
 @use '../partials/colors' as clr;
 @use '../partials/placeholder-selectors';
 
@@ -91,7 +92,7 @@ $max-width: 350px;
   border-radius: 100vw;
 }
 
-@media (max-width: 600px) {
+@include custom-media(max, sm) {
   .loginCard {
     gap: 1rem;
     grid-template-rows: repeat(2, 1fr);
@@ -108,7 +109,7 @@ $max-width: 350px;
   }
 }
 
-@media (min-width: 601px) {
+@include custom-media(min, sm) {
   .loginCard {
     gap: 5rem;
     grid-template-columns: 1fr 200px;
