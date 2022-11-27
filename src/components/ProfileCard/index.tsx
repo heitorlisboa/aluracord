@@ -3,7 +3,6 @@ import { forwardRef, useContext } from 'react';
 import styles from './ProfileCard.module.scss';
 
 import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
-
 import type { GitHubUserInfo } from '@/types';
 
 type ProfileCardProps = {

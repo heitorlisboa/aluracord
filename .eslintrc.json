@@ -9,14 +9,6 @@
     "@next/next/no-img-element": "off",
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "@typescript-eslint/ban-types": [
-      "error",
-      {
-        "types": {
-          "FC": "Use normal functions for components (if not using `forwardRef`)"
-        }
-      }
-    ],
     "import-helpers/order-imports": [
       "warn",
       {
@@ -24,7 +16,7 @@
         "groups": [
           "module",
           "/.s?css$/",
-          "//(lib|utils)/",
+          "//(lib|types|utils)/",
           "/^@//",
           ["parent", "sibling", "index"]
         ]

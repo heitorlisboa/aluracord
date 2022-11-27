@@ -4,7 +4,6 @@ import styles from './UserList.module.scss';
 
 import { MobileContext } from '@/lib/MobileContext';
 import { useOutsideListener } from '@/lib/OutsideListener';
-
 import type { UserResponse } from '@/types';
 
 import { UserCard } from './UserCard';

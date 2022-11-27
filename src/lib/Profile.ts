@@ -5,7 +5,6 @@ import type {
   ClickOutProfileHandler,
   ClickProfileHandler,
 } from '@/lib/ProfileContext';
-
 import type { GitHubUserInfo } from '@/types';
 
 /**

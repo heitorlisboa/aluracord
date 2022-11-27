@@ -6,7 +6,6 @@ import { deleteMessage } from '@/lib/Store';
 import { UserContext, type UserContextType } from '@/lib/UserContext';
 import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
 import { linkToHTMLAnchor } from '@/utils/linkToHTMLAnchor';
-
 import type { MessageResponse } from '@/types';
 
 type MessageProps = {
