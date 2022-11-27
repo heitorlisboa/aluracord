@@ -1,5 +1,5 @@
 import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type PostgrestResponse } from '@supabase/supabase-js';
 
 import type {
   MessageResponse,
@@ -19,46 +19,77 @@ export const supabase = createClient(
  * @returns The message list state and a boolean of whether the page is loading or not
  */
 export function useStore() {
-  // Message related states
+  // States
   const [messages, setMessages] = useState<MessageResponse[]>([]);
-  const [newMessage, handleNewMessage] = useState<MessageResponse>();
-  const [deletedMessage, handleDeletedMessage] = useState<MessageResponse>();
-
-  // User related states
   const [users, setUsers] = useState<UserResponse[]>([]);
-  const [newUser, handleNewUser] = useState<UserResponse>();
-  const [deletedUser, handleDeletedUser] = useState<UserResponse>();
 
   // Load initial data and set up listeners
-  /*
-    Not all listeners are here yet because some
-    features are yet to be implemented
-  */
   useEffect(() => {
+    function handleNewMessage(newMessage: MessageResponse) {
+      setMessages((prevState) => prevState.concat(newMessage));
+    }
+
+    function handleDeletedMessage(deletedMessage: MessageResponse) {
+      setMessages((prevState) =>
+        prevState.filter((message) => message.id !== deletedMessage.id)
+      );
+    }
+
+    function handleNewUser(newUser: UserResponse) {
+      setUsers((prevState) =>
+        prevState
+          .concat(newUser)
+          // Case-insensitive sorting
+          .sort((a, b) => a.username.localeCompare(b.username))
+      );
+    }
+
+    function handleDeletedUser(deletedUser: UserResponse) {
+      setUsers((prevState) =>
+        prevState.filter((user) => user.id !== deletedUser.id)
+      );
+    }
+
     // Fetch the messages and users from the database
     fetchMessages(setMessages);
     fetchAllUsers(setUsers);
 
     // Listen for new and deleted messages
     const messageListener = supabase
-      .from('messages')
-      .on('INSERT', (payload) => {
-        handleNewMessage(payload.new);
-      })
-      .on('DELETE', (payload) => {
-        handleDeletedMessage(payload.old);
-      })
+      .channel('public:messages')
+      .on<MessageResponse>(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'messages' },
+        (payload) => {
+          handleNewMessage(payload.new);
+        }
+      )
+      .on<MessageResponse>(
+        'postgres_changes',
+        { event: 'DELETE', schema: 'public', table: 'messages' },
+        (payload) => {
+          handleDeletedMessage(payload.old as MessageResponse);
+        }
+      )
       .subscribe();
 
     // Listen for new and deleted users
     const userListener = supabase
-      .from('users')
-      .on('INSERT', (payload) => {
-        handleNewUser(payload.new);
-      })
-      .on('DELETE', (payload) => {
-        handleDeletedUser(payload.old);
-      })
+      .channel('public:users')
+      .on<UserResponse>(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'users' },
+        (payload) => {
+          handleNewUser(payload.new);
+        }
+      )
+      .on<UserResponse>(
+        'postgres_changes',
+        { event: 'DELETE', schema: 'public', table: 'users' },
+        (payload) => {
+          handleDeletedUser(payload.old as UserResponse);
+        }
+      )
       .subscribe();
 
     // Cleanup on unmount
@@ -67,37 +98,6 @@ export function useStore() {
       userListener.unsubscribe();
     };
   }, []);
-
-  // New message received
-  useEffect(() => {
-    if (newMessage) setMessages(messages.concat(newMessage));
-  }, [newMessage]);
-
-  // Deleted message received
-  useEffect(() => {
-    if (deletedMessage)
-      setMessages(
-        messages.filter((message) => message.id !== deletedMessage.id)
-      );
-  }, [deletedMessage]);
-
-  // New user received
-  useEffect(() => {
-    if (newUser) {
-      setUsers(
-        users
-          .concat(newUser)
-          // Case-insensitive sorting
-          .sort((a, b) => a.username.localeCompare(b.username))
-      );
-    }
-  }, [newUser]);
-
-  // Deleted user received
-  useEffect(() => {
-    if (deletedUser)
-      setUsers(users.filter((user) => user.id !== deletedUser.id));
-  }, [deletedUser]);
 
   return {
     messages,
@@ -113,9 +113,15 @@ export function useStore() {
 export async function fetchMessages(
   setState?: Dispatch<SetStateAction<MessageResponse[]>>
 ) {
-  const { body } = await supabase.from('messages').select('*').order('date');
-  if (setState) setState(body as MessageResponse[]);
-  return body as MessageResponse[];
+  const messagesSelect: PostgrestResponse<MessageResponse> = await supabase
+    .from('messages')
+    .select('*')
+    .order('date');
+  const data = messagesSelect.data ?? [];
+
+  if (setState) setState(data);
+
+  return data;
 }
 
 /**
@@ -126,9 +132,15 @@ export async function fetchMessages(
 export async function fetchAllUsers(
   setState?: Dispatch<SetStateAction<UserResponse[]>>
 ) {
-  const { body } = await supabase.from('users').select('*').order('username');
-  if (setState) setState(body as UserResponse[]);
-  return body as UserResponse[];
+  const usersSelect: PostgrestResponse<UserResponse> = await supabase
+    .from('users')
+    .select('*')
+    .order('username');
+  const data = usersSelect.data ?? [];
+
+  if (setState) setState(data);
+
+  return data;
 }
 
 /**
@@ -149,30 +161,23 @@ export async function fetchUserInfo(
 
 /**
  * Insert a new message into the database
- * @param message
- * @returns The message that was added
+ * @param message The message you want to add
  */
 export async function addMessage(message: MessageCreated) {
-  const { body } = await supabase.from('messages').insert(message);
+  await supabase.from('messages').insert(message);
   // This function will check if the user already exists before creating it
   await addUser(message.author);
   await incrementMessageCount(message.author);
-  return body as MessageResponse[];
 }
 
 /**
  * Delete a message from the database
- * @param message
- * @returns The message that was deleted
+ * @param message The message you want to delete
  */
 export async function deleteMessage(message: MessageResponse) {
-  const { body } = await supabase
-    .from('messages')
-    .delete()
-    .match({ id: message.id });
+  await supabase.from('messages').delete().match({ id: message.id });
   await decrementMessageCount(message.author);
   await deleteZeroMessagesUsers();
-  return body as MessageResponse[];
 }
 
 /**
@@ -193,26 +198,23 @@ async function decrementMessageCount(username: string) {
 
 /**
  * Add a new user into the database
- * @param username
- * @returns The users added (null if none was added)
+ * @param username The username you want to add
  */
 async function addUser(username: string) {
-  const search = await supabase.from('users').select('*').match({ username });
-  let body: UserResponse[] | null = null;
-  if (search.body && search.body.length === 0) {
-    body = (await supabase.from('users').insert({ username })).body;
+  const usersSelect: PostgrestResponse<UserResponse> = await supabase
+    .from('users')
+    .select('*')
+    .match({ username });
+
+  const userAlreadyExists = usersSelect.data && usersSelect.data.length > 0;
+  if (!userAlreadyExists) {
+    await supabase.from('users').insert({ username });
   }
-  return body;
 }
 
 /**
  * Delete all users from the database that don't have any messages
- * @returns The users deleted
  */
 async function deleteZeroMessagesUsers() {
-  const { body } = await supabase
-    .from('users')
-    .delete()
-    .match({ message_count: 0 });
-  return body;
+  await supabase.from('users').delete().match({ message_count: 0 });
 }
