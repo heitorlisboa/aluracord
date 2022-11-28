@@ -1,8 +1,8 @@
-import { useContext, useRef } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 
 import styles from './UserCard.module.scss';
 
-import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
+import { ProfileDialog } from '@/components/ProfileDialog';
 
 type UserCardProps = {
   username: string;
@@ -10,28 +10,23 @@ type UserCardProps = {
 };
 
 export function UserCard({ username, onClickHandler }: UserCardProps) {
-  const { handleClickIn } = useContext(ProfileContext) as ProfileContextType;
-
-  const profileButtonRef = useRef<HTMLButtonElement>(null);
-
   return (
     <li className={styles.card}>
-      <button
-        aria-roledescription="Abre o perfil do usuário"
-        aria-expanded="false"
-        onClick={() => {
-          onClickHandler();
-          handleClickIn(username, profileButtonRef);
-        }}
-        ref={profileButtonRef}
-      >
-        <img
-          className={styles.avatar}
-          src={`https://github.com/${username}.png`}
-          alt={`Foto de perfil de ${username}`}
-        />
-        <span className={styles.username}>{username}</span>
-      </button>
+      <Dialog.Root>
+        <Dialog.Trigger
+          aria-roledescription="Abre o perfil do usuário"
+          onClick={onClickHandler}
+        >
+          <img
+            className={styles.avatar}
+            src={`https://github.com/${username}.png`}
+            alt={`Foto de perfil de ${username}`}
+          />
+          <span className={styles.username}>{username}</span>
+        </Dialog.Trigger>
+
+        <ProfileDialog username={username} />
+      </Dialog.Root>
     </li>
   );
 }

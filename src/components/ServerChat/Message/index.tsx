@@ -1,12 +1,14 @@
 import { useContext, useRef } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 
 import styles from './Message.module.scss';
 
 import { deleteMessage } from '@/lib/Store';
 import { UserContext, type UserContextType } from '@/lib/UserContext';
-import { ProfileContext, type ProfileContextType } from '@/lib/ProfileContext';
 import { linkToHTMLAnchor } from '@/utils/linkToHTMLAnchor';
 import type { MessageResponse } from '@/types';
+
+import { ProfileDialog } from '@/components/ProfileDialog';
 
 type MessageProps = {
   children: MessageResponse;
@@ -15,8 +17,7 @@ type MessageProps = {
 
 export function Message({ children: message, onlyContent }: MessageProps) {
   const { currentUser } = useContext(UserContext) as UserContextType;
-  const { handleClickIn } = useContext(ProfileContext) as ProfileContextType;
-  const profileButtonRef = useRef<HTMLButtonElement>(null);
+  const profileDialogButtonTriggerRef = useRef<HTMLButtonElement>(null);
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
     day: '2-digit',
@@ -31,6 +32,15 @@ export function Message({ children: message, onlyContent }: MessageProps) {
   });
 
   const convertedDate = new Date(message.date);
+
+  function handleRedirectFocus() {
+    /* Since when the user closes Radix UI dialog, it automatically focuses the
+    first `Dialog.Trigger` within its `Dialog.Root`, and in this case the first
+    `Dialog.Trigger` is not intended to be focused nor should it be accessible
+    by screen readers, so I need to redirect focus to the element that is
+    intended to receive focus and is accessible by screen readers */
+    profileDialogButtonTriggerRef.current?.focus();
+  }
 
   function handleClickDelete() {
     deleteMessage(message);
@@ -54,24 +64,28 @@ export function Message({ children: message, onlyContent }: MessageProps) {
           </div>
         </>
       ) : (
-        <>
-          <img
-            className={styles.avatar}
+        <Dialog.Root>
+          <Dialog.Trigger
+            asChild
+            tabIndex={-1}
             aria-hidden
-            src={`https://github.com/${message.author}.png`}
-            alt=""
-            onClick={() => handleClickIn(message.author)}
-          />
+            onFocus={handleRedirectFocus}
+          >
+            <img
+              className={styles.avatar}
+              src={`https://github.com/${message.author}.png`}
+              alt=""
+            />
+          </Dialog.Trigger>
           <h2
             className={styles.header}
             aria-labelledby={`message-username-${message.id}`}
             // Usar esse id no contexto do reply
             aria-describedby={`message-context-${message.id}`}
           >
-            <button
-              aria-expanded="false"
-              onClick={() => handleClickIn(message.author, profileButtonRef)}
-              ref={profileButtonRef}
+            <Dialog.Trigger
+              aria-roledescription="Abre o perfil do usuário"
+              ref={profileDialogButtonTriggerRef}
             >
               <span
                 id={`message-username-${message.id}`}
@@ -79,7 +93,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
               >
                 {message.author}
               </span>
-            </button>
+            </Dialog.Trigger>
             <span>
               <time
                 className={styles.timeStamp}
@@ -90,7 +104,9 @@ export function Message({ children: message, onlyContent }: MessageProps) {
               </time>
             </span>
           </h2>
-        </>
+
+          <ProfileDialog username={message.author} />
+        </Dialog.Root>
       )}
 
       <div className={styles.content}>{linkToHTMLAnchor(message.content)}</div>

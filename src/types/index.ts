@@ -15,7 +15,7 @@ export type UserResponse = {
 };
 
 export type GitHubUserInfo = {
-  name: string;
+  name: string | null;
   login: string;
   location: string;
   bio: string;

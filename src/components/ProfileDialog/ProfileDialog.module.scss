@@ -1,0 +1,126 @@
+@use '../../styles/partials/colors' as clr;
+@use '../../styles/partials/font-sizes' as fs;
+
+.container {
+  position: relative;
+}
+
+.overlay {
+  background-color: transparentize($color: clr.$primary-light, $amount: 0.05);
+  position: fixed;
+  inset: 0;
+
+  @supports (backdrop-filter: blur(0.5rem)) {
+    background-color: clr.$primary-light-transparent;
+    backdrop-filter: blur(0.5rem);
+  }
+}
+
+.contentContainer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+}
+
+.content {
+  background-color: clr.$primary-dark;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 20rem;
+  max-height: 32rem;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px -2px clr.$primary-darker;
+}
+
+.loading {
+  align-self: center;
+
+  width: 2rem;
+  height: 2rem;
+  margin: 4rem 0;
+  border: 2px solid clr.$secondary-light;
+  border-left-color: transparent;
+  border-radius: 100vw;
+
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar {
+  align-self: center;
+
+  width: 7rem;
+  aspect-ratio: 1/1;
+  border-radius: 100vw;
+}
+
+.header {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.fullName {
+  font-size: 1.2rem;
+}
+
+.username {
+  color: clr.$secondary-dark;
+  font-size: 0.9rem;
+}
+
+.about {
+  margin-top: 2rem;
+
+  font-size: fs.$small;
+}
+
+.aboutLocation {
+  margin-top: 0.5rem;
+}
+
+.aboutSocials {
+  display: flex;
+  gap: 0.25rem;
+
+  margin-top: 0.25rem;
+  margin-left: -0.25rem;
+
+  .smallerIcon {
+    padding: 0.25rem;
+  }
+
+  a {
+    width: 2rem;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.fetchFailure {
+  text-align: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
