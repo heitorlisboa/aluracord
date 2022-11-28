@@ -32,7 +32,14 @@ export function linkToHTMLAnchor(text: string) {
     that was before the link, and then insert the link */
     resultingElements.push(textBeforeMatch);
     resultingElements.push(
-      <a href={matchingString} target="_blank" rel="noreferrer">
+      <a
+        /* Setting the key as the item index (which is the array length before
+        adding the item) */
+        key={resultingElements.length}
+        href={matchingString}
+        target="_blank"
+        rel="noreferrer"
+      >
         {matchingString}
       </a>
     );
