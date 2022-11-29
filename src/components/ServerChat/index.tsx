@@ -38,7 +38,7 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
     if (scroller) scroller.scrollTop = scroller.scrollHeight;
   }
 
-  const scrollWasOnBottomBeforeRender = (() => {
+  const scrollWasOnBottomBeforeRerender = (() => {
     const scroller = scrollerDivRef.current;
     if (scroller) {
       const scrollBottom = scroller.scrollTop + scroller.offsetHeight;
@@ -50,11 +50,17 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
     return false;
   })();
 
+  // Scrolling to the bottom of the chat on first render
   useEffect(() => {
-    const noMessagesOrMessagesAreLoading = messages.length === 0;
-    if (noMessagesOrMessagesAreLoading || scrollWasOnBottomBeforeRender)
-      scrollToBottom();
-  }, [messages, scrollWasOnBottomBeforeRender]);
+    scrollToBottom();
+  }, []);
+
+  /* Scrolling to the bottom of the chat every time there is a rerender (caused
+  by updating the messages) and the scroll was on the bottom of the chat before
+  that rerender */
+  useEffect(() => {
+    if (scrollWasOnBottomBeforeRerender) scrollToBottom();
+  });
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
