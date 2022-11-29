@@ -76,6 +76,7 @@ export default function Login() {
         <div className={styles.user}>
           <img
             src={`https://github.com/${username}.png`}
+            alt=""
             onError={handleInvalidUser}
             ref={userImageRef}
           />
