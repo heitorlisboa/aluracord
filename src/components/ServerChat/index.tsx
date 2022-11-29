@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, forwardRef, type HTMLProps } from 'react';
+import { useEffect, useRef, forwardRef, type HTMLProps } from 'react';
 
 import styles from './ServerChat.module.scss';
 
@@ -32,13 +32,13 @@ type ServerChatProps = {
 export function ServerChat({ channel, messages }: ServerChatProps) {
   const scrollerDivRef = useRef<HTMLDivElement>(null);
 
-  function adjustChatScroll() {
+  function scrollToBottom() {
     const scroller = scrollerDivRef.current;
 
     if (scroller) scroller.scrollTop = scroller.scrollHeight;
   }
 
-  const scrollIsOnBottom = useMemo(() => {
+  const scrollWasOnBottomBeforeRender = (() => {
     const scroller = scrollerDivRef.current;
     if (scroller) {
       const scrollBottom = scroller.scrollTop + scroller.offsetHeight;
@@ -48,11 +48,13 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
       }
     }
     return false;
-  }, [messages]);
+  })();
 
   useEffect(() => {
-    if (messages.length === 0 || scrollIsOnBottom) adjustChatScroll();
-  }, [messages]);
+    const noMessagesOrMessagesAreLoading = messages.length === 0;
+    if (noMessagesOrMessagesAreLoading || scrollWasOnBottomBeforeRender)
+      scrollToBottom();
+  }, [messages, scrollWasOnBottomBeforeRender]);
 
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
