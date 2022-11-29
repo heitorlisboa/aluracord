@@ -20,6 +20,7 @@
     "sass": "^1.56.1"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.15.1",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@typescript-eslint/eslint-plugin": "^5.44.0",

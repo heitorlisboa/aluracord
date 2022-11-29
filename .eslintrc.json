@@ -2,9 +2,10 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier"
   ],
-  "plugins": ["eslint-plugin-import-helpers"],
+  "plugins": ["eslint-plugin-import-helpers", "@tanstack/query"],
   "rules": {
     "@next/next/no-img-element": "off",
     "@typescript-eslint/consistent-type-imports": "warn",
