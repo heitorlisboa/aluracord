@@ -27,9 +27,14 @@ ServerChatWrapper.displayName = 'ServerChatWrapper';
 type ServerChatProps = {
   channel: string;
   messages: MessageResponse[];
+  isLoadingMessages: boolean;
 };
 
-export function ServerChat({ channel, messages }: ServerChatProps) {
+export function ServerChat({
+  channel,
+  messages,
+  isLoadingMessages,
+}: ServerChatProps) {
   const scrollerDivRef = useRef<HTMLDivElement>(null);
 
   function scrollToBottom() {
@@ -69,7 +74,13 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
           className={styles.scrollerInner}
           aria-label={`Mensagens em ${channel}`}
         >
-          {messages.length > 0 ? (
+          {isLoadingMessages ? (
+            <>
+              {Array.from(Array(8).keys()).map((n) => {
+                return <LoadingMessage key={n} />;
+              })}
+            </>
+          ) : (
             <>
               {messages.map((msg, index) => {
                 let hideAuthor = false;
@@ -88,12 +99,6 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
                     {msg}
                   </Message>
                 );
-              })}
-            </>
-          ) : (
-            <>
-              {Array.from(Array(8).keys()).map((n) => {
-                return <LoadingMessage key={n} />;
               })}
             </>
           )}

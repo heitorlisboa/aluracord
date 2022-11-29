@@ -21,7 +21,7 @@ const supabase = createClient(
  */
 export function useStore() {
   // Fetch the messages and users from the database
-  const { data: messages } = useQuery({
+  const { data: messages, isLoading: isLoadingMessages } = useQuery({
     queryKey: ['messages'],
     queryFn: () => fetchMessages(),
   });
@@ -118,6 +118,7 @@ export function useStore() {
   return {
     messages: messages ?? [],
     users: users ?? [],
+    isLoadingMessages,
   };
 }
 

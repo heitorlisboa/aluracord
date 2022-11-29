@@ -17,7 +17,7 @@ const channelName = 'Geral';
 export default function ChatPage() {
   const router = useRouter();
   const currentUser = router.query.username;
-  const { messages, users } = useStore();
+  const { messages, users, isLoadingMessages } = useStore();
   const { containerRef } = useContext(MobileContext);
 
   useEffect(() => {
@@ -31,7 +31,11 @@ export default function ChatPage() {
         <div className={styles.secondaryContainer}>
           <ServerHeader channel={channelName} />
 
-          <ServerChat channel={channelName} messages={messages} />
+          <ServerChat
+            channel={channelName}
+            messages={messages}
+            isLoadingMessages={isLoadingMessages}
+          />
 
           <UserList channel={channelName} users={users} />
         </div>
