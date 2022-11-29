@@ -8,7 +8,7 @@
   transition: border-radius 200ms ease;
   cursor: pointer;
 
-  &:hover {
+  &:is(:hover, :focus-visible) {
     border-radius: 16px;
   }
 

@@ -81,12 +81,10 @@ export function Message({ children: message, onlyContent }: MessageProps) {
           >
             <Dialog.Trigger
               aria-roledescription="Abre o perfil do usuário"
+              className={styles.usernameButton}
               ref={profileDialogButtonTriggerRef}
             >
-              <span
-                id={`message-username-${message.id}`}
-                className={styles.username}
-              >
+              <span id={`message-username-${message.id}`}>
                 {message.author}
               </span>
             </Dialog.Trigger>

@@ -10,19 +10,16 @@ $avatar-width: 40px;
   padding-left: calc($avatar-width + 1.5rem);
   padding-right: 1rem;
 
-  &:hover,
-  &:focus-within {
+  &:is(:hover, :focus-within) {
     background-color: clr.$primary-darker-transparent;
+
+    .timeStampTooltip {
+      opacity: 1;
+    }
 
     .buttons {
       opacity: 1;
       pointer-events: auto;
-    }
-  }
-
-  &:hover {
-    .timeStampTooltip {
-      opacity: 1;
     }
   }
 }
@@ -51,10 +48,10 @@ $avatar-width: 40px;
   margin-top: 1rem;
 }
 
-.username {
+.usernameButton {
   @extend %text-ellipsis;
 
-  &:hover {
+  &:is(:hover, :focus-visible) {
     text-decoration: underline;
   }
 }
@@ -89,7 +86,7 @@ $avatar-width: 40px;
     color: clr.$info;
     text-decoration: none;
 
-    &:hover {
+    &:is(:hover, :focus-visible) {
       text-decoration: underline;
     }
   }

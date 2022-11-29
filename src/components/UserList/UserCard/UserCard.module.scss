@@ -2,19 +2,18 @@
 @use '../../../styles/partials/placeholder-selectors';
 
 .card {
-  border-radius: 5px;
-
-  &:hover {
-    background-color: clr.$primary-dark-transparent;
-  }
-
   button {
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    width: 100%;
 
+    width: 100%;
     padding: 0.25rem 0.5rem;
+
+    &:is(:hover, :focus-visible) {
+      background-color: clr.$primary-dark-transparent;
+      border-radius: 5px;
+    }
   }
 }
 

@@ -16,7 +16,7 @@
 
   cursor: pointer;
 
-  &:hover {
+  &:is(:hover, :focus-visible) {
     color: clr.$secondary-medium;
   }
 }
