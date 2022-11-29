@@ -47,7 +47,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
   }
 
   return (
-    <div className={styles.message} aria-roledescription="Mensagem">
+    <div className={styles.message}>
       {onlyContent ? (
         <>
           <div className={styles.timeStampTooltip}>
@@ -73,26 +73,18 @@ export function Message({ children: message, onlyContent }: MessageProps) {
               alt=""
             />
           </Dialog.Trigger>
-          <h3
-            className={styles.header}
-            aria-labelledby={`message-username-${message.id}`}
-            // Usar esse id no contexto do reply
-            aria-describedby={`message-context-${message.id}`}
-          >
+          <h3 className={styles.header}>
             <Dialog.Trigger
               aria-roledescription="Abre o perfil do usuário"
               className={styles.usernameButton}
               ref={profileDialogButtonTriggerRef}
             >
-              <span id={`message-username-${message.id}`}>
-                {message.author}
-              </span>
+              <span>{message.author}</span>
             </Dialog.Trigger>
             <span>
               <time
                 className={styles.timeStamp}
                 dateTime={convertedDate.toISOString()}
-                aria-label={dateTimeFormatter.format(convertedDate)}
               >
                 {dateTimeFormatter.format(convertedDate)}
               </time>

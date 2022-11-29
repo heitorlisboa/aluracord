@@ -13,10 +13,4 @@
   display: block;
 
   margin-bottom: 0.25rem;
-
-  cursor: pointer;
-
-  &:is(:hover, :focus-visible) {
-    color: clr.$secondary-medium;
-  }
 }
