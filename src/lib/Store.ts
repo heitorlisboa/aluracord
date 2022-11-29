@@ -1,4 +1,5 @@
-import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
+import { useEffect } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient, type PostgrestResponse } from '@supabase/supabase-js';
 
 import type {
@@ -9,7 +10,7 @@ import type {
 } from '@/types';
 
 // The database access
-export const supabase = createClient(
+const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
   process.env.NEXT_PUBLIC_SUPABASE_KEY as string
 );
@@ -19,40 +20,55 @@ export const supabase = createClient(
  * @returns The message list state and a boolean of whether the page is loading or not
  */
 export function useStore() {
-  // States
-  const [messages, setMessages] = useState<MessageResponse[]>([]);
-  const [users, setUsers] = useState<UserResponse[]>([]);
+  // Fetch the messages and users from the database
+  const { data: messages } = useQuery({
+    queryKey: ['messages'],
+    queryFn: () => fetchMessages(),
+  });
+  const { data: users } = useQuery({
+    queryKey: ['users'],
+    queryFn: () => fetchAllUsers(),
+  });
 
-  // Load initial data and set up listeners
+  const queryClient = useQueryClient();
+
+  // Set up listeners
   useEffect(() => {
+    // Functions that update its corresponding query data
     function handleNewMessage(newMessage: MessageResponse) {
-      setMessages((prevState) => prevState.concat(newMessage));
+      queryClient.setQueryData<MessageResponse[]>(['messages'], (oldData) => {
+        const newData = (oldData ?? []).concat(newMessage);
+        return newData;
+      });
     }
 
     function handleDeletedMessage(deletedMessage: MessageResponse) {
-      setMessages((prevState) =>
-        prevState.filter((message) => message.id !== deletedMessage.id)
-      );
+      queryClient.setQueryData<MessageResponse[]>(['messages'], (oldData) => {
+        const newData = (oldData ?? []).filter(
+          (message) => message.id !== deletedMessage.id
+        );
+        return newData;
+      });
     }
 
     function handleNewUser(newUser: UserResponse) {
-      setUsers((prevState) =>
-        prevState
+      queryClient.setQueryData<UserResponse[]>(['users'], (oldData) => {
+        const newData = (oldData ?? [])
           .concat(newUser)
           // Case-insensitive sorting
-          .sort((a, b) => a.username.localeCompare(b.username))
-      );
+          .sort((a, b) => a.username.localeCompare(b.username));
+        return newData;
+      });
     }
 
     function handleDeletedUser(deletedUser: UserResponse) {
-      setUsers((prevState) =>
-        prevState.filter((user) => user.id !== deletedUser.id)
-      );
+      queryClient.setQueryData<UserResponse[]>(['users'], (oldData) => {
+        const newData = (oldData ?? []).filter(
+          (user) => user.id !== deletedUser.id
+        );
+        return newData;
+      });
     }
-
-    // Fetch the messages and users from the database
-    fetchMessages(setMessages);
-    fetchAllUsers(setUsers);
 
     // Listen for new and deleted messages
     const messageListener = supabase
@@ -97,65 +113,48 @@ export function useStore() {
       messageListener.unsubscribe();
       userListener.unsubscribe();
     };
-  }, []);
+  }, [queryClient]);
 
   return {
-    messages,
-    users,
+    messages: messages ?? [],
+    users: users ?? [],
   };
 }
 
 /**
  * Fetch all messages from the database
- * @param setState Optionally pass in a setter to set the state
  * @returns The messages fetched from the database
  */
-export async function fetchMessages(
-  setState?: Dispatch<SetStateAction<MessageResponse[]>>
-) {
+async function fetchMessages() {
   const messagesSelect: PostgrestResponse<MessageResponse> = await supabase
     .from('messages')
     .select('*')
     .order('date');
   const data = messagesSelect.data ?? [];
-
-  if (setState) setState(data);
-
   return data;
 }
 
 /**
  * Fetch all users from the database
- * @param setState Optionally pass in a setter to set the state
  * @returns The users fetched from the database
  */
-export async function fetchAllUsers(
-  setState?: Dispatch<SetStateAction<UserResponse[]>>
-) {
+async function fetchAllUsers() {
   const usersSelect: PostgrestResponse<UserResponse> = await supabase
     .from('users')
     .select('*')
     .order('username');
   const data = usersSelect.data ?? [];
-
-  if (setState) setState(data);
-
   return data;
 }
 
 /**
  * Fetch the user information from GitHub
  * @param username Username on GitHub
- * @param setState Optionally pass in a setter to set the state
  * @returns The GitHub user information
  */
-export async function fetchUserInfo(
-  username: string,
-  setState?: Dispatch<SetStateAction<any>>
-) {
+export async function fetchUserInfo(username: string) {
   const res = await fetch(`https://api.github.com/users/${username}`);
   const data: GitHubUserInfo = await res.json();
-  if (setState) setState(data);
   return data;
 }
 
@@ -177,7 +176,7 @@ export async function addMessage(message: MessageCreated) {
 export async function deleteMessage(message: MessageResponse) {
   await supabase.from('messages').delete().match({ id: message.id });
   await decrementMessageCount(message.author);
-  await deleteZeroMessagesUsers();
+  await deleteUsersWithZeroMessages();
 }
 
 /**
@@ -215,6 +214,6 @@ async function addUser(username: string) {
 /**
  * Delete all users from the database that don't have any messages
  */
-async function deleteZeroMessagesUsers() {
+async function deleteUsersWithZeroMessages() {
   await supabase.from('users').delete().match({ message_count: 0 });
 }
