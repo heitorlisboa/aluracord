@@ -47,11 +47,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
   }
 
   return (
-    <li
-      className={styles.message}
-      aria-roledescription="Mensagem"
-      aria-setsize={-1}
-    >
+    <div className={styles.message} aria-roledescription="Mensagem">
       {onlyContent ? (
         <>
           <div className={styles.timeStampTooltip}>
@@ -77,7 +73,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
               alt=""
             />
           </Dialog.Trigger>
-          <h2
+          <h3
             className={styles.header}
             aria-labelledby={`message-username-${message.id}`}
             // Usar esse id no contexto do reply
@@ -103,7 +99,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
                 {dateTimeFormatter.format(convertedDate)}
               </time>
             </span>
-          </h2>
+          </h3>
 
           <ProfileDialog username={message.author} />
         </Dialog.Root>
@@ -118,6 +114,6 @@ export function Message({ children: message, onlyContent }: MessageProps) {
           </button>
         </div>
       )}
-    </li>
+    </div>
   );
 }

@@ -17,7 +17,7 @@ export function ChannelList({ categoryName, channelList }: ChannelListProps) {
         'Categoria de canais. Ao clicar expande ou retrai a lista de canais dessa categoria.'
       }
     >
-      <h2
+      <strong
         id={`channel-list-title_id`}
         className={styles.title}
         aria-controls={`channel-list_id`}
@@ -26,7 +26,7 @@ export function ChannelList({ categoryName, channelList }: ChannelListProps) {
         tabIndex={0}
       >
         {categoryName}
-      </h2>
+      </strong>
       {channelList.map((channelName, index) => (
         <Channel key={index} title={channelName} />
       ))}

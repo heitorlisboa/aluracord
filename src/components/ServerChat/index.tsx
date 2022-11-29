@@ -65,7 +65,7 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
   return (
     <main className={styles.content} aria-label={`${channel} (canal)`}>
       <ServerChatWrapper ref={scrollerDivRef}>
-        <ol
+        <div
           className={styles.scrollerInner}
           aria-label={`Mensagens em ${channel}`}
         >
@@ -98,7 +98,7 @@ export function ServerChat({ channel, messages }: ServerChatProps) {
             </>
           )}
           <div className={styles.scrollerSpacer} />
-        </ol>
+        </div>
       </ServerChatWrapper>
       <MessageInput channel={channel} />
     </main>

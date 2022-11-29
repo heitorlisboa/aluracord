@@ -52,7 +52,7 @@ export function ServerHeader({ channel }: ServerHeaderProps) {
       >
         <span className="sr-only">Menu</span>
       </button>
-      <h3 className={styles.title}>{channel}</h3>
+      <h2 className={styles.title}>{channel}</h2>
       <button
         className={styles.mobileUserListButton}
         onClick={() => {
