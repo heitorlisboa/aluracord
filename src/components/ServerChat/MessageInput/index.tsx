@@ -1,17 +1,17 @@
-import { useContext, useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 
 import styles from './MessageInput.module.scss';
 
 import { addMessage } from '@/lib/Store';
-import { UserContext, type UserContextType } from '@/lib/UserContext';
+import { useUserInfo } from '@/lib/UserInfoContext';
 
 type MessageInputProps = {
   channel: string;
 };
 
 export function MessageInput({ channel }: MessageInputProps) {
-  const context = useContext(UserContext) as UserContextType;
+  const userInfo = useUserInfo();
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const [messageText, setMessageText] = useState('');
 
@@ -25,9 +25,12 @@ export function MessageInput({ channel }: MessageInputProps) {
 
     if (keyPressed === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      if (trimmedMessage) {
+
+      const username = userInfo?.login;
+
+      if (trimmedMessage && username) {
         addMessage({
-          author: context.currentUser,
+          author: username,
           date: new Date().toISOString(),
           content: messageText.trim(),
         });

@@ -1,31 +1,28 @@
-import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
+import { unstable_getServerSession } from 'next-auth';
+import type { GetServerSideProps } from 'next';
 
 import styles from '@/styles/pages/Chat.module.scss';
 
 import { useStore } from '@/lib/Store';
-import { UserContext } from '@/lib/UserContext';
 import { MobileContext } from '@/lib/MobileContext';
+import { UserInfoProvider } from '@/lib/UserInfoContext';
 
 import { ServerHeader } from '@/components/ServerHeader';
 import { ServerChat } from '@/components/ServerChat';
 import { UserList } from '@/components/UserList';
 import { Navigations } from '@/components/Navigations';
 
+import { authOptions } from './api/auth/[...nextauth]';
+
 const channelName = 'Geral';
 
 export default function ChatPage() {
-  const router = useRouter();
-  const currentUser = router.query.username;
   const { messages, users, isLoadingMessages } = useStore();
   const { containerRef } = useContext(MobileContext);
 
-  useEffect(() => {
-    if (!currentUser) router.replace('/');
-  }, []);
-
   return (
-    <UserContext.Provider value={{ currentUser: currentUser as string }}>
+    <UserInfoProvider>
       <div className={styles.primaryContainer} ref={containerRef}>
         <Navigations />
         <div className={styles.secondaryContainer}>
@@ -40,6 +37,27 @@ export default function ChatPage() {
           <UserList channel={channelName} users={users} />
         </div>
       </div>
-    </UserContext.Provider>
+    </UserInfoProvider>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

@@ -1,10 +1,10 @@
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 
 import styles from './Message.module.scss';
 
 import { deleteMessage } from '@/lib/Store';
-import { UserContext, type UserContextType } from '@/lib/UserContext';
+import { useUserInfo } from '@/lib/UserInfoContext';
 import { linkToHTMLAnchor } from '@/utils/linkToHTMLAnchor';
 import type { MessageResponse } from '@/types';
 
@@ -16,7 +16,7 @@ type MessageProps = {
 };
 
 export function Message({ children: message, onlyContent }: MessageProps) {
-  const { currentUser } = useContext(UserContext) as UserContextType;
+  const userInfo = useUserInfo();
   const profileDialogButtonTriggerRef = useRef<HTMLButtonElement>(null);
 
   const dateTimeFormatter = new Intl.DateTimeFormat([], {
@@ -97,7 +97,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
 
       <div className={styles.content}>{linkToHTMLAnchor(message.content)}</div>
 
-      {message.author === currentUser && (
+      {message.author === userInfo?.login && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
           <button onClick={handleClickDelete} aria-label="Deletar">
             <img src="/icons/delete-icon.svg" alt="" />

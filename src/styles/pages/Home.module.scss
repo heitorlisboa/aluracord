@@ -14,21 +14,14 @@ $max-width: 350px;
 
 .loginCard {
   background-color: clr.$primary-light-transparent;
-  backdrop-filter: blur(0.25rem);
 
-  display: grid;
-  justify-items: center;
-  align-items: center;
+  text-align: center;
 
   margin: 1rem;
   padding: 2rem;
   border-radius: 10px;
-}
 
-.login {
-  text-align: center;
-
-  width: 100%;
+  backdrop-filter: blur(0.25rem);
 }
 
 .subtitle {
@@ -36,92 +29,11 @@ $max-width: 350px;
   font-size: 1rem;
 }
 
-.loginForm {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  margin-top: 1.5rem;
-}
-
-.usernameInput,
-.submitButton {
-  width: 100%;
-
-  padding: 0.25rem 0.5rem;
-  border-radius: 5px;
-}
-
-.usernameInput {
-  background-color: clr.$primary-medium-transparent;
-
-  border: 1px solid clr.$primary-dark;
-}
-
-.submitButton {
+.loginButton {
   background-color: clr.$success;
 
-  margin-top: 0.5rem;
-}
-
-.user {
-  background-color: clr.$primary-medium-transparent;
-
-  display: grid;
-  justify-items: center;
   width: 100%;
-  max-width: $max-width;
-  height: 100%;
-
-  border: 1px solid clr.$primary-dark;
-  border-radius: 10px;
-
-  img {
-    border-radius: 50%;
-  }
-}
-
-.username {
-  background-color: clr.$primary-dark;
-
-  text-align: center;
-  @extend %text-ellipsis;
-
-  max-width: 100%;
-
-  padding-inline: 1rem;
-  border-radius: 100vw;
-}
-
-@include custom-media(max, sm) {
-  .loginCard {
-    gap: 1rem;
-    grid-template-rows: repeat(2, 1fr);
-  }
-
-  .user {
-    gap: 0.5rem;
-    padding: 0.5rem;
-
-    img {
-      height: 100%;
-      max-height: 100px;
-    }
-  }
-}
-
-@include custom-media(min, sm) {
-  .loginCard {
-    gap: 5rem;
-    grid-template-columns: 1fr 200px;
-    width: clamp(500px, 90vw + 1rem, 650px);
-  }
-
-  .user {
-    gap: 1rem;
-    padding: 1rem;
-
-    img {
-      width: 100%;
-    }
-  }
+  padding: 0.25rem 0.5rem;
+  margin-top: 2rem;
+  border-radius: 5px;
 }

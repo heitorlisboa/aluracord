@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createClient, type PostgrestResponse } from '@supabase/supabase-js';
+import type { Session } from 'next-auth';
 
 import type {
   MessageResponse,
@@ -156,6 +157,25 @@ async function fetchAllUsers() {
 export async function fetchUserInfo(username: string) {
   const res = await fetch(`https://api.github.com/users/${username}`);
   const data: GitHubUserInfo = await res.json();
+  return data;
+}
+
+/**
+ * Fetch the user information from GitHub
+ * @param session The NextAuth.js session object
+ * @returns The GitHub user information
+ */
+export async function fetchUserInfoFromSession(session: Session | null) {
+  const userImageUrl = session?.user?.image;
+  if (!userImageUrl) return null;
+
+  const userIdMatch = /\/u\/(\d+)/.exec(userImageUrl);
+  if (!userIdMatch) return null;
+
+  const userId = userIdMatch[1];
+
+  const response = await fetch(`https://api.github.com/user/${userId}`);
+  const data: GitHubUserInfo = await response.json();
   return data;
 }
 
