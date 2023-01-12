@@ -6,14 +6,10 @@
 }
 
 .overlay {
-  background-color: transparentize($color: clr.$primary-light, $amount: 0.05);
+  background-color: clr.$primary-light-transparent;
+  backdrop-filter: blur(0.5rem);
   position: fixed;
   inset: 0;
-
-  @supports (backdrop-filter: blur(0.5rem)) {
-    background-color: clr.$primary-light-transparent;
-    backdrop-filter: blur(0.5rem);
-  }
 }
 
 .contentContainer {
