@@ -12,6 +12,33 @@
   @extend %top-section;
 }
 
+.dialogOverlay {
+  background-color: clr.$primary-light-transparent;
+  backdrop-filter: blur(0.5rem);
+  position: fixed;
+  inset: 0;
+}
+
+.dialogContentContainer {
+  position: fixed;
+  inset: 0;
+}
+
+.dialogContent {
+  width: fit-content;
+  height: 100%;
+  box-shadow: 0 0 10px -2px clr.$primary-darker;
+}
+
+.dialogContentRightSide {
+  margin-left: auto;
+}
+
+.userList {
+  width: min(20rem, 100vw);
+  margin-left: auto;
+}
+
 .title {
   font-size: fs.$medium;
 }

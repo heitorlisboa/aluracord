@@ -13,7 +13,6 @@
 
   display: grid;
   grid-template-columns: 1fr;
-  position: relative;
 }
 
 .secondaryContainer {
@@ -24,23 +23,8 @@
 }
 
 @include custom-media(max, lg) {
-  .primaryContainer {
-    &::after {
-      content: '';
-      background-color: hsla(0, 0%, 0%, 0.7);
-
-      position: absolute;
-      inset: 0;
-
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 200ms ease;
-    }
-
-    &.disabled::after {
-      opacity: 1;
-      pointer-events: auto;
-    }
+  .desktopOnlyMenu {
+    display: none !important;
   }
 }
 

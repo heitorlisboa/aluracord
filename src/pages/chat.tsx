@@ -1,11 +1,9 @@
-import { useContext } from 'react';
 import { unstable_getServerSession } from 'next-auth';
 import type { GetServerSideProps } from 'next';
 
 import styles from '@/styles/pages/Chat.module.scss';
 
 import { useStore } from '@/lib/Store';
-import { MobileContext } from '@/lib/MobileContext';
 import { UserInfoProvider } from '@/lib/UserInfoContext';
 
 import { ServerHeader } from '@/components/ServerHeader';
@@ -19,14 +17,13 @@ const channelName = 'Geral';
 
 export default function ChatPage() {
   const { messages, users, isLoadingMessages } = useStore();
-  const { containerRef } = useContext(MobileContext);
 
   return (
     <UserInfoProvider>
-      <div className={styles.primaryContainer} ref={containerRef}>
-        <Navigations />
+      <div className={styles.primaryContainer}>
+        <Navigations className={styles.desktopOnlyMenu} />
         <div className={styles.secondaryContainer}>
-          <ServerHeader channel={channelName} />
+          <ServerHeader channel={channelName} users={users} />
 
           <ServerChat
             channel={channelName}
@@ -34,7 +31,11 @@ export default function ChatPage() {
             isLoadingMessages={isLoadingMessages}
           />
 
-          <UserList channel={channelName} users={users} />
+          <UserList
+            className={styles.desktopOnlyMenu}
+            channel={channelName}
+            users={users}
+          />
         </div>
       </div>
     </UserInfoProvider>

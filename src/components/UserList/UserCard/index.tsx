@@ -6,17 +6,13 @@ import { ProfileDialog } from '@/components/ProfileDialog';
 
 type UserCardProps = {
   username: string;
-  onClickHandler: () => void;
 };
 
-export function UserCard({ username, onClickHandler }: UserCardProps) {
+export function UserCard({ username }: UserCardProps) {
   return (
     <li className={styles.card}>
       <Dialog.Root>
-        <Dialog.Trigger
-          aria-roledescription="Abre o perfil do usuário"
-          onClick={onClickHandler}
-        >
+        <Dialog.Trigger aria-roledescription="Abre o perfil do usuário">
           <img
             className={styles.avatar}
             src={`https://github.com/${username}.png`}

@@ -1,49 +1,17 @@
-import { useContext } from 'react';
+import clsx from 'clsx';
 
 import styles from './Navigations.module.scss';
-
-import { MobileContext } from '@/lib/MobileContext';
-import { useOutsideListener } from '@/lib/OutsideListener';
 
 import { ServerList } from './ServerList';
 import { ServerInsideNav } from './ServerInsideNav';
 
-export function Navigations() {
-  const context = useContext(MobileContext);
+type NavigationsProps = {
+  className?: string;
+};
 
-  function handleCloseMenu() {
-    const navigationsElement = context.navigationsRef.current;
-    const elementIsActive = navigationsElement?.classList.contains(
-      context.activeNavigationsClass
-    );
-    if (!elementIsActive) return;
-
-    const navigationsButton = context.navigationsButtonRef.current;
-    const containerElement = context.containerRef.current;
-
-    const otherElement = context.userListRef.current;
-    const otherElementIsActive = otherElement?.classList.contains(
-      context.activeUserListClass
-    );
-
-    const elementsAreValid =
-      navigationsElement && navigationsButton && containerElement;
-
-    if (elementsAreValid && !otherElementIsActive) {
-      navigationsElement.classList.remove(context.activeNavigationsClass);
-      navigationsButton.ariaExpanded = 'false';
-      containerElement.classList.remove(context.disabledContainerClass);
-    }
-  }
-
-  useOutsideListener(context.navigationsRef, handleCloseMenu);
-
+export function Navigations({ className }: NavigationsProps) {
   return (
-    <div
-      id="navigations"
-      className={styles.container}
-      ref={context.navigationsRef}
-    >
+    <div id="navigations" className={clsx(styles.container, className)}>
       <ServerList />
       <ServerInsideNav />
     </div>
