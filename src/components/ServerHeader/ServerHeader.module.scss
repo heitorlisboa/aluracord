@@ -12,13 +12,6 @@
   @extend %top-section;
 }
 
-.dialogOverlay {
-  background-color: clr.$primary-light-transparent;
-  backdrop-filter: blur(0.5rem);
-  position: fixed;
-  inset: 0;
-}
-
 .dialogContentContainer {
   position: fixed;
   inset: 0;

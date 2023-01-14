@@ -1,17 +1,6 @@
 @use '../../styles/partials/colors' as clr;
 @use '../../styles/partials/font-sizes' as fs;
 
-.container {
-  position: relative;
-}
-
-.overlay {
-  background-color: clr.$primary-light-transparent;
-  backdrop-filter: blur(0.5rem);
-  position: fixed;
-  inset: 0;
-}
-
 .contentContainer {
   position: fixed;
   inset: 0;

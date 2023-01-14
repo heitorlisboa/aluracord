@@ -1,0 +1,8 @@
+@use '../../styles/partials/colors' as clr;
+
+.overlay {
+  background-color: clr.$primary-light-transparent;
+  backdrop-filter: blur(0.5rem);
+  position: fixed;
+  inset: 0;
+}

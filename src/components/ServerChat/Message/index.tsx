@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
 
 import styles from './Message.module.scss';
 
@@ -8,6 +7,7 @@ import { useUserInfo } from '@/lib/UserInfoContext';
 import { linkToHTMLAnchor } from '@/utils/linkToHTMLAnchor';
 import type { MessageResponse } from '@/types';
 
+import { Dialog } from '@/components/Dialog';
 import { ProfileDialog } from '@/components/ProfileDialog';
 
 type MessageProps = {
@@ -60,39 +60,42 @@ export function Message({ children: message, onlyContent }: MessageProps) {
           </div>
         </>
       ) : (
-        <Dialog.Root>
-          <Dialog.Trigger
-            asChild
-            tabIndex={-1}
-            aria-hidden
-            onFocus={handleRedirectFocus}
-          >
-            <img
-              className={styles.avatar}
-              src={`https://github.com/${message.author}.png`}
-              alt=""
-            />
-          </Dialog.Trigger>
-          <h3 className={styles.header}>
-            <Dialog.Trigger
-              aria-roledescription="Abre o perfil do usuário"
-              className={styles.usernameButton}
-              ref={profileDialogButtonTriggerRef}
-            >
-              <span>{message.author}</span>
-            </Dialog.Trigger>
-            <span>
-              <time
-                className={styles.timeStamp}
-                dateTime={convertedDate.toISOString()}
+        <Dialog.Root
+          trigger={
+            <>
+              <Dialog.Trigger
+                asChild
+                tabIndex={-1}
+                aria-hidden
+                onFocus={handleRedirectFocus}
               >
-                {dateTimeFormatter.format(convertedDate)}
-              </time>
-            </span>
-          </h3>
-
-          <ProfileDialog username={message.author} />
-        </Dialog.Root>
+                <img
+                  className={styles.avatar}
+                  src={`https://github.com/${message.author}.png`}
+                  alt=""
+                />
+              </Dialog.Trigger>
+              <h3 className={styles.header}>
+                <Dialog.Trigger
+                  aria-roledescription="Abre o perfil do usuário"
+                  className={styles.usernameButton}
+                  ref={profileDialogButtonTriggerRef}
+                >
+                  <span>{message.author}</span>
+                </Dialog.Trigger>
+                <span>
+                  <time
+                    className={styles.timeStamp}
+                    dateTime={convertedDate.toISOString()}
+                  >
+                    {dateTimeFormatter.format(convertedDate)}
+                  </time>
+                </span>
+              </h3>
+            </>
+          }
+          content={<ProfileDialog username={message.author} />}
+        />
       )}
 
       <div className={styles.content}>{linkToHTMLAnchor(message.content)}</div>

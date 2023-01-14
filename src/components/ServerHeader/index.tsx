@@ -1,10 +1,11 @@
-import * as Dialog from '@radix-ui/react-dialog';
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import styles from './ServerHeader.module.scss';
 
 import type { UserResponse } from '@/types';
 
+import { Dialog } from '../Dialog';
 import { Navigations } from '../Navigations';
 import { UserList } from '../UserList';
 
@@ -16,29 +17,43 @@ type ServerHeaderProps = {
 export function ServerHeader({ channel, users }: ServerHeaderProps) {
   return (
     <section className={styles.header} aria-label="Cabeçalho do canal">
-      <Dialog.Root>
-        <Dialog.Trigger className={styles.mobileMenuButton}>
-          <span className="sr-only">Menu</span>
-        </Dialog.Trigger>
-        <Dialog.Portal>
-          <Dialog.Overlay className={styles.dialogOverlay} />
-          <div className={styles.dialogContentContainer}>
+      <Dialog.Root
+        trigger={
+          <Dialog.Trigger className={styles.mobileMenuButton}>
+            <span className="sr-only">Menu</span>
+          </Dialog.Trigger>
+        }
+        content={
+          <motion.div
+            className={styles.dialogContentContainer}
+            initial={{ translateX: '-100%' }}
+            animate={{ translateX: '0%' }}
+            exit={{ translateX: '-100%' }}
+            transition={{ type: 'tween' }}
+          >
             <Dialog.Content className={styles.dialogContent}>
               <Navigations />
             </Dialog.Content>
-          </div>
-        </Dialog.Portal>
-      </Dialog.Root>
+          </motion.div>
+        }
+      />
 
       <h2 className={styles.title}>{channel}</h2>
 
-      <Dialog.Root>
-        <Dialog.Trigger className={styles.mobileUserListButton}>
-          <span className="sr-only">Lista de usuários</span>
-        </Dialog.Trigger>
-        <Dialog.Portal>
-          <Dialog.Overlay className={styles.dialogOverlay} />
-          <div className={styles.dialogContentContainer}>
+      <Dialog.Root
+        trigger={
+          <Dialog.Trigger className={styles.mobileUserListButton}>
+            <span className="sr-only">Lista de usuários</span>
+          </Dialog.Trigger>
+        }
+        content={
+          <motion.div
+            className={styles.dialogContentContainer}
+            initial={{ translateX: '100%' }}
+            animate={{ translateX: '0%' }}
+            exit={{ translateX: '100%' }}
+            transition={{ type: 'tween' }}
+          >
             <Dialog.Content
               className={clsx(
                 styles.dialogContent,
@@ -51,9 +66,9 @@ export function ServerHeader({ channel, users }: ServerHeaderProps) {
                 users={users}
               />
             </Dialog.Content>
-          </div>
-        </Dialog.Portal>
-      </Dialog.Root>
+          </motion.div>
+        }
+      />
     </section>
   );
 }
