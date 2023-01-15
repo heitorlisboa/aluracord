@@ -1,0 +1,60 @@
+@use '../../../../styles/partials/colors' as clr;
+
+.dialogContentContainer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+}
+
+.dialogContent {
+  background-color: clr.$primary-dark;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  width: 30rem;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px -2px clr.$primary-darker;
+}
+
+.dialogTitle {
+  font-size: 1.5rem;
+}
+
+.dialogDescription {
+  color: clr.$secondary-dark;
+  font-size: 0.9rem;
+}
+
+.dialogButtons {
+  align-self: flex-end;
+  display: flex;
+  gap: 1rem;
+
+  & > button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+    &:is(:hover, :focus-visible) {
+      opacity: 0.6;
+    }
+  }
+}
+
+.dialogConfirmButton {
+  background-color: hsl(347, 77%, 50%);
+}
+
+.dialogCancelButton {
+  background-color: clr.$primary-light;
+}

@@ -10,6 +10,8 @@ import type { MessageResponse } from '@/types';
 import { Dialog } from '@/components/Dialog';
 import { ProfileDialog } from '@/components/ProfileDialog';
 
+import { DeleteMessageButton } from './DeleteMessageButton';
+
 type MessageProps = {
   children: MessageResponse;
   onlyContent?: boolean;
@@ -42,7 +44,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
     profileDialogButtonTriggerRef.current?.focus();
   }
 
-  function handleClickDelete() {
+  function handleDeleteMessage() {
     deleteMessage(message);
   }
 
@@ -102,9 +104,7 @@ export function Message({ children: message, onlyContent }: MessageProps) {
 
       {message.author === userInfo?.login && (
         <div className={styles.buttons} aria-label="Ações de mensagem">
-          <button onClick={handleClickDelete} aria-label="Deletar">
-            <img src="/icons/delete-icon.svg" alt="" />
-          </button>
+          <DeleteMessageButton onConfirmDelete={handleDeleteMessage} />
         </div>
       )}
     </div>
