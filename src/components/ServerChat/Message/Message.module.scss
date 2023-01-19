@@ -1,6 +1,7 @@
 @use '../../../styles/partials/colors' as clr;
 @use '../../../styles/partials/font-sizes' as fs;
 @use '../../../styles/partials/placeholder-selectors';
+@use '../../../styles/partials/custom-media' as *;
 
 $avatar-width: 40px;
 
@@ -43,7 +44,9 @@ $avatar-width: 40px;
   font-size: fs.$medium;
 
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
 
   margin-top: 1rem;
 }
@@ -79,8 +82,9 @@ $avatar-width: 40px;
 }
 
 .content {
-  padding-bottom: 0.25rem;
+  color: clr.$secondary-medium;
   white-space: break-spaces;
+  padding-bottom: 0.25rem;
 
   a {
     color: clr.$info;
@@ -102,5 +106,15 @@ $avatar-width: 40px;
     border-radius: 5px;
 
     cursor: pointer;
+  }
+}
+
+@include custom-media(max, sm) {
+  .header {
+    margin-top: 0.5rem;
+  }
+
+  .content {
+    font-size: 0.875rem;
   }
 }

@@ -85,11 +85,8 @@ export function Message({ message, onlyContent }: MessageProps) {
                 >
                   <span>{message.author}</span>
                 </Dialog.Trigger>
-                <span>
-                  <time
-                    className={styles.timeStamp}
-                    dateTime={convertedDate.toISOString()}
-                  >
+                <span className={styles.timeStamp}>
+                  <time dateTime={convertedDate.toISOString()}>
                     {dateTimeFormatter.format(convertedDate)}
                   </time>
                 </span>

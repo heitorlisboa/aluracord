@@ -1,4 +1,5 @@
 @use '../../../styles/partials/colors' as clr;
+@use '../../../styles/partials/custom-media' as *;
 
 .form {
   display: flex;
@@ -19,4 +20,10 @@
   border-radius: 10px;
 
   resize: none;
+}
+
+@include custom-media(max, sm) {
+  .input {
+    margin-bottom: 1rem;
+  }
 }
