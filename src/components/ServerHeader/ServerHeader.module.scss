@@ -1,5 +1,6 @@
 @use '../../styles/partials/colors' as clr;
 @use '../../styles/partials/font-sizes' as fs;
+@use '../../styles/partials/component-sizes' as size;
 @use '../../styles/partials/custom-media' as *;
 @use '../../styles/partials/placeholder-selectors';
 
@@ -29,7 +30,7 @@
 }
 
 .userList {
-  width: min(20rem, 100vw);
+  width: size.$navigations-width;
   margin-left: auto;
 }
 
