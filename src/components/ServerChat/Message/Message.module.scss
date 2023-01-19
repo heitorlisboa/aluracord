@@ -49,6 +49,10 @@ $avatar-width: 40px;
   column-gap: 0.5rem;
 
   margin-top: 1rem;
+
+  & button {
+    font-weight: 500;
+  }
 }
 
 .usernameButton {
