@@ -82,22 +82,32 @@ export function ServerChat({
             </>
           ) : (
             <>
-              {messages.map((msg, index) => {
+              {messages.map((currentMessage, index) => {
                 let hideAuthor = false;
                 if (index > 0) {
-                  const msgTime = new Date(msg.date).getTime();
-                  const lastMsg = messages[index - 1];
-                  const lastMsgTime = new Date(lastMsg.date).getTime();
-                  // getTime() returns the time in milliseconds
-                  const timeDiffMinutes = (msgTime - lastMsgTime) / 1000 / 60;
-                  if (msg.author === lastMsg.author && timeDiffMinutes < 5) {
+                  const msgTime = new Date(currentMessage.date).getTime();
+                  const previousMessage = messages[index - 1];
+                  const previousMessageTime = new Date(
+                    previousMessage.date
+                  ).getTime();
+                  // Converting from milliseconds to minutes
+                  const timeDifferenceInMinutes =
+                    (msgTime - previousMessageTime) / 1000 / 60;
+                  const previousMessageHasSameAuthor =
+                    currentMessage.author === previousMessage.author;
+                  if (
+                    previousMessageHasSameAuthor &&
+                    timeDifferenceInMinutes < 5
+                  ) {
                     hideAuthor = true;
                   }
                 }
                 return (
-                  <Message key={msg.id} onlyContent={hideAuthor}>
-                    {msg}
-                  </Message>
+                  <Message
+                    key={currentMessage.id}
+                    message={currentMessage}
+                    onlyContent={hideAuthor}
+                  />
                 );
               })}
             </>

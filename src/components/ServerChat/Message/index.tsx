@@ -13,11 +13,11 @@ import { ProfileDialog } from '@/components/ProfileDialog';
 import { DeleteMessageButton } from './DeleteMessageButton';
 
 type MessageProps = {
-  children: MessageResponse;
+  message: MessageResponse;
   onlyContent?: boolean;
 };
 
-export function Message({ children: message, onlyContent }: MessageProps) {
+export function Message({ message, onlyContent }: MessageProps) {
   const userInfo = useUserInfo();
   const profileDialogButtonTriggerRef = useRef<HTMLButtonElement>(null);
 
