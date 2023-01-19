@@ -8,6 +8,7 @@
 
   grid-column: span 2;
   display: flex;
+  align-items: center;
   gap: 1rem;
   @extend %top-section;
 }
@@ -36,6 +37,24 @@
   font-size: fs.$medium;
 }
 
+.signOutButton {
+  background-color: clr.$secondary-light;
+
+  color: clr.$primary-dark;
+
+  padding: 0.25rem 1rem;
+  margin-left: auto;
+  border-radius: 0.25rem;
+
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  &:is(:hover, :focus-visible) {
+    opacity: 0.6;
+  }
+}
+
 .mobileMenuButton,
 .mobileUserListButton {
   display: none;
@@ -61,6 +80,5 @@
 
   .mobileUserListButton {
     background-image: url(/icons/people-icon.svg);
-    margin-left: auto;
   }
 }

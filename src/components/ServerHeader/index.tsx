@@ -1,3 +1,4 @@
+import { signOut } from 'next-auth/react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
@@ -39,6 +40,10 @@ export function ServerHeader({ channel, users }: ServerHeaderProps) {
       />
 
       <h2 className={styles.title}>{channel}</h2>
+
+      <button className={styles.signOutButton} onClick={() => signOut()}>
+        Sair
+      </button>
 
       <Dialog.Root
         trigger={
