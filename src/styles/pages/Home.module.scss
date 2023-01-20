@@ -14,26 +14,42 @@ $max-width: 350px;
 
 .loginCard {
   background-color: clr.$primary-light-transparent;
+  backdrop-filter: blur(0.25rem);
 
   text-align: center;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 30rem;
   margin: 1rem;
   padding: 2rem;
+  border: 1px solid hsl(210, 20%, 20%);
   border-radius: 10px;
-
-  backdrop-filter: blur(0.25rem);
+  box-shadow: 0 20px 25px -5px clr.$primary-dark-transparent,
+    0 8px 10px -6px clr.$primary-dark-transparent;
 }
 
 .subtitle {
   color: clr.$secondary-dark;
-  font-size: 1rem;
 }
 
 .loginButton {
-  background-color: clr.$success;
+  background-color: clr.$secondary-light;
 
-  width: 100%;
-  padding: 0.25rem 0.5rem;
+  color: clr.$primary-dark;
+  font-weight: 500;
+
+  padding: 0.25rem 1rem;
   margin-top: 2rem;
   border-radius: 5px;
+
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  &:is(:hover, :focus-visible) {
+    opacity: 0.6;
+  }
 }

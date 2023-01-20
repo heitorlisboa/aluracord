@@ -14,8 +14,11 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <div className={styles.loginCard}>
-        <h1>Boas vindas!</h1>
-        <h2 className={styles.subtitle}>Aluracord - Fullmetal Alchemist</h2>
+        <h1>Aluracord</h1>
+        <p className={styles.subtitle}>
+          Um simples clone do Discord temático de Fullmetal Alchemist feito por{' '}
+          <a href="https://github.com/heitorlisboa">@heitorlisboa</a>
+        </p>
         <button className={styles.loginButton} onClick={handleLogin}>
           Fazer login com GitHub
         </button>
