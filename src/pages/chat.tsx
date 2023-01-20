@@ -21,6 +21,7 @@ export default function ChatPage() {
   return (
     <UserInfoProvider>
       <div className={styles.primaryContainer}>
+        <div className={styles.backdrop} />
         <Navigations className={styles.desktopOnlyMenu} />
         <div className={styles.secondaryContainer}>
           <ServerHeader channel={channelName} users={users} />

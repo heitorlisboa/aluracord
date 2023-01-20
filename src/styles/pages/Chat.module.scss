@@ -15,6 +15,18 @@
   grid-template-columns: 1fr;
 }
 
+.backdrop {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(0.25rem);
+
+  /* For some reason, the backdrop gets on top of its siblings, and setting
+  their z-index to 0 solves the problem */
+  & ~ * {
+    z-index: 0;
+  }
+}
+
 .secondaryContainer {
   display: grid;
   height: 100%;
