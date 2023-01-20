@@ -37,8 +37,10 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   color: clr.$secondary-light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 button,
