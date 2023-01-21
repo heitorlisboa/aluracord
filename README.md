@@ -1,51 +1,73 @@
 # Aluracord
 
-O Aluracord é um clone personalizado do Discord durante a Imersão React da Alura.
+O Aluracord é um clone básico do Discord, que fiz com temática de Fullmetal Alchemist, criado durante a primeira Imersão React de 2022 da Alura.
 
-Desde o início da imersão meu objetivo era ir além dela, então utilizei meus conhecimentos prévios de React + TypeScript (e de frontend como um todo) aliado aos conhecimentos de Next.js e Supabase obtidos através do evento e construí o projeto do zero utilizando essas tecnologias. Dessa forma, tive como resultado uma aplicação fullstack com um frontend inclusivo e atrativo, aliado a uma integração em tempo real do frontend com o backend, possibilitando uma conversa síncrona entre usuários.
+O objetivo dessa imersão foi de dar uma introdução ao Next.js e ao Supabase (um back-end as a service). Para isso, foi proposta a construção de uma aplicação fullstack de chat em tempo real.
 
-## Página de Login
+Inicialmente o projeto foi desenvolvido durante a imersão, porém mesmo após o término do evento eu eventualmente faço modificações e melhorias, assim, à medida que meu conhecimento se expande, a qualidade da aplicação aumenta.
 
-<p align="center">
-  <img src="/showcase/login-page.png" alt="Página de Login" />
-</p>
+Link para o website: [https://aluracord-heitorlisboa.vercel.app](https://aluracord-heitorlisboa.vercel.app)
 
-## Página de Chat
+## 👨‍💻 Tecnologias/serviços utilizados
 
-<p align="center">
-  <img src="/showcase/layout-desktop.png" alt="Página de Chat" />
-</p>
+- [React](https://reactjs.org)
+- [Next.js](https://nextjs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Sass](https://sass-lang.com)
+- [Supabase](https://supabase.com)
+- [GitHub OAuth](https://docs.github.com/pt/developers/apps/building-oauth-apps/creating-an-oauth-app) (provedor de autenticação)
 
-## Perfil de usuário
+## ✨ Destaques
 
-<p align="center">
-  <img src="/showcase/profile-card.png" alt="Perfil de usuário" />
-</p>
+- Chat em tempo real
+- Login com GitHub
+- Interface acessível e intuitiva
+- Server Side Rendering
 
-## Layout mobile (não finalizado)
+## 📷 Capturas de tela
 
-<p align="center">
-  <img src="/showcase/layout-mobile-nav-closed.png" alt="Página de chat versão mobile com a navegação fechada" width="450" />
-</p>
+<div align="center">
+  <img src="showcase/home-page.png" alt="Página inicial" width="90%" />
+</div>
+<p align="center">Página inicial</p>
 
-<p align="center">
-  <img src="/showcase/layout-mobile-nav-open.png" alt="Página de chat versão mobile com a navegação aberta" width="450" />
-</p>
+<br />
 
-Além do mais, planejo levar esse projeto adiante com meus estudos, então a seguir listo algumas das minhas metas de desenvolvimento para essa aplicação:
+<div align="center">
+  <img src="showcase/chat-page.png" alt="Página de chat" width="90%" />
+</div>
+<p align="center">Página de chat</p>
 
-Desenvolver sistema de:
+<br />
 
-- [ ] canais e de servidores
-- [ ] autenticação com a conta do GitHub
-- [ ] amizade
-- [ ] grupos
-- [ ] notificação e menção
-- [ ] anexos de arquivos
+<div align="center">
+  <img src="showcase/user-profile.png" alt="Página de chat com modal de perfil de usuário aberto" width="90%" />
+</div>
+<p align="center">Modal de perfil de usuário</p>
 
-Link para o site: [https://aluracord-heitorlisboa.vercel.app](https://aluracord-heitorlisboa.vercel.app)
+<br />
 
-Contato:
+<div align="center">
+  <img src="showcase/mobile-chat-page.png" alt="Página de chat em dispositivos móveis" height="600" />
+</div>
+<p align="center">Layout mobile</p>
 
-- Discord: Heitor#7447
-- GitHub: [heitorlisboa](https://github.com/heitorlisboa)
+<br />
+
+<div align="center">
+  <img src="showcase/mobile-navigation.png" alt="Página de chat em dispositivos móveis com menu de navegação aberto" height="600" />
+</div>
+<p align="center">Menu de navegação mobile aberto</p>
+
+<br />
+
+<div align="center">
+  <img src="showcase/mobile-user-list.png" alt="Página de chat em dispositivos móveis com menu de lista de usuários mobile aberto" height="600" />
+</div>
+<p align="center">Menu de lista de usuários mobile aberto</p>
+
+## 📄 Licença
+
+Esse projeto utiliza a licença GNU GPL-3.0 &ndash; veja o arquivo [`COPYING`](COPYING) para mais detalhes.
+
+Em resumo: é uma licença que permite fazer quase tudo com o projeto, com exceção de distribuir versões de código fechado (closed source).
