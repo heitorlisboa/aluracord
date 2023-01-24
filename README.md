@@ -27,42 +27,42 @@ Link para o website: [https://aluracord-heitorlisboa.vercel.app](https://aluraco
 ## 📷 Capturas de tela
 
 <div align="center">
-  <img src="showcase/home-page.png" alt="Página inicial" width="90%" />
+  <img src="showcase/home-page.webp" alt="Página inicial" width="90%" />
 </div>
 <p align="center">Página inicial</p>
 
 <br />
 
 <div align="center">
-  <img src="showcase/chat-page.png" alt="Página de chat" width="90%" />
+  <img src="showcase/chat-page.webp" alt="Página de chat" width="90%" />
 </div>
 <p align="center">Página de chat</p>
 
 <br />
 
 <div align="center">
-  <img src="showcase/user-profile.png" alt="Página de chat com modal de perfil de usuário aberto" width="90%" />
+  <img src="showcase/user-profile.webp" alt="Página de chat com modal de perfil de usuário aberto" width="90%" />
 </div>
 <p align="center">Modal de perfil de usuário</p>
 
 <br />
 
 <div align="center">
-  <img src="showcase/mobile-chat-page.png" alt="Página de chat em dispositivos móveis" height="600" />
+  <img src="showcase/mobile-chat-page.webp" alt="Página de chat em dispositivos móveis" height="600" />
 </div>
 <p align="center">Layout mobile</p>
 
 <br />
 
 <div align="center">
-  <img src="showcase/mobile-navigation.png" alt="Página de chat em dispositivos móveis com menu de navegação aberto" height="600" />
+  <img src="showcase/mobile-navigation.webp" alt="Página de chat em dispositivos móveis com menu de navegação aberto" height="600" />
 </div>
 <p align="center">Menu de navegação mobile aberto</p>
 
 <br />
 
 <div align="center">
-  <img src="showcase/mobile-user-list.png" alt="Página de chat em dispositivos móveis com menu de lista de usuários mobile aberto" height="600" />
+  <img src="showcase/mobile-user-list.webp" alt="Página de chat em dispositivos móveis com menu de lista de usuários mobile aberto" height="600" />
 </div>
 <p align="center">Menu de lista de usuários mobile aberto</p>
 
