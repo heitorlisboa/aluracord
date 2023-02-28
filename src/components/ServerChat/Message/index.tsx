@@ -53,10 +53,7 @@ export function Message({ message, onlyContent }: MessageProps) {
       {onlyContent ? (
         <>
           <div className={styles.timeStampTooltip}>
-            <time
-              dateTime={convertedDate.toISOString()}
-              aria-label={timeFormatter.format(convertedDate)}
-            >
+            <time dateTime={convertedDate.toISOString()}>
               {timeFormatter.format(convertedDate)}
             </time>
           </div>
