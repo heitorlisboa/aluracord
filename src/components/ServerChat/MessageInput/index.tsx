@@ -19,7 +19,7 @@ export function MessageInput({ channel }: MessageInputProps) {
     setMessageText(event.target.value);
   }
 
-  function handleKeyPress(event: KeyboardEvent) {
+  function handleKeyDown(event: KeyboardEvent) {
     const keyPressed = event.key;
     const trimmedMessage = messageText.trim();
 
@@ -71,7 +71,7 @@ export function MessageInput({ channel }: MessageInputProps) {
         ref={messageInputRef}
         value={messageText}
         onChange={handleChange}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyDown}
       />
     </form>
   );
